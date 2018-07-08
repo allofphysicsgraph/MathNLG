@@ -1,0 +1,22 @@
+<source>
+  <inference id="flcv" type="implication">
+    <if>
+      <prop what="h" is="compact_support" from="a" to="b"></prop>
+      <prop what="h" is="smooth" from="a" to="b"></prop>
+      <prop what="f" is="continuous" from="a" to="b"></prop>
+      <vertex>
+        <lhs>Integral(f(t)*h(t), (x, a, b))</lhs>
+        <rhs>0</rhs>
+      </vertex>
+    </if>
+    <then>
+      <vertex>
+        <lhs>f(t)</lhs>
+        <rhs>0</rhs>
+      </vertex>
+    </then>
+    <meta>
+      <desc lang="en_EN">Fundamental Lemma of Calculus of Variations</desc>
+    </meta>
+  </inference>
+</source>
