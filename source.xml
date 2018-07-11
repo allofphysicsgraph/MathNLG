@@ -1,13 +1,30 @@
 <source>
   <inference id="flcv" type="implication">
     <if>
-      <prop what="h" is="compact_support" from="a" to="b"></prop>
-      <prop what="h" is="smooth" from="a" to="b"></prop>
-      <prop what="f" is="continuous" from="a" to="b"></prop>
-      <vertex>
-        <lhs>Integral(f(t)*h(t), (x, a, b))</lhs>
-        <rhs>0</rhs>
-      </vertex>
+      <property>
+        <representation>h(x)</representation>
+        <is id="compact_support"></is>
+        <from>a</from>
+        <to>b</to>
+      </property>
+      <property>
+        <representation>h(x)</representation>
+        <is>smooth</is>
+        <from>a</from>
+        <to>b</to>
+      </property>
+      <property>
+        <representation>f(x)</representation>
+        <is>continuous</is>
+        <from>a</from>
+        <to>b</to>
+      </property>
+      <property>
+        <eq>
+          <lhs>Integral(f(t)*h(t), (x, a, b))</lhs>
+          <rhs>0</rhs>
+        </eq>
+      </property>
     </if>
     <then>
       <vertex>
@@ -17,6 +34,172 @@
     </then>
     <meta>
       <desc lang="en_EN">Fundamental Lemma of Calculus of Variations</desc>
+    </meta>
+  </inference>
+  <inference id="cont1" type="implication">
+    <if>
+      <property>
+        <representation>b</representation>
+        <is>real</is>
+        <is>constant</is>
+      </property>
+      <property>
+        <eq>
+          <lhs>limit(f(x), x, b)</lhs>
+          <rhs>f(b)</rhs>
+        </eq>
+      </property>
+    </if>
+    <then>
+      <property>
+        <representation>f(x)</representation>
+        <at>b</at>
+        <is>continuous</is>
+      </property>
+    </then>
+    <meta>
+      <desc lang="en_EN">Continuity at point</desc>
+    </meta>
+  </inference>
+  <inference id="cont2" type="implication">
+    <if>
+      <property>
+        <representation>a</representation>
+        <is>real</is>
+        <is>constant</is>
+      </property>
+      <property>
+        <representation>b</representation>
+        <is>real</is>
+        <is>constant</is>
+        <geq>a</geq>
+        <leq>c</leq>
+      </property>
+      <property>
+        <representation>c</representation>
+        <is>real</is>
+        <is>constant</is>
+      </property>
+      <property>
+        <representation>f(x)</representation>
+        <is>continuous</is>
+        <forall>b</forall>
+      </property>
+    </if>
+    <then>
+      <property>
+        <representation>f(x)</representation>
+        <is>continuous</is>
+        <from>a</from>
+        <to>c</to>
+      </property>
+    </then>
+    <meta>
+      <desc lang="en_EN">Continuity over interval</desc>
+    </meta>
+  </inference>
+  <inference id="smooth" type="implication">
+    <if>
+      <property>
+        <representation>a</representation>
+        <is>real</is>
+        <is>constant</is>
+      </property>
+      <property>
+        <representation>b</representation>
+        <is>real</is>
+        <is>constant</is>
+        <gt>a</gt>
+      </property>
+      <property>
+        <representation>f(x)</representation>
+        <is>continuous</is>
+        <from>a</from>
+        <to>b</to>
+      </property>
+      <property>
+        <representation>df(x)</representation>
+        <is>continuous</is>
+        <from>a</from>
+        <to>b</to>
+      </property>
+      <property>
+        <eq>
+          <lhs>df(t)</lhs>
+          <rhs>Derivative(f(x), x)</rhs>
+        </eq>
+      </property>
+    </if>
+    <then>
+      <property>
+        <representation>f(x)</representation>
+        <from>a</from>
+        <to>b</to>
+        <is>smooth</is>
+      </property>
+    </then>
+    <meta>
+      <desc lang="en_EN">Smoothness over interval</desc>
+    </meta>
+  </inference>
+  <inference id="smooth" type="implication">
+    <if>
+      <property>
+        <representation>a</representation>
+        <is>real</is>
+        <is>constant</is>
+      </property>
+      <property>
+        <representation>b</representation>
+        <is>real</is>
+        <is>constant</is>
+        <gt>a</gt>
+      </property>
+      <property>
+        <representation>c</representation>
+        <is>real</is>
+        <is>constant</is>
+        <leq>a</leq>
+      </property>
+      <property>
+        <representation>d</representation>
+        <is>real</is>
+        <is>constant</is>
+        <geq>b</geq>
+      </property>
+      <property>
+        <representation>f(x)</representation>
+        <is>continuous</is>
+        <from>a</from>
+        <to>b</to>
+      </property>
+      <property>
+        <eq>
+          <lhs>f(d)</lhs>
+          <rhs>0</rhs>
+        </eq>
+      </property>
+      <property>
+        <neq>
+          <lhs>f(c)</lhs>
+          <rhs>0</rhs>
+        </neq>
+      </property>
+    </if>
+    <then>
+      <property>
+        <representation>f(x)</representation>
+        <from>a</from>
+        <to>b</to>
+        <is id="compact_support"></is>
+      </property>
+    </then>
+    <meta>
+      <desc lang="en_EN">Compactly supported over interval</desc>
+      <linguistic lang="en_EN">
+        <noun>compact support</noun>
+        <adjective>compactly supported</adjective>
+      </linguistic>
     </meta>
   </inference>
 </source>
