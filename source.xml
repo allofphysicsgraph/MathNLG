@@ -1,58 +1,89 @@
 <source>
-  <inference id="flcv" type="implication">
+  <definition id="flcv" type="implication">
+    <symbols>
+      <property>
+        <representation>t</representation>
+        <is>real</is>
+        <is>variable</is>
+      </property>
+      <property>
+        <representation>x</representation>
+        <is>real</is>
+        <is>variable</is>
+      </property>
+      <property>
+        <representation>h</representation>
+        <is>function</is>
+        <of>x</of>
+      </property>
+    </symbols>
     <if>
       <property>
-        <representation>h(x)</representation>
+        <representation>h</representation>
         <is id="compact_support"></is>
         <from>a</from>
         <to>b</to>
       </property>
       <property>
-        <representation>h(x)</representation>
+        <representation>h</representation>
         <is>smooth</is>
         <from>a</from>
         <to>b</to>
       </property>
       <property>
-        <representation>f(x)</representation>
+        <representation>f</representation>
         <is>continuous</is>
         <from>a</from>
         <to>b</to>
       </property>
-      <property>
+      <expression>
         <eq>
           <lhs>Integral(f(t)*h(t), (x, a, b))</lhs>
           <rhs>0</rhs>
         </eq>
-      </property>
+      </expression>
     </if>
     <then>
-      <vertex>
-        <lhs>f(t)</lhs>
-        <rhs>0</rhs>
-      </vertex>
+      <expression>
+        <eq>
+          <lhs>f(t)</lhs>
+          <rhs>0</rhs>
+        </eq>
+      </expression>
     </then>
     <meta>
       <desc lang="en_EN">Fundamental Lemma of Calculus of Variations</desc>
     </meta>
-  </inference>
-  <inference id="cont1" type="implication">
-    <if>
+  </definition>
+  <definition id="cont1" type="implication">
+    <symbols>
+      <property>
+        <representation>x</representation>
+        <is>real</is>
+        <is>variable</is>
+      </property>
+      <property>
+        <representation>f</representation>
+        <is>function</is>
+        <of>x</of>
+      </property>
       <property>
         <representation>b</representation>
         <is>real</is>
         <is>constant</is>
       </property>
-      <property>
+    </symbols>
+    <if>
+      <expression>
         <eq>
           <lhs>limit(f(x), x, b)</lhs>
           <rhs>f(b)</rhs>
         </eq>
-      </property>
+      </expression>
     </if>
     <then>
       <property>
-        <representation>f(x)</representation>
+        <representation>f</representation>
         <at>b</at>
         <is>continuous</is>
       </property>
@@ -60,9 +91,19 @@
     <meta>
       <desc lang="en_EN">Continuity at point</desc>
     </meta>
-  </inference>
-  <inference id="cont2" type="implication">
-    <if>
+  </definition>
+  <definition id="cont2" type="implication">
+    <symbols>
+      <property>
+        <representation>x</representation>
+        <is>real</is>
+        <is>variable</is>
+      </property>
+      <property>
+        <representation>f</representation>
+        <is>function</is>
+        <of>x</of>
+      </property>
       <property>
         <representation>a</representation>
         <is>real</is>
@@ -72,23 +113,29 @@
         <representation>b</representation>
         <is>real</is>
         <is>constant</is>
-        <geq>a</geq>
-        <leq>c</leq>
       </property>
       <property>
         <representation>c</representation>
         <is>real</is>
         <is>constant</is>
       </property>
+    </symbols>
+    <if>
       <property>
-        <representation>f(x)</representation>
+        <representation>b</representation>
+        <geq>a</geq>
+        <leq>c</leq>
+      </property>
+      <property>
+        <representation>f</representation>
         <is>continuous</is>
+        <at>b</at>
         <forall>b</forall>
       </property>
     </if>
     <then>
       <property>
-        <representation>f(x)</representation>
+        <representation>f</representation>
         <is>continuous</is>
         <from>a</from>
         <to>c</to>
@@ -97,9 +144,24 @@
     <meta>
       <desc lang="en_EN">Continuity over interval</desc>
     </meta>
-  </inference>
-  <inference id="smooth" type="implication">
-    <if>
+  </definition>
+  <definition id="smooth" type="implication">
+    <symbols>
+      <property>
+        <representation>x</representation>
+        <is>real</is>
+        <is>variable</is>
+      </property>
+      <property>
+        <representation>h</representation>
+        <is>function</is>
+        <of>x</of>
+      </property>
+      <property>
+        <representation>df</representation>
+        <is>function</is>
+        <of>x</of>
+      </property>
       <property>
         <representation>a</representation>
         <is>real</is>
@@ -109,30 +171,35 @@
         <representation>b</representation>
         <is>real</is>
         <is>constant</is>
+      </property>
+    </symbols>
+    <if>
+      <property>
+        <representation>b</representation>
         <gt>a</gt>
       </property>
       <property>
-        <representation>f(x)</representation>
+        <representation>f</representation>
         <is>continuous</is>
         <from>a</from>
         <to>b</to>
       </property>
       <property>
-        <representation>df(x)</representation>
+        <representation>df</representation>
         <is>continuous</is>
         <from>a</from>
         <to>b</to>
       </property>
-      <property>
+      <expression>
         <eq>
           <lhs>df(t)</lhs>
           <rhs>Derivative(f(x), x)</rhs>
         </eq>
-      </property>
+      </expression>
     </if>
     <then>
       <property>
-        <representation>f(x)</representation>
+        <representation>f</representation>
         <from>a</from>
         <to>b</to>
         <is>smooth</is>
@@ -141,9 +208,19 @@
     <meta>
       <desc lang="en_EN">Smoothness over interval</desc>
     </meta>
-  </inference>
-  <inference id="smooth" type="implication">
-    <if>
+  </definition>
+  <definition id="compact_support" type="implication">
+    <symbols>
+      <property>
+        <representation>x</representation>
+        <is>real</is>
+        <is>variable</is>
+      </property>
+      <property>
+        <representation>f</representation>
+        <is>function</is>
+        <of>x</of>
+      </property>
       <property>
         <representation>a</representation>
         <is>real</is>
@@ -153,45 +230,56 @@
         <representation>b</representation>
         <is>real</is>
         <is>constant</is>
-        <gt>a</gt>
       </property>
       <property>
         <representation>c</representation>
         <is>real</is>
         <is>constant</is>
-        <leq>a</leq>
       </property>
       <property>
         <representation>d</representation>
         <is>real</is>
         <is>constant</is>
+      </property>
+    </symbols>
+    <if>
+      <property>
+        <representation>b</representation>
+        <gt>a</gt>
+      </property>
+      <property>
+        <representation>c</representation>
+        <leq>a</leq>
+      </property>
+      <property>
+        <representation>d</representation>
         <geq>b</geq>
       </property>
       <property>
-        <representation>f(x)</representation>
+        <representation>f</representation>
         <is>continuous</is>
         <from>a</from>
         <to>b</to>
       </property>
-      <property>
+      <expression>
         <eq>
           <lhs>f(d)</lhs>
           <rhs>0</rhs>
         </eq>
-      </property>
-      <property>
+      </expression>
+      <expression>
         <neq>
           <lhs>f(c)</lhs>
           <rhs>0</rhs>
         </neq>
-      </property>
+      </expression>
     </if>
     <then>
       <property>
-        <representation>f(x)</representation>
+        <representation>f</representation>
         <from>a</from>
         <to>b</to>
-        <is id="compact_support"></is>
+        <is>compact_support</is>
       </property>
     </then>
     <meta>
@@ -201,5 +289,5 @@
         <adjective>compactly supported</adjective>
       </linguistic>
     </meta>
-  </inference>
+  </definition>
 </source>
