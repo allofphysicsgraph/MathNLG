@@ -2,6 +2,15 @@ import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
 from lxml import etree
+from sympy import sympify, latex
+
+def plural(word) :
+    return {
+        'function': 'functions',
+        'variable': 'variables',
+        'constant': 'constants',
+        'real': 'reals'
+    }[word]
 
 def extractTag(tree, tag) :
     all = []
@@ -129,10 +138,89 @@ def microplanner(dp) :
         #pp.pprint(definition)
     return ts
 
+def surfaceFilter(representation, symbols) :
+    filtered = []
+    for symbol in enumerate(symbols) :
+        if representation not in symbol['representaion'] :
+            filtered.append(symbol)
+    return filtered
+
+def surfaceFinder(representation, symbols) :
+    for symbol in enumerate(symbols) :
+        if representation in symbol['representaion'] :
+            return representaion
+
+def surfaceProperty(property, representations, symbols) :
+    filtered = {}
+    filtered['constants'] = surfaceFilter(representation, symbols['constants'])
+    filtered['functions'] = surfaceFilter(representation, symbols['functions'])
+    filtered['variables'] = surfaceFilter(representation, symbols['variables'])
+    symbol = surfaceFinder(symbols)
+    text = '$%s$' % sympy.latex(sympify(representation))
+    print text
+
+def surfaceStatementSingle(statement) :
+    if set(['from', 'to']).issubset(set(statement.keys())) :
+        return '%s from $%s$ to $%s$' % (statement['is'][0], statement['from'], statement['to'])
+    if set(['at']).issubset(set(statement.keys())) :
+        return '%s at $%s$' % (statement['is'][0], statement['at'])
+    return ''
+
+def aggregator(strings) :
+    if len(strings) > 2 :
+        return '%s and %s' % (', '.join(strings[0:-1]), strings[-1])
+    elif len(strings) > 1 :
+        return '%s and %s' % (strings[0], strings[1])
+    return strings[0]
+
+def surfaceStatement(func, data) :
+    aggr = []
+    for f, statements in data.iteritems() :
+        compiled = [surfaceStatementSingle(statement) for statement in statements]
+        aggregated = aggregator(compiled)
+        aggr.append('$%s$ is %s' % (func[f], aggregated))
+    return 'such that %s' % (aggregator(aggr))
+
+# type is real, natural, complex etc
+# kind is variable or constant
+def surfaceSymbol(data) :
+    if len(data['representation']) > 1 :
+        wrapped = ['$%s$' % (s) for s in data['representation']]
+        return '%s are %s %s' % (aggregator(wrapped), data['type'], plural(data['kind']))
+    else :
+        return '$%s$ is a %s %s' % (data['representation'][0], data['type'], data['kind'])
+
+def surfaceFunction(data) :
+    acc = []
+    acs = {}
+    for dependency in data['dependencies'] :
+        acc.append(surfaceSymbol(dependency))
+        if type(dependency['representation'][0]) == list :
+            acs += dependency['representation'][0]
+        else :
+            if dependency['function'] not in acs.keys() :
+                acs[dependency['function']] = []
+            acs[dependency['function']] += dependency['representation']
+    for dependency in data['symbols'] :
+        acc.append(surfaceSymbol(dependency))
+    func = '%s(%s)' % (data['representation'][0], ', '.join(acs[data['representation'][0]]))
+    st = ''
+    if data['statements'] is not None :
+        # TODO extend to multiple functions
+        fnc = {data['representation'][0]: func}
+        st = ' %s' % (surfaceStatement(fnc, data['statements']))
+    return '$%s$ is a %s function%s where %s' % (func, data['type'], st, aggregator(acc))
+
 # accepts text specification ts
 # returns surface text st
 def surfaceRealiser(ts) :
-    pp.pprint(ts)
+    for definition in ts['definition'] :
+        data = definition['data']
+        text = ''
+        if 'if' in data.keys() and 'then' in data.keys() :
+            #data['then']['statements'][0]
+            #print 'then %s lol' % ('something')
+            pp.pprint(data)
     st = None
     # TODO
     return st
