@@ -77,7 +77,7 @@ tests_function = [
         'expected': '$f(x, y)$ and $g(x, y)$ are real functions where $x$ and $y$ are real variables'
     },
     {
-        'test': {'disabled': True},
+        'test': {},
         'data': {
             'representation': ['f', 'g'],
             'type': 'real',
@@ -98,7 +98,7 @@ tests_function = [
             'statements': None,
             'symbols': []
         },
-        'expected': '$f(x, y)$ and $g(z)$ are real functions where $x$, $y$ and $z$ are real variables'
+        'expected': '$f(x, y)$ and $g(z)$ are real functions where $x$ and $y$ are real variables and $z$ is a real variable'
     },
     {
         'test': {},
@@ -107,7 +107,7 @@ tests_function = [
             'type': 'real',
             'dependencies': [
                 {
-                    'function': 'f',
+                    'function': ['f'],
                     'representation': ['x', 'y', 'z'],
                     'type': 'real',
                     'kind': 'variable'
@@ -125,7 +125,7 @@ tests_function = [
             'type': 'real',
             'dependencies': [
                 {
-                    'function': 'f',
+                    'function': ['f'],
                     'representation': ['x'],
                     'type': 'real',
                     'kind': 'variable'
@@ -147,7 +147,7 @@ tests_function = [
         'expected': '$f(x)$ is a real function such that $f(x)$ is clean from $a$ to $b$ where $x$ is a real variable and $a$ and $b$ are real constants'
     },
     {
-        'test': {'disabled': True},
+        'test': {},
         'data': {
             'representation': ['f', 'g'],
             'type': 'real',
@@ -172,7 +172,7 @@ tests_function = [
                 }
             ]
         },
-        'expected': '$f(x)$ and $g(x)$ are a real functions such that $f(x)$ is clean from $a$ to $b$ where $x$ is a real variable and $a$ and $b$ are real constants'
+        'expected': '$f(x)$ and $g(x)$ are real functions such that $f(x)$ is clean from $a$ to $b$ where $x$ is a real variable and $a$ and $b$ are real constants'
     }
 ]
 
