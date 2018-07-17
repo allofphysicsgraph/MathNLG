@@ -173,12 +173,44 @@ tests_function = [
             ]
         },
         'expected': '$f(x)$ and $g(x)$ are real functions such that $f(x)$ is clean from $a$ to $b$ where $x$ is a real variable and $a$ and $b$ are real constants'
+    },
+    {
+        'test': {},
+        'data': {
+            'representation': ['f', 'g'],
+            'type': 'real',
+            'dependencies': [
+                {
+                    'function': ['f', 'g'],
+                    'representation': ['x'],
+                    'type': 'real',
+                    'kind': 'variable'
+                }
+            ],
+            'statements': {
+                'f': [
+                    {'from': 'a', 'is': ['clean'], 'to': 'b'}
+                ],
+                'g': [
+                    {'at': 'c', 'is': ['broken']}
+                ]
+            },
+            'symbols': [
+                {
+                    'representation': ['a', 'b', 'c'],
+                    'type': 'real',
+                    'kind': 'constant'
+                }
+            ]
+        },
+        'expected': '$f(x)$ and $g(x)$ are real functions such that $f(x)$ is clean from $a$ to $b$ and $g(x)$ is broken at $c$ where $x$ is a real variable and $a$, $b$ and $c$ are real constants'
     }
 ]
 
 tests_statement = [
     {
         'test': {},
+        'fs': ['f'],
         'func': {
             'f': 'f(x)'
         },
@@ -191,6 +223,7 @@ tests_statement = [
     },
     {
         'test': {},
+        'fs': ['f'],
         'func': {
             'f': 'f(x)'
         },
@@ -203,6 +236,7 @@ tests_statement = [
     },
     {
         'test': {},
+        'fs': ['f'],
         'func': {
             'f': 'f(x)'
         },
@@ -216,6 +250,7 @@ tests_statement = [
     },
     {
         'test': {},
+        'fs': ['f'],
         'func': {
             'f': 'f(x)'
         },
@@ -259,10 +294,11 @@ class FunctionTest(TestCase) :
 @parametrized(*tests_statement)
 class StatementTest(TestCase) :
     def testStatement(self) :
-        output = surfaceStatement(self.func, self.data)
+        output = surfaceStatement(self.fs, self.func, self.data)
         self.assertEqual(output, self.expected)
-    def setParameters(self, test, func, data, expected):
+    def setParameters(self, test, fs, func, data, expected):
         self.test = test
+        self.fs = fs
         self.func = func
         self.data = data
         self.expected = expected

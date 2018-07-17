@@ -173,12 +173,15 @@ def aggregator(strings) :
         return '%s and %s' % (strings[0], strings[1])
     return strings[0]
 
-def surfaceStatement(func, data) :
+def surfaceStatement(fs, func, data) :
     aggr = []
-    for f, statements in data.iteritems() :
-        compiled = [surfaceStatementSingle(statement) for statement in statements]
-        aggregated = aggregator(compiled)
-        aggr.append('$%s$ is %s' % (func[f], aggregated))
+    for f in fs :
+        if f in data.keys() :
+            frep = func[f]
+            statements = data[f]
+            compiled = [surfaceStatementSingle(statement) for statement in statements]
+            aggregated = aggregator(compiled)
+            aggr.append('$%s$ is %s' % (frep, aggregated))
     return 'such that %s' % (aggregator(aggr))
 
 # type is real, natural, complex etc
@@ -205,14 +208,14 @@ def surfaceFunction(data) :
     for dependency in data['symbols'] :
         acc.append(surfaceSymbol(dependency))
     func = []
+    freps = {}
     for f in data['representation'] :
         frep = '%s(%s)' % (f, ', '.join(acs[f]))
         func.append(frep)
+        freps[f] = frep
     st = ''
     if data['statements'] is not None :
-        # TODO extend to multiple functions
-        fnc = {data['representation'][0]: func[0]}
-        st = ' %s' % (surfaceStatement(fnc, data['statements']))
+        st = ' %s' % (surfaceStatement(data['representation'], freps, data['statements']))
     if len(func) > 1 :
         wrapped = ['$%s$' % (s) for s in func]
         return '%s are %s functions%s where %s' % (aggregator(wrapped), data['type'], st, aggregator(acc))
