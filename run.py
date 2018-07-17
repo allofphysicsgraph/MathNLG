@@ -1,7 +1,9 @@
 from lxml import etree
 from sympy import Symbol, sympify
 
-from nlg import documentPlanner, microplanner, surfaceRealiser
+from nlg.document import documentPlanner
+from nlg.microplanner import microplanner
+from nlg.surface import surfaceRealiser
 
 # get knowledge source from the source.xml file
 ks = None

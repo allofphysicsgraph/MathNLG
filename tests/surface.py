@@ -1,7 +1,7 @@
 from unittest import TestCase, skip
 from paramunittest import parametrized
 
-from nlg import surfaceSymbol, surfaceFunction, surfaceStatement, surfaceStatementSingle
+from nlg.surface import surfaceSymbol, surfaceFunction, surfaceStatement, surfaceStatementSingle
 
 tests_symbol = [
     {
