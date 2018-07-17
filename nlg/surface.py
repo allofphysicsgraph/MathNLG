@@ -49,11 +49,22 @@ def surfaceSymbol(data) :
     else :
         return '$%s$ is a %s %s' % (data['representation'][0], data['type'], data['kind'])
 
+def surfaceType(func, data) :
+    aggr = []
+    for ftype in data :
+        wrapped = ['$%s$' % (func[s]) for s in ftype['function']]
+        compiled = ''
+        if len(wrapped) > 1 :
+            compiled = '%s are %s functions' % (aggregator(wrapped), ftype['type'])
+        else :
+            compiled = '%s is a %s function' % (wrapped[0], ftype['type'])
+        aggr.append(compiled)
+    return aggregator(aggr)
+
 def surfaceFunction(data) :
     acc = []
     acs = {}
     for dependency in data['dependencies'] :
-        acc.append(surfaceSymbol(dependency))
         if type(dependency['representation'][0]) == list :
             acs += dependency['representation'][0]
         else :
@@ -72,11 +83,7 @@ def surfaceFunction(data) :
     st = ''
     if data['statements'] is not None :
         st = ' %s' % (surfaceStatement(data['representation'], freps, data['statements']))
-    if len(func) > 1 :
-        wrapped = ['$%s$' % (s) for s in func]
-        return '%s are %s functions%s where %s' % (aggregator(wrapped), data['type'], st, aggregator(acc))
-    else :
-        return '$%s$ is a %s function%s where %s' % (func[0], data['type'], st, aggregator(acc))
+    return '%s%s where %s' % (surfaceType(freps, data['type']), st, aggregator(acc))
 
 # accepts text specification ts
 # returns surface text st

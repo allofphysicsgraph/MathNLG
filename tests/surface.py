@@ -1,7 +1,7 @@
 from unittest import TestCase, skip
 from paramunittest import parametrized
 
-from nlg.surface import surfaceSymbol, surfaceFunction, surfaceStatement, surfaceStatementSingle
+from nlg.surface import surfaceSymbol, surfaceFunction, surfaceStatement, surfaceStatementSingle, surfaceType
 
 tests_symbol = [
     {
@@ -20,23 +20,35 @@ tests_function = [
         'test': {},
         'data': {
             'representation': ['f'],
-            'type': 'real',
+            'type': [
+                {
+                    'function': ['f'],
+                    'type': 'real'
+                }
+            ],
             'dependencies': [
                 {
                     'function': ['f'],
+                    'representation': ['x']
+                },
+                {
+                    'function': ['f'],
+                    'representation': ['y']
+                }
+            ],
+            'statements': None,
+            'symbols': [
+                {
                     'representation': ['x'],
                     'type': 'real',
                     'kind': 'variable'
                 },
                 {
-                    'function': ['f'],
                     'representation': ['y'],
                     'type': 'real',
                     'kind': 'variable'
                 }
-            ],
-            'statements': None,
-            'symbols': []
+            ]
         },
         'expected': '$f(x, y)$ is a real function where $x$ is a real variable and $y$ is a real variable'
     },
@@ -44,17 +56,26 @@ tests_function = [
         'test': {},
         'data': {
             'representation': ['f'],
-            'type': 'real',
+            'type': [
+                {
+                    'function': ['f'],
+                    'type': 'real'
+                }
+            ],
             'dependencies': [
                 {
                     'function': ['f'],
+                    'representation': ['x', 'y']
+                }
+            ],
+            'statements': None,
+            'symbols': [
+                {
                     'representation': ['x', 'y'],
                     'type': 'real',
                     'kind': 'variable'
                 }
-            ],
-            'statements': None,
-            'symbols': []
+            ]
         },
         'expected': '$f(x, y)$ is a real function where $x$ and $y$ are real variables'
     },
@@ -62,17 +83,26 @@ tests_function = [
         'test': {},
         'data': {
             'representation': ['f', 'g'],
-            'type': 'real',
+            'type': [
+                {
+                    'function': ['f', 'g'],
+                    'type': 'real'
+                }
+            ],
             'dependencies': [
                 {
                     'function': ['f', 'g'],
+                    'representation': ['x', 'y']
+                }
+            ],
+            'statements': None,
+            'symbols': [
+                {
                     'representation': ['x', 'y'],
                     'type': 'real',
                     'kind': 'variable'
                 }
-            ],
-            'statements': None,
-            'symbols': []
+            ]
         },
         'expected': '$f(x, y)$ and $g(x, y)$ are real functions where $x$ and $y$ are real variables'
     },
@@ -80,41 +110,128 @@ tests_function = [
         'test': {},
         'data': {
             'representation': ['f', 'g'],
-            'type': 'real',
+            'type': [
+                {
+                    'function': ['f', 'g'],
+                    'type': 'real'
+                }
+            ],
             'dependencies': [
                 {
                     'function': ['f'],
+                    'representation': ['x', 'y']
+                },
+                {
+                    'function': ['g'],
+                    'representation': ['z']
+                }
+            ],
+            'statements': None,
+            'symbols': [
+                {
                     'representation': ['x', 'y'],
                     'type': 'real',
                     'kind': 'variable'
                 },
                 {
-                    'function': ['g'],
                     'representation': ['z'],
                     'type': 'real',
                     'kind': 'variable'
                 }
-            ],
-            'statements': None,
-            'symbols': []
+            ]
         },
         'expected': '$f(x, y)$ and $g(z)$ are real functions where $x$ and $y$ are real variables and $z$ is a real variable'
     },
     {
         'test': {},
         'data': {
-            'representation': ['f'],
-            'type': 'real',
+            'representation': ['f', 'g'],
+            'type': [
+                {
+                    'function': ['f', 'g'],
+                    'type': 'real'
+                }
+            ],
             'dependencies': [
                 {
                     'function': ['f'],
+                    'representation': ['x', 'y']
+                },
+                {
+                    'function': ['g'],
+                    'representation': ['z']
+                }
+            ],
+            'statements': None,
+            'symbols': [
+                {
                     'representation': ['x', 'y', 'z'],
                     'type': 'real',
                     'kind': 'variable'
                 }
+            ]
+        },
+        'expected': '$f(x, y)$ and $g(z)$ are real functions where $x$, $y$ and $z$ are real variables'
+    },
+    {
+        'test': {},
+        'data': {
+            'representation': ['f', 'g', 'h'],
+            'type': [
+                {
+                    'function': ['f', 'g'],
+                    'type': 'real'
+                },
+                {
+                    'function': ['h'],
+                    'type': 'complex'
+                }
+            ],
+            'dependencies': [
+                {
+                    'function': ['f'],
+                    'representation': ['x', 'y']
+                },
+                {
+                    'function': ['g', 'h'],
+                    'representation': ['z']
+                }
             ],
             'statements': None,
-            'symbols': []
+            'symbols': [
+                {
+                    'representation': ['x', 'y', 'z'],
+                    'type': 'real',
+                    'kind': 'variable'
+                }
+            ]
+        },
+        'expected': '$f(x, y)$ and $g(z)$ are real functions and $h(z)$ is a complex function where $x$, $y$ and $z$ are real variables'
+    },
+    {
+        'test': {},
+        'data': {
+            'representation': ['f'],
+            'type': [
+                {
+                    'function': ['f'],
+                    'type': 'real'
+                }
+            ],
+            'dependencies': [
+                {
+                    'function': ['f'],
+                    'representation': ['x', 'y', 'z']
+                }
+            ],
+            'statements': None,
+            'symbols': [
+                {
+                    'representation': ['x', 'y', 'z'],
+                    'type': 'real',
+                    'kind': 'variable'
+                }
+            ]
         },
         'expected': '$f(x, y, z)$ is a real function where $x$, $y$ and $z$ are real variables'
     },
@@ -122,13 +239,16 @@ tests_function = [
         'test': {},
         'data': {
             'representation': ['f'],
-            'type': 'real',
+            'type': [
+                {
+                    'function': ['f'],
+                    'type': 'real'
+                }
+            ],
             'dependencies': [
                 {
                     'function': ['f'],
-                    'representation': ['x'],
-                    'type': 'real',
-                    'kind': 'variable'
+                    'representation': ['x']
                 }
             ],
             'statements': {
@@ -137,6 +257,11 @@ tests_function = [
                 ]
             },
             'symbols': [
+                {
+                    'representation': ['x'],
+                    'type': 'real',
+                    'kind': 'variable'
+                },
                 {
                     'representation': ['a', 'b'],
                     'type': 'real',
@@ -150,13 +275,16 @@ tests_function = [
         'test': {},
         'data': {
             'representation': ['f', 'g'],
-            'type': 'real',
+            'type': [
+                {
+                    'function': ['f', 'g'],
+                    'type': 'real'
+                }
+            ],
             'dependencies': [
                 {
                     'function': ['f', 'g'],
-                    'representation': ['x'],
-                    'type': 'real',
-                    'kind': 'variable'
+                    'representation': ['x']
                 }
             ],
             'statements': {
@@ -165,6 +293,11 @@ tests_function = [
                 ]
             },
             'symbols': [
+                {
+                    'representation': ['x'],
+                    'type': 'real',
+                    'kind': 'variable'
+                },
                 {
                     'representation': ['a', 'b'],
                     'type': 'real',
@@ -178,13 +311,16 @@ tests_function = [
         'test': {},
         'data': {
             'representation': ['f', 'g'],
-            'type': 'real',
+            'type': [
+                {
+                    'function': ['f', 'g'],
+                    'type': 'real'
+                }
+            ],
             'dependencies': [
                 {
                     'function': ['f', 'g'],
-                    'representation': ['x'],
-                    'type': 'real',
-                    'kind': 'variable'
+                    'representation': ['x']
                 }
             ],
             'statements': {
@@ -196,6 +332,11 @@ tests_function = [
                 ]
             },
             'symbols': [
+                {
+                    'representation': ['x'],
+                    'type': 'real',
+                    'kind': 'variable'
+                },
                 {
                     'representation': ['a', 'b', 'c'],
                     'type': 'real',
@@ -303,8 +444,8 @@ class StatementTest(TestCase) :
         self.data = data
         self.expected = expected
 
-class StatementSingleTest(TestCase) :
-    def testSingle1(self) :
+class OtherTest(TestCase) :
+    def testStatementSingle1(self) :
         input = {
             'is': ['clean'],
             'from': 'a',
@@ -313,11 +454,30 @@ class StatementSingleTest(TestCase) :
         output = surfaceStatementSingle(input)
         expected = 'clean from $a$ to $b$'
         self.assertEqual(output, expected)
-    def testSingle2(self) :
+    def testStatementSingle2(self) :
         input = {
             'is': ['clean'],
             'at': 'a'
         }
         output = surfaceStatementSingle(input)
         expected = 'clean at $a$'
+        self.assertEqual(output, expected)
+    def testSurfaceType(self) :
+        func = {
+            'f': 'f(x)',
+            'g': 'g(x)',
+            'h': 'h(x)'
+        }
+        data = [
+            {
+                'function': ['f', 'g'],
+                'type': 'real'
+            },
+            {
+                'function': ['h'],
+                'type': 'complex'
+            }
+        ]
+        output = surfaceType(func, data)
+        expected = '$f(x)$ and $g(x)$ are real functions and $h(x)$ is a complex function'
         self.assertEqual(output, expected)
