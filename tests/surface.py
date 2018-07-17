@@ -23,13 +23,13 @@ tests_function = [
             'type': 'real',
             'dependencies': [
                 {
-                    'function': 'f',
+                    'function': ['f'],
                     'representation': ['x'],
                     'type': 'real',
                     'kind': 'variable'
                 },
                 {
-                    'function': 'f',
+                    'function': ['f'],
                     'representation': ['y'],
                     'type': 'real',
                     'kind': 'variable'
@@ -47,7 +47,7 @@ tests_function = [
             'type': 'real',
             'dependencies': [
                 {
-                    'function': 'f',
+                    'function': ['f'],
                     'representation': ['x', 'y'],
                     'type': 'real',
                     'kind': 'variable'
@@ -59,7 +59,7 @@ tests_function = [
         'expected': '$f(x, y)$ is a real function where $x$ and $y$ are real variables'
     },
     {
-        'test': {'disabled': True},
+        'test': {},
         'data': {
             'representation': ['f', 'g'],
             'type': 'real',
@@ -83,13 +83,13 @@ tests_function = [
             'type': 'real',
             'dependencies': [
                 {
-                    'function': 'f',
+                    'function': ['f'],
                     'representation': ['x', 'y'],
                     'type': 'real',
                     'kind': 'variable'
                 },
                 {
-                    'function': 'g',
+                    'function': ['g'],
                     'representation': ['z'],
                     'type': 'real',
                     'kind': 'variable'
@@ -126,7 +126,7 @@ tests_function = [
             'dependencies': [
                 {
                     'function': 'f',
-                    'representation': 'x',
+                    'representation': ['x'],
                     'type': 'real',
                     'kind': 'variable'
                 }
@@ -145,6 +145,34 @@ tests_function = [
             ]
         },
         'expected': '$f(x)$ is a real function such that $f(x)$ is clean from $a$ to $b$ where $x$ is a real variable and $a$ and $b$ are real constants'
+    },
+    {
+        'test': {'disabled': True},
+        'data': {
+            'representation': ['f', 'g'],
+            'type': 'real',
+            'dependencies': [
+                {
+                    'function': ['f', 'g'],
+                    'representation': ['x'],
+                    'type': 'real',
+                    'kind': 'variable'
+                }
+            ],
+            'statements': {
+                'f': [
+                    {'from': 'a', 'is': ['clean'], 'to': 'b'}
+                ]
+            },
+            'symbols': [
+                {
+                    'representation': ['a', 'b'],
+                    'type': 'real',
+                    'kind': 'constant'
+                }
+            ]
+        },
+        'expected': '$f(x)$ and $g(x)$ are a real functions such that $f(x)$ is clean from $a$ to $b$ where $x$ is a real variable and $a$ and $b$ are real constants'
     }
 ]
 

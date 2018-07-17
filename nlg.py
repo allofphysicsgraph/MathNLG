@@ -198,18 +198,26 @@ def surfaceFunction(data) :
         if type(dependency['representation'][0]) == list :
             acs += dependency['representation'][0]
         else :
-            if dependency['function'] not in acs.keys() :
-                acs[dependency['function']] = []
-            acs[dependency['function']] += dependency['representation']
+            for f in dependency['function'] :
+                if f not in acs.keys() :
+                    acs[f] = []
+                acs[f] += dependency['representation']
     for dependency in data['symbols'] :
         acc.append(surfaceSymbol(dependency))
-    func = '%s(%s)' % (data['representation'][0], ', '.join(acs[data['representation'][0]]))
+    func = []
+    for f in data['representation'] :
+        frep = '%s(%s)' % (f, ', '.join(acs[f]))
+        func.append(frep)
     st = ''
     if data['statements'] is not None :
         # TODO extend to multiple functions
-        fnc = {data['representation'][0]: func}
+        fnc = {data['representation'][0]: func[0]}
         st = ' %s' % (surfaceStatement(fnc, data['statements']))
-    return '$%s$ is a %s function%s where %s' % (func, data['type'], st, aggregator(acc))
+    if len(func) > 1 :
+        wrapped = ['$%s$' % (s) for s in func]
+        return '%s are %s functions%s where %s' % (aggregator(wrapped), data['type'], st, aggregator(acc))
+    else :
+        return '$%s$ is a %s function%s where %s' % (func[0], data['type'], st, aggregator(acc))
 
 # accepts text specification ts
 # returns surface text st
