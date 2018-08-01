@@ -98,16 +98,16 @@ def surfaceRealiser(ts) :
 
 def surfaceRealize(data) :
     meta = {}
-    input = surfaceInput(data['input'], meta)
-    symbols = surfaceSymbols(data['symbols'], meta)
+    input = surfaceInputs(data['input'], meta, 'input')
+    symbols = surfaceInputs(data['symbols'], meta, 'symbol')
     if 'definition' in data.keys() :
         statements1 = surfaceStatements(data['definition'][0], meta)
         statements2 = surfaceStatements(data['definition'][1], meta)
-        return '%s saying that %s is equivalent of saying that %s where %s' % (input, statements1, statements2, symbols)
+        return ('%s, saying that %s is equivalent of saying that %s where %s' % (input, statements1, statements2, symbols)).capitalize()
     if 'theorem' in data.keys() :
         statements1 = surfaceStatements(data['theorem']['if'], meta)
         statements2 = surfaceStatements(data['theorem']['then'], meta)
-        return '%s, if %s then %s where %s' % (input, statements1, statements2, symbols)
+        return ('%s such that if %s then %s where %s' % (input, statements1, statements2, symbols)).capitalize()
     return '<unrecognized logic structure>'
 
 def constraint(data, meta) :
@@ -224,8 +224,7 @@ def surfaceInputs(inputs, meta, style) :
     return aggregator(applied)
 
 def surfaceStatements(statements, meta) :
-    input = [(statement, meta) for statement in statements]
-    output = surfaceApply(input, surfaceStatement)
+    output = [surfaceStatement(statement, meta) for statement in statements]
     return aggregator(output)
 
 def surfaceSymbols(data, meta) :
