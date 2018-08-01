@@ -1,483 +1,358 @@
 from unittest import TestCase, skip
 from paramunittest import parametrized
 
-from nlg.surface import surfaceSymbol, surfaceFunction, surfaceStatement, surfaceStatementSingle, surfaceType
+from nlg.surface import aggregator, wrapper, surfaceApply, surfaceMeta, surfaceStatement, surfaceInputs, numerize
 
-tests_symbol = [
-    {
-        'test': {},
-        'data': {
-            'representation': 'c',
-            'type': 'real',
-            'kind': 'constant'
-        },
-        'expected': '$c$ is a real constant'
-    }
-]
-
-tests_function = [
-    {
-        'test': {},
-        'data': {
-            'representation': ['f'],
-            'type': [
-                {
-                    'function': ['f'],
-                    'type': 'real'
-                }
-            ],
-            'dependencies': [
-                {
-                    'function': ['f'],
-                    'representation': ['x']
-                },
-                {
-                    'function': ['f'],
-                    'representation': ['y']
-                }
-            ],
-            'statements': None,
-            'symbols': [
-                {
-                    'representation': ['x'],
-                    'type': 'real',
-                    'kind': 'variable'
-                },
-                {
-                    'representation': ['y'],
-                    'type': 'real',
-                    'kind': 'variable'
-                }
-            ]
-        },
-        'expected': '$f(x, y)$ is a real function where $x$ is a real variable and $y$ is a real variable'
-    },
-    {
-        'test': {},
-        'data': {
-            'representation': ['f'],
-            'type': [
-                {
-                    'function': ['f'],
-                    'type': 'real'
-                }
-            ],
-            'dependencies': [
-                {
-                    'function': ['f'],
-                    'representation': ['x', 'y']
-                }
-            ],
-            'statements': None,
-            'symbols': [
-                {
-                    'representation': ['x', 'y'],
-                    'type': 'real',
-                    'kind': 'variable'
-                }
-            ]
-        },
-        'expected': '$f(x, y)$ is a real function where $x$ and $y$ are real variables'
-    },
-    {
-        'test': {},
-        'data': {
-            'representation': ['f', 'g'],
-            'type': [
-                {
-                    'function': ['f', 'g'],
-                    'type': 'real'
-                }
-            ],
-            'dependencies': [
-                {
-                    'function': ['f', 'g'],
-                    'representation': ['x', 'y']
-                }
-            ],
-            'statements': None,
-            'symbols': [
-                {
-                    'representation': ['x', 'y'],
-                    'type': 'real',
-                    'kind': 'variable'
-                }
-            ]
-        },
-        'expected': '$f(x, y)$ and $g(x, y)$ are real functions where $x$ and $y$ are real variables'
-    },
-    {
-        'test': {},
-        'data': {
-            'representation': ['f', 'g'],
-            'type': [
-                {
-                    'function': ['f', 'g'],
-                    'type': 'real'
-                }
-            ],
-            'dependencies': [
-                {
-                    'function': ['f'],
-                    'representation': ['x', 'y']
-                },
-                {
-                    'function': ['g'],
-                    'representation': ['z']
-                }
-            ],
-            'statements': None,
-            'symbols': [
-                {
-                    'representation': ['x', 'y'],
-                    'type': 'real',
-                    'kind': 'variable'
-                },
-                {
-                    'representation': ['z'],
-                    'type': 'real',
-                    'kind': 'variable'
-                }
-            ]
-        },
-        'expected': '$f(x, y)$ and $g(z)$ are real functions where $x$ and $y$ are real variables and $z$ is a real variable'
-    },
-    {
-        'test': {},
-        'data': {
-            'representation': ['f', 'g'],
-            'type': [
-                {
-                    'function': ['f', 'g'],
-                    'type': 'real'
-                }
-            ],
-            'dependencies': [
-                {
-                    'function': ['f'],
-                    'representation': ['x', 'y']
-                },
-                {
-                    'function': ['g'],
-                    'representation': ['z']
-                }
-            ],
-            'statements': None,
-            'symbols': [
-                {
-                    'representation': ['x', 'y', 'z'],
-                    'type': 'real',
-                    'kind': 'variable'
-                }
-            ]
-        },
-        'expected': '$f(x, y)$ and $g(z)$ are real functions where $x$, $y$ and $z$ are real variables'
-    },
-    {
-        'test': {},
-        'data': {
-            'representation': ['f', 'g', 'h'],
-            'type': [
-                {
-                    'function': ['f', 'g'],
-                    'type': 'real'
-                },
-                {
-                    'function': ['h'],
-                    'type': 'complex'
-                }
-            ],
-            'dependencies': [
-                {
-                    'function': ['f'],
-                    'representation': ['x', 'y']
-                },
-                {
-                    'function': ['g', 'h'],
-                    'representation': ['z']
-                }
-            ],
-            'statements': None,
-            'symbols': [
-                {
-                    'representation': ['x', 'y', 'z'],
-                    'type': 'real',
-                    'kind': 'variable'
-                }
-            ]
-        },
-        'expected': '$f(x, y)$ and $g(z)$ are real functions and $h(z)$ is a complex function where $x$, $y$ and $z$ are real variables'
-    },
-    {
-        'test': {},
-        'data': {
-            'representation': ['f'],
-            'type': [
-                {
-                    'function': ['f'],
-                    'type': 'real'
-                }
-            ],
-            'dependencies': [
-                {
-                    'function': ['f'],
-                    'representation': ['x', 'y', 'z']
-                }
-            ],
-            'statements': None,
-            'symbols': [
-                {
-                    'representation': ['x', 'y', 'z'],
-                    'type': 'real',
-                    'kind': 'variable'
-                }
-            ]
-        },
-        'expected': '$f(x, y, z)$ is a real function where $x$, $y$ and $z$ are real variables'
-    },
-    {
-        'test': {},
-        'data': {
-            'representation': ['f'],
-            'type': [
-                {
-                    'function': ['f'],
-                    'type': 'real'
-                }
-            ],
-            'dependencies': [
-                {
-                    'function': ['f'],
-                    'representation': ['x']
-                }
-            ],
-            'statements': {
-                'f': [
-                    {'from': 'a', 'is': ['clean'], 'to': 'b'}
-                ]
-            },
-            'symbols': [
-                {
-                    'representation': ['x'],
-                    'type': 'real',
-                    'kind': 'variable'
-                },
-                {
-                    'representation': ['a', 'b'],
-                    'type': 'real',
-                    'kind': 'constant'
-                }
-            ]
-        },
-        'expected': '$f(x)$ is a real function such that $f(x)$ is clean from $a$ to $b$ where $x$ is a real variable and $a$ and $b$ are real constants'
-    },
-    {
-        'test': {},
-        'data': {
-            'representation': ['f', 'g'],
-            'type': [
-                {
-                    'function': ['f', 'g'],
-                    'type': 'real'
-                }
-            ],
-            'dependencies': [
-                {
-                    'function': ['f', 'g'],
-                    'representation': ['x']
-                }
-            ],
-            'statements': {
-                'f': [
-                    {'from': 'a', 'is': ['clean'], 'to': 'b'}
-                ]
-            },
-            'symbols': [
-                {
-                    'representation': ['x'],
-                    'type': 'real',
-                    'kind': 'variable'
-                },
-                {
-                    'representation': ['a', 'b'],
-                    'type': 'real',
-                    'kind': 'constant'
-                }
-            ]
-        },
-        'expected': '$f(x)$ and $g(x)$ are real functions such that $f(x)$ is clean from $a$ to $b$ where $x$ is a real variable and $a$ and $b$ are real constants'
-    },
-    {
-        'test': {},
-        'data': {
-            'representation': ['f', 'g'],
-            'type': [
-                {
-                    'function': ['f', 'g'],
-                    'type': 'real'
-                }
-            ],
-            'dependencies': [
-                {
-                    'function': ['f', 'g'],
-                    'representation': ['x']
-                }
-            ],
-            'statements': {
-                'f': [
-                    {'from': 'a', 'is': ['clean'], 'to': 'b'}
-                ],
-                'g': [
-                    {'at': 'c', 'is': ['broken']}
-                ]
-            },
-            'symbols': [
-                {
-                    'representation': ['x'],
-                    'type': 'real',
-                    'kind': 'variable'
-                },
-                {
-                    'representation': ['a', 'b', 'c'],
-                    'type': 'real',
-                    'kind': 'constant'
-                }
-            ]
-        },
-        'expected': '$f(x)$ and $g(x)$ are real functions such that $f(x)$ is clean from $a$ to $b$ and $g(x)$ is broken at $c$ where $x$ is a real variable and $a$, $b$ and $c$ are real constants'
-    }
-]
+def skipTest(test) :
+    if 'disabled' in test.keys() :
+        return test['disabled']
 
 tests_statement = [
     {
         'test': {},
-        'fs': ['f'],
-        'func': {
-            'f': 'f(x)'
-        },
         'data': {
-            'f': [
-                {'from': 'a', 'is': ['clean'], 'to': 'b'}
-            ]
+            'function': ['f'],
+            'is': ['continuous'],
+            'of': {
+                'symbol': 'x',
+                'from': 'a',
+                'to': 'c'
+            }
         },
-        'expected': 'such that $f(x)$ is clean from $a$ to $b$'
+        'meta': {
+            'f': '$f(x)$'
+        },
+        'expected': '$f(x)$ is continuous for all $x$ from $a$ to $c$'
     },
     {
         'test': {},
-        'fs': ['f'],
-        'func': {
-            'f': 'f(x)'
-        },
         'data': {
-            'f': [
-                {'at': 'a', 'is': ['broken']}
-            ]
+            'expression': {
+                'operator': 'eq',
+                'lhs': 'f(b)',
+                'rhs': '0'
+            },
+            'forall': ['b']
         },
-        'expected': 'such that $f(x)$ is broken at $a$'
+        'meta': {},
+        'expected': '$$f(b) = 0$$ is true for all $b$'
     },
     {
         'test': {},
-        'fs': ['f'],
-        'func': {
-            'f': 'f(x)'
-        },
         'data': {
-            'f': [
-                {'from': 'a', 'is': ['clean'], 'to': 'b'},
-                {'from': 'c', 'is': ['marvelous'], 'to': 'd'}
-            ]
+            'function': ['derivative(f(x), x, k)'],
+            'is': ['continuous'],
+            'of': {
+                'symbol': 'x',
+                'from': 'a',
+                'to': 'b'
+            },
+            'forall': ['k']
         },
-        'expected': 'such that $f(x)$ is clean from $a$ to $b$ and marvelous from $c$ to $d$'
+        'meta': {
+            'derivative(f(x), x, k)': '$\\frac{d^k}{dx^k}f(x)$'
+        },
+        'expected': '$\\frac{d^k}{dx^k}f(x)$ is continuous for all $x$ from $a$ to $b$ and for all $k$'
     },
     {
         'test': {},
-        'fs': ['f'],
-        'func': {
-            'f': 'f(x)'
-        },
         'data': {
-            'f': [
-                {'from': 'a', 'is': ['clean'], 'to': 'b'},
-                {'at': 'c', 'is': ['marvelous']},
-                {'from': 'm', 'is': ['decent'], 'to': 'n'}
-            ]
+            'symbol': 'n',
+            'is': ['even']
         },
-        'expected': 'such that $f(x)$ is clean from $a$ to $b$, marvelous at $c$ and decent from $m$ to $n$'
+        'meta': {},
+        'expected': '$n$ is even'
+    },
+    {
+        'test': {},
+        'data': {
+            'symbol': 'n',
+            'is': ['even', 'positive']
+        },
+        'meta': {},
+        'expected': '$n$ is even and positive'
+    },
+    {
+        'test': {},
+        'data': {
+            'symbol': 'n',
+            'is': ['even', 'positive', 'finite']
+        },
+        'meta': {},
+        'expected': '$n$ is even, positive and finite'
+    },
+    {
+        'test': {'disabled': True},
+        'data': {},
+        'meta': {},
+        'expected': ''
     }
 ]
 
-@parametrized(*tests_symbol)
-class SymbolTest(TestCase) :
-    def testSymbol(self) :
-        if 'disabled' in self.test.keys() :
-            if self.test['disabled'] :
-                return skip('test disabled')
-        output = surfaceSymbol(self.data)
-        self.assertEqual(output, self.expected)
-    def setParameters(self, test, data, expected):
-        self.test = test
-        self.data = data
-        self.expected = expected
+tests_input = [
+    {
+        'test': {},
+        'data': [
+            {
+                'symbols': ['f'],
+                'type': 'real',
+                'kind': 'function',
+                'dependencies': ['x']
+            }
+        ],
+        'meta': {
+            'f': '$f(x)$'
+        },
+        'expected': 'let $f(x)$ be a real function'
+    },
+    {
+        'test': {},
+        'data': [
+            {
+                'symbols': ['f', 'g'],
+                'type': 'real',
+                'kind': 'function',
+                'dependencies': ['x']
+            }
+        ],
+        'meta': {
+            'f': '$f(x)$',
+            'g': '$g(x)$'
+        },
+        'expected': 'let $f(x)$ and $g(x)$ be real functions'
+    },
+    {
+        'test': {},
+        'data': [
+            {
+                'symbols': ['f'],
+                'type': 'real',
+                'kind': 'function',
+                'dependencies': ['x']
+            },
+            {
+                'symbols': ['g'],
+                'type': 'complex',
+                'kind': 'function',
+                'dependencies': ['z']
+            }
+        ],
+        'meta': {
+            'f': '$f(x)$',
+            'g': '$g(z)$'
+        },
+        'expected': 'let $f(x)$ be a real function and let $g(z)$ be a complex function'
+    },
+    {
+        'test': {},
+        'data': [
+            {
+                'symbols': ['f'],
+                'type': 'real',
+                'kind': 'function',
+                'dependencies': ['x']
+            },
+            {
+                'symbols': ['g', 'h'],
+                'type': 'complex',
+                'kind': 'function',
+                'dependencies': ['z']
+            }
+        ],
+        'meta': {
+            'f': '$f(x)$',
+            'g': '$g(z)$',
+            'h': '$h(z)$'
+        },
+        'expected': 'let $f(x)$ be a real function and let $g(z)$ and $h(z)$ be complex functions'
+    },
+    {
+        'test': {},
+        'data': [
+            {
+                'symbols': ['n', 'k'],
+                'type': 'integer',
+                'kind': 'constant',
+                'assumptions': ['positive'],
+                'constraints': [
+                    {
+                        'type': 'geq',
+                        'lhs': 'k',
+                        'rhs': 'n'
+                    }
+                ]
+            }
+        ],
+        'meta': {},
+        'expected': 'let $f(x)$ be a real function and let $g(z)$ and $h(z)$ be complex functions'
+    }
+]
 
-@parametrized(*tests_function)
-class FunctionTest(TestCase) :
-    def testFunction(self) :
-        if 'disabled' in self.test.keys() :
-            if self.test['disabled'] :
-                return skip('test disabled')
-        output = surfaceFunction(self.data)
-        self.assertEqual(output, self.expected)
-    def setParameters(self, test, data, expected):
-        self.test = test
-        self.data = data
-        self.expected = expected
+tests_symbols = [
+    {
+        'test': {},
+        'data': [
+            {
+                'representation': ['x'],
+                'type': 'real',
+                'kind': 'variable'
+            }
+        ],
+        'meta': {},
+        'expected': 'x is a real variable'
+    },
+    {
+        'test': {},
+        'data': [
+            {
+                'representation': ['x', 'y'],
+                'type': 'real',
+                'kind': 'variable'
+            }
+        ],
+        'meta': {},
+        'expected': '$x$ and $y$ are real variables'
+    },
+    {
+        'test': {},
+        'data': [
+            {
+                'representation': ['x', 'y', 'z'],
+                'type': 'real',
+                'kind': 'variable'
+            }
+        ],
+        'meta': {},
+        'expected': '$x$, $y$ and $z$ are real variables'
+    },
+    {
+        'test': {},
+        'data': [
+            {
+                'representation': ['x', 'y', 'z'],
+                'type': 'real',
+                'kind': 'variable'
+            },
+            {
+                'representation': ['a', 'b'],
+                'type': 'complex',
+                'kind': 'variable'
+            }
+        ],
+        'meta': {},
+        'expected': '$x$, $y$ and $z$ are real variables and $a$ and $b$ are complex constants'
+    },
+    {
+        'test': {},
+        'data': [
+            {
+                'representation': ['x'],
+                'type': 'real',
+                'kind': 'variable'
+            },
+            {
+                'representation': ['a', 'b', 'c'],
+                'type': 'real',
+                'kind': 'constant',
+                'constraints': [
+                    {
+                        'symbol': 'b',
+                        'type': 'outside',
+                        'lb': 'a',
+                        'ub': 'c'
+                    }
+                ]
+            }
+        ],
+        'meta': {},
+        'expected': '$x$ is a real variable and $a$, $b$ and $c$ are real constants such that $b$ is not contained between $a$ and $c$'
+    },
+    {
+        'test': {},
+        'data': [
+            {
+                'symbols': ['n', 'k'],
+                'type': 'integer',
+                'kind': 'constant',
+                'assumptions': ['positive'],
+                'constraints': [
+                    {
+                        'type': 'geq',
+                        'lhs': 'k',
+                        'rhs': 'n'
+                    }
+                ]
+            }
+        ],
+        'meta': {},
+        'expected': '$n$ and $k$ are positives integer constants such that $n$ is greater or equal than $k$'
+    }
+]
 
 @parametrized(*tests_statement)
 class StatementTest(TestCase) :
     def testStatement(self) :
-        output = surfaceStatement(self.fs, self.func, self.data)
+        if skipTest(self.test) : return skip('test disabled')
+        output = surfaceStatement(self.data, self.meta)
         self.assertEqual(output, self.expected)
-    def setParameters(self, test, fs, func, data, expected):
+    def setParameters(self, test, data, meta, expected):
         self.test = test
-        self.fs = fs
-        self.func = func
         self.data = data
+        self.meta = meta
+        self.expected = expected
+
+@parametrized(*tests_input)
+class InputTest(TestCase) :
+    def testStatement(self) :
+        if skipTest(self.test) : return skip('test disabled')
+        output = surfaceInputs(self.data, self.meta)
+        self.assertEqual(output, self.expected)
+    def setParameters(self, test, data, meta, expected):
+        self.test = test
+        self.data = data
+        self.meta = meta
         self.expected = expected
 
 class OtherTest(TestCase) :
-    def testStatementSingle1(self) :
-        input = {
-            'is': ['clean'],
-            'from': 'a',
-            'to': 'b'
-        }
-        output = surfaceStatementSingle(input)
-        expected = 'clean from $a$ to $b$'
+    def testAggregator1(self) :
+        strings = ['a']
+        output = aggregator(strings)
+        expected = 'a'
         self.assertEqual(output, expected)
-    def testStatementSingle2(self) :
-        input = {
-            'is': ['clean'],
-            'at': 'a'
-        }
-        output = surfaceStatementSingle(input)
-        expected = 'clean at $a$'
+    def testAggregator2(self) :
+        strings = ['a', 'b']
+        output = aggregator(strings)
+        expected = 'a and b'
         self.assertEqual(output, expected)
-    def testSurfaceType(self) :
-        func = {
-            'f': 'f(x)',
-            'g': 'g(x)',
-            'h': 'h(x)'
-        }
-        data = [
-            {
-                'function': ['f', 'g'],
-                'type': 'real'
-            },
-            {
-                'function': ['h'],
-                'type': 'complex'
-            }
-        ]
-        output = surfaceType(func, data)
-        expected = '$f(x)$ and $g(x)$ are real functions and $h(x)$ is a complex function'
+    def testAggregator3(self) :
+        strings = ['a', 'b', 'c']
+        output = aggregator(strings)
+        expected = 'a, b and c'
         self.assertEqual(output, expected)
+    def testAggregator4(self) :
+        strings = ['a', 'b', 'c', 'd']
+        output = aggregator(strings)
+        expected = 'a, b, c and d'
+        self.assertEqual(output, expected)
+    def testWrapper(self) :
+        strings = ['a', 'b', 'c']
+        output = wrapper('$%s$', strings)
+        expected = ['$a$', '$b$', '$c$']
+        self.assertEqual(output, expected)
+    def testApply(self) :
+        def someFun(str, meh) :
+            return '_%s' % str
+        data = ['a', 'b', 'c']
+        output = surfaceApply(data, {}, someFun)
+        expected = ['_a', '_b', '_c']
+        self.assertEqual(output, expected)
+    def testApply(self) :
+        meta = {
+            'f': '$f(x)$'
+        }
+        self.assertEqual(surfaceMeta('f', meta), '$f(x)$')
+        self.assertEqual(surfaceMeta('g', meta), 'g')
+        self.assertEqual(surfaceMeta(['f', 'g'], meta), ['$f(x)$', 'g'])
+    def testNumerize(self) :
+        self.assertEqual(numerize('real', [1, 2]), 'reals')
+        self.assertEqual(numerize('complex', [1, 2]), 'complex')
