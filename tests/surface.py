@@ -1,7 +1,7 @@
 from unittest import TestCase, skip
 from paramunittest import parametrized
 
-from nlg.surface import aggregator, wrapper, surfaceApply, surfaceMeta, surfaceStatement, surfaceInputs, numerize
+from nlg.surface import aggregator, wrapper, surfaceApply, surfaceMeta, surfaceStatement, surfaceInputs, numerize, constraint, constraints
 
 def skipTest(test) :
     if 'disabled' in test.keys() :
@@ -89,7 +89,7 @@ tests_statement = [
     }
 ]
 
-tests_input = [
+tests_symbolic = [
     {
         'test': {},
         'data': [
@@ -103,7 +103,10 @@ tests_input = [
         'meta': {
             'f': '$f(x)$'
         },
-        'expected': 'let $f(x)$ be a real function'
+        'expected': {
+            'surfaceInput': 'let $f(x)$ be a real function',
+            'surfaceSymbol': '$f(x)$ is a real function'
+        }
     },
     {
         'test': {},
@@ -119,7 +122,10 @@ tests_input = [
             'f': '$f(x)$',
             'g': '$g(x)$'
         },
-        'expected': 'let $f(x)$ and $g(x)$ be real functions'
+        'expected': {
+            'surfaceInput': 'let $f(x)$ and $g(x)$ be real functions',
+            'surfaceSymbol': '$f(x)$ and $g(x)$ are real functions'
+        }
     },
     {
         'test': {},
@@ -141,7 +147,10 @@ tests_input = [
             'f': '$f(x)$',
             'g': '$g(z)$'
         },
-        'expected': 'let $f(x)$ be a real function and let $g(z)$ be a complex function'
+        'expected': {
+            'surfaceInput': 'let $f(x)$ be a real function and let $g(z)$ be a complex function',
+            'surfaceSymbol': '$f(x)$ is a real function and $g(z)$ is a complex function'
+        }
     },
     {
         'test': {},
@@ -164,94 +173,21 @@ tests_input = [
             'g': '$g(z)$',
             'h': '$h(z)$'
         },
-        'expected': 'let $f(x)$ be a real function and let $g(z)$ and $h(z)$ be complex functions'
+        'expected': {
+            'surfaceInput': 'let $f(x)$ be a real function and let $g(z)$ and $h(z)$ be complex functions',
+            'surfaceSymbol': '$f(x)$ is a real function and $g(z)$ and $h(z)$ are complex functions'
+        }
     },
     {
         'test': {},
         'data': [
             {
-                'symbols': ['n', 'k'],
-                'type': 'integer',
-                'kind': 'constant',
-                'assumptions': ['positive'],
-                'constraints': [
-                    {
-                        'type': 'geq',
-                        'lhs': 'k',
-                        'rhs': 'n'
-                    }
-                ]
-            }
-        ],
-        'meta': {},
-        'expected': 'let $f(x)$ be a real function and let $g(z)$ and $h(z)$ be complex functions'
-    }
-]
-
-tests_symbols = [
-    {
-        'test': {},
-        'data': [
-            {
-                'representation': ['x'],
-                'type': 'real',
-                'kind': 'variable'
-            }
-        ],
-        'meta': {},
-        'expected': 'x is a real variable'
-    },
-    {
-        'test': {},
-        'data': [
-            {
-                'representation': ['x', 'y'],
-                'type': 'real',
-                'kind': 'variable'
-            }
-        ],
-        'meta': {},
-        'expected': '$x$ and $y$ are real variables'
-    },
-    {
-        'test': {},
-        'data': [
-            {
-                'representation': ['x', 'y', 'z'],
-                'type': 'real',
-                'kind': 'variable'
-            }
-        ],
-        'meta': {},
-        'expected': '$x$, $y$ and $z$ are real variables'
-    },
-    {
-        'test': {},
-        'data': [
-            {
-                'representation': ['x', 'y', 'z'],
+                'symbols': ['x'],
                 'type': 'real',
                 'kind': 'variable'
             },
             {
-                'representation': ['a', 'b'],
-                'type': 'complex',
-                'kind': 'variable'
-            }
-        ],
-        'meta': {},
-        'expected': '$x$, $y$ and $z$ are real variables and $a$ and $b$ are complex constants'
-    },
-    {
-        'test': {},
-        'data': [
-            {
-                'representation': ['x'],
-                'type': 'real',
-                'kind': 'variable'
-            },
-            {
-                'representation': ['a', 'b', 'c'],
+                'symbols': ['a', 'b', 'c'],
                 'type': 'real',
                 'kind': 'constant',
                 'constraints': [
@@ -265,7 +201,75 @@ tests_symbols = [
             }
         ],
         'meta': {},
-        'expected': '$x$ is a real variable and $a$, $b$ and $c$ are real constants such that $b$ is not contained between $a$ and $c$'
+        'expected': {
+            'surfaceInput': 'let $x$ be a real variable and let $a$, $b$ and $c$ be real constants such that $b$ is not contained between $a$ and $c$',
+            'surfaceSymbol': '$x$ is a real variable and $a$, $b$ and $c$ are real constants such that $b$ is not contained between $a$ and $c$'
+        }
+    },
+    {
+        'test': {},
+        'data': [
+            {
+                'symbols': ['x'],
+                'type': 'real',
+                'kind': 'variable'
+            }
+        ],
+        'meta': {},
+        'expected': {
+            'surfaceInput': 'let $x$ be a real variable',
+            'surfaceSymbol': '$x$ is a real variable'
+        }
+    },
+    {
+        'test': {},
+        'data': [
+            {
+                'symbols': ['x', 'y'],
+                'type': 'real',
+                'kind': 'variable'
+            }
+        ],
+        'meta': {},
+        'expected': {
+            'surfaceInput': 'let $x$ and $y$ be real variables',
+            'surfaceSymbol': '$x$ and $y$ are real variables'
+        }
+    },
+    {
+        'test': {},
+        'data': [
+            {
+                'symbols': ['x', 'y', 'z'],
+                'type': 'real',
+                'kind': 'variable'
+            }
+        ],
+        'meta': {},
+        'expected': {
+            'surfaceInput': 'let $x$, $y$ and $z$ be real variables',
+            'surfaceSymbol': '$x$, $y$ and $z$ are real variables'
+        }
+    },
+    {
+        'test': {},
+        'data': [
+            {
+                'symbols': ['x', 'y', 'z'],
+                'type': 'real',
+                'kind': 'variable'
+            },
+            {
+                'symbols': ['a', 'b'],
+                'type': 'complex',
+                'kind': 'constant'
+            }
+        ],
+        'meta': {},
+        'expected': {
+            'surfaceInput': 'let $x$, $y$ and $z$ be real variables and let $a$ and $b$ be complex constants',
+            'surfaceSymbol': '$x$, $y$ and $z$ are real variables and $a$ and $b$ are complex constants'
+        }
     },
     {
         'test': {},
@@ -285,7 +289,10 @@ tests_symbols = [
             }
         ],
         'meta': {},
-        'expected': '$n$ and $k$ are positives integer constants such that $n$ is greater or equal than $k$'
+        'expected': {
+            'surfaceInput': 'let $n$ and $k$ be positives integer constants such that $k$ is greater or equal than $n$',
+            'surfaceSymbol': '$n$ and $k$ are positives integer constants such that $k$ is greater or equal than $n$'
+        }
     }
 ]
 
@@ -301,12 +308,14 @@ class StatementTest(TestCase) :
         self.meta = meta
         self.expected = expected
 
-@parametrized(*tests_input)
-class InputTest(TestCase) :
+@parametrized(*tests_symbolic)
+class SymbolicTest(TestCase) :
     def testStatement(self) :
         if skipTest(self.test) : return skip('test disabled')
-        output = surfaceInputs(self.data, self.meta)
-        self.assertEqual(output, self.expected)
+        outputI = surfaceInputs(self.data, self.meta, 'input')
+        outputS = surfaceInputs(self.data, self.meta, 'symbol')
+        self.assertEqual(outputI, self.expected['surfaceInput'])
+        self.assertEqual(outputS, self.expected['surfaceSymbol'])
     def setParameters(self, test, data, meta, expected):
         self.test = test
         self.data = data
@@ -356,3 +365,31 @@ class OtherTest(TestCase) :
     def testNumerize(self) :
         self.assertEqual(numerize('real', [1, 2]), 'reals')
         self.assertEqual(numerize('complex', [1, 2]), 'complex')
+    def testContraint1(self) :
+        data = {
+            'type': 'geq',
+            'lhs': ['a', 'b'],
+            'rhs': ['c']
+        }
+        output = constraint(data, {})
+        expected = '$a$ and $b$ are greater or equal than $c$'
+        self.assertEqual(output, expected)
+    def testContraint2(self) :
+        data = {
+            'type': 'geq',
+            'lhs': ['a'],
+            'rhs': ['b', 'c']
+        }
+        output = constraint(data, {})
+        expected = '$a$ is greater or equal than $b$ and $c$'
+        self.assertEqual(output, expected)
+    def testContraint3(self) :
+        data = {
+            'symbol': 'b',
+            'type': 'inside',
+            'lb': 'a',
+            'ub': 'c'
+        }
+        output = constraint(data, {})
+        expected = '$b$ is contained between $a$ and $c$'
+        self.assertEqual(output, expected)
