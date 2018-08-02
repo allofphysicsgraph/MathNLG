@@ -4,8 +4,6 @@ from paramunittest import parametrized
 from nlg.tools import diffFormat, skipTest, assertEqual
 from nlg.surface import surfaceRealize
 
-
-
 tests = [
     {
         'test': {},
@@ -22,7 +20,7 @@ tests = [
             'definition': [
                 [
                     {
-                        'function': 'f',
+                        'function': ['f'],
                         'is': ['support'],
                         'of': {
                                 'symbol': 'x',
@@ -63,7 +61,8 @@ tests = [
                 }
             ]
         },
-        'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is supported from $a$ to $b$ is equivalent of saying that following equation is true for all $b$ $$f(b) \\neq 0$$ where $x$ is a real variable and $a$, $b$ and $c$ are real constants such that $b$ is contained between $a$ and $c$'
+        'meta': {},
+        'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is supported for all $x$ from $a$ to $c$ is equivalent of saying that $$f(b) \\neq 0$$ is true for all $b$ where $x$ is a real variable and $a$, $b$ and $c$ are real constants such that $b$ is contained between $a$ and $c$'
     },
     {
         'test': {},
@@ -80,7 +79,7 @@ tests = [
             'definition': [
                 [
                     {
-                        'function': 'f',
+                        'function': ['f'],
                         'is': ['compact_support'],
                         'of': {
                             'symbol': 'x',
@@ -91,7 +90,7 @@ tests = [
                 ],
                 [
                     {
-                        'function': 'f',
+                        'function': ['f'],
                         'is': ['support'],
                         'of': {
                             'symbol': 'x',
@@ -130,7 +129,8 @@ tests = [
                 }
             ]
         },
-        'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is compactly supported from $a$ to $b$ is equivalent of saying that $f(x)$ is supported from $a$ to $b$ and following equation is true for all $b$ $$f(b) = 0$$ where $x$ is a real variable and $a$, $b$ and $c$ are real constants such that $b$ is not contained between $a$ and $c$'
+        'meta': {},
+        'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is compactly supported for all $x$ from $a$ to $c$ is equivalent of saying that $f(x)$ is supported for all $x$ from $a$ to $c$ and $$f(b) = 0$$ is true for all $b$ where $x$ is a real variable and $a$, $b$ and $c$ are real constants such that $b$ is not contained between $a$ and $c$'
     },
     {
         'test': {},
@@ -147,13 +147,12 @@ tests = [
             'definition': [
                 [
                     {
-                        'function': 'f',
+                        'function': ['f'],
                         'is': ['continuous'],
                         'of': {
                             'symbol': 'x',
                             'at': 'c'
-                        },
-                        'forall': ['c']
+                        }
                     }
                 ],
                 [
@@ -179,7 +178,10 @@ tests = [
                 }
             ]
         },
-        'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is continuous at $c$ is equivalent of saying that following equation is true $$limit(f, x, c) = f(c)$$ where $x$ is a real variable and $c$ is a real constant'
+        'meta': {
+            'limit(f, x, c) = f(c)': '$$\\lim\\limits_{x \\to c} f(x) = f(c)$$'
+        },
+        'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is continuous for all $x$ at $c$ is equivalent of saying that $$\\lim\\limits_{x \\to c} f(x) = f(c)$$ is true where $x$ is a real variable and $c$ is a real constant'
     },
     {
         'test': {},
@@ -196,7 +198,7 @@ tests = [
             'definition': [
                 [
                     {
-                        'function': 'f',
+                        'function': ['f'],
                         'is': ['continuous'],
                         'of': {
                             'symbol': 'x',
@@ -206,7 +208,7 @@ tests = [
                 ],
                 [
                     {
-                        'function': 'f',
+                        'function': ['f'],
                         'is': ['continuous'],
                         'of': {
                             'symbol': 'x',
@@ -229,7 +231,7 @@ tests = [
                     'constraints': [
                         {
                             'symbol': 'b',
-                            'type': 'contained',
+                            'type': 'inside',
                             'lb': 'a',
                             'ub': 'c'
                         }
@@ -237,7 +239,8 @@ tests = [
                 }
             ]
         },
-        'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is continuous from $a$ to $c$ is equivalent of saying that $f(x)$ is continuous at $b$ for al $b$ where $a$, $b$ and $c$ are real constants such that $b$ is contained between $a$ and $c$'
+        'meta': {},
+        'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is continuous for all $x$ at $a$ is equivalent of saying that $f(x)$ is continuous for all $x$ from $a$ to $b$ where $x$ is a real variable and $a$, $b$ and $c$ are real constants such that $b$ is contained between $a$ and $c$'
     },
     {
         'test': {},
@@ -259,8 +262,8 @@ tests = [
                     'constraints': [
                         {
                             'type': 'geq',
-                            'lhs': 'k',
-                            'rhs': 'n'
+                            'lhs': 'n',
+                            'rhs': 'k'
                         }
                     ]
                 }
@@ -268,7 +271,7 @@ tests = [
             'definition': [
                 [
                     {
-                        'function': 'f',
+                        'function': ['f'],
                         'is': ['continuous'],
                         'of': {
                             'symbol': 'x',
@@ -277,7 +280,7 @@ tests = [
                         }
                     },
                     {
-                        'function': 'derivative(f(x), x, k)',
+                        'function': ['derivative(f(x), x, k)'],
                         'is': ['continuous'],
                         'of': {
                             'symbol': 'x',
@@ -289,7 +292,7 @@ tests = [
                 ],
                 [
                     {
-                        'function': 'f',
+                        'function': ['f'],
                         'is': ['nth_order_continuous'],
                         'of': {
                             'symbol': 'x',
@@ -312,14 +315,17 @@ tests = [
                     'constraints': [
                         {
                             'type': 'gt',
-                            'lhs': 'a',
-                            'rhs': 'b'
+                            'lhs': 'b',
+                            'rhs': 'a'
                         }
                     ]
                 }
             ]
         },
-        'expected': 'Let $f(x)$ be a real function and let $n$ and $k$ be a positives integer constants such that $n$ is greater or equal than $k$, if $f(x)$ and for all $k$ $\frac{d^k}{dx^k}f(x)$ are continuous from $a$ to $b$ then $f(x)$ is n\'th order continuous from $a$ to $b$ where $a$ and $b$ are real constants such that $b$ is strictly greater than $a$'
+        'meta': {
+            'derivative(f(x), x, k)': '$\\frac{d^k}{dx^k}f(x)$'
+        },
+        'expected': 'Let $f(x)$ be a real function and let $n$ and $k$ be positives integer constants such that $n$ is greater or equal than $k$, saying that $f(x)$ is continuous for all $x$ from $a$ to $b$ and $\\frac{d^k}{dx^k}f(x)$ is continuous for all $x$ from $a$ to $b$ and for all $k$ is equivalent of saying that $f(x)$ is $n$\'th order continuous for all $x$ from $a$ to $b$ where $x$ is a real variable and $a$ and $b$ are real constants such that $b$ is strictly greater than $a$'
     },
     {
         'test': {},
@@ -335,7 +341,7 @@ tests = [
             'definition': [
                 [
                     {
-                        'function': 'f',
+                        'function': ['f'],
                         'is': ['nth_order_continuous'],
                         'of': {
                             'symbol': 'x',
@@ -350,7 +356,7 @@ tests = [
                 ],
                 [
                     {
-                        'function': 'f',
+                        'function': ['f'],
                         'is': ['infinite_order_continuous'],
                         'of': {
                             'symbol': 'x',
@@ -373,14 +379,15 @@ tests = [
                     'constraints': [
                         {
                             'type': 'gt',
-                            'lhs': 'a',
-                            'rhs': 'b'
+                            'lhs': 'b',
+                            'rhs': 'a'
                         }
                     ]
                 }
             ],
         },
-        'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is nth order continuous from $a$ to $b$ and $n$ is infinite is equivalent of saying that $f(x)$ is infinite order continuous from $a$ to $b$ where $a$ and $b$ are real constants such that $b$ is strictly greater than $a$'
+        'meta': {},
+        'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is $n$\'th order continuous for all $x$ from $a$ to $b$ and $n$ is infinite is equivalent of saying that $f(x)$ is infinite order continuous for all $x$ from $a$ to $b$ where $x$ is a real variable and $a$ and $b$ are real constants such that $b$ is strictly greater than $a$'
     },
     {
         'test': {},
@@ -396,7 +403,7 @@ tests = [
             'definition': [
                 [
                     {
-                        'function': 'f',
+                        'function': ['f'],
                         'is': ['infinite_order_continuous'],
                         'of': {
                             'symbol': 'x',
@@ -407,7 +414,7 @@ tests = [
                 ],
                 [
                     {
-                        'function': 'f',
+                        'function': ['f'],
                         'is': ['smooth'],
                         'of': {
                             'symbol': 'x',
@@ -430,21 +437,22 @@ tests = [
                     'constraints': [
                         {
                             'type': 'gt',
-                            'lhs': 'a',
-                            'rhs': 'b'
+                            'lhs': 'b',
+                            'rhs': 'a'
                         }
                     ]
                 }
             ]
         },
-        'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is infinite order continuous from $a$ to $b$ is equivalent of saying that $f(x)$ is smooth from $a$ to $b$ where $a$ and $b$ are real constants such that $b$ is strictly greater than $a$'
+        'meta': {},
+        'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is infinite order continuous for all $x$ from $a$ to $b$ is equivalent of saying that $f(x)$ is smooth for all $x$ from $a$ to $b$ where $x$ is a real variable and $a$ and $b$ are real constants such that $b$ is strictly greater than $a$'
     },
     {
         'test': {},
         'data': {
             'input': [
                 {
-                    'symbols': ['f'],
+                    'symbols': ['f', 'h'],
                     'type': 'real',
                     'kind': 'function',
                     'dependencies': ['x']
@@ -453,7 +461,7 @@ tests = [
             'theorem': {
                 'if': [
                     {
-                        'function': 'f',
+                        'function': ['f'],
                         'is': ['continuous'],
                         'of': {
                             'symbol': 'x',
@@ -462,7 +470,7 @@ tests = [
                         }
                     },
                     {
-                        'function': 'h',
+                        'function': ['h'],
                         'is': ['support_compact'],
                         'of': {
                             'symbol': 'x',
@@ -501,14 +509,17 @@ tests = [
                     'constraints': [
                         {
                             'type': 'gt',
-                            'lhs': 'a',
-                            'rhs': 'b'
+                            'lhs': 'b',
+                            'rhs': 'a'
                         }
                     ]
                 }
             ]
         },
-        'expected': 'Let $f(x)$ and $h(x)$ be real functions, if $f(x)$ is continuous from $a$ to $b$ and $h(x)$ is compactly supported from $a$ to $b$ and following statement is true $$Integral(f(t)*h(t), (x, a, b))=0$$ then also following statement must be true $$f(t)=0$$ where $x$ and $t$ are real variables and $a$ and $b$ are real constants such that $b$ is strictly greater than $a$'
+        'meta': {
+            'Integral(f(t)*h(t), (x, a, b)) = 0': '$$\\int_a^b f(t) h(t) dx = 0$$'
+        },
+        'expected': 'Let $f(x)$ and $h(x)$ be real functions such that if $f(x)$ is continuous for all $x$ from $a$ to $b$, $h(x)$ is compactly supported for all $x$ from $a$ to $b$ and $$\\int_a^b f(t) h(t) dx = 0$$ is true then $$f(t) = 0$$ is true where $x$ and $t$ are real variables and $a$ and $b$ are real constants such that $b$ is strictly greater than $a$'
     }
 ]
 
@@ -516,9 +527,10 @@ tests = [
 class IntegrationTest(TestCase) :
     def testIntegration(self) :
         if skipTest(self.test) : return skip('test disabled')
-        output = surfaceRealize(self.data)
+        output = surfaceRealize(self.data, self.meta)
         assertEqual(self, output, self.expected)
-    def setParameters(self, test, data, expected):
+    def setParameters(self, test, data, meta, expected):
         self.test = test
         self.data = data
+        self.meta = meta
         self.expected = expected

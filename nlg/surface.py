@@ -6,8 +6,7 @@ pp = pprint.PrettyPrinter(indent=4)
 from lxml import etree
 from sympy import sympify, latex
 
-def surfaceRealize(data) :
-    meta = {}
+def surfaceRealize(data, meta) :
     input = surfaceInputs(data['input'], meta, 'input')
     symbols = surfaceInputs(data['symbols'], meta, 'symbol')
     if 'definition' in data.keys() :
@@ -21,12 +20,14 @@ def surfaceRealize(data) :
     return '<unrecognized logic structure>'
 
 def constraint(data, meta) :
-    if data['type'] in ['geq', 'leq', 'eq', 'neq'] :
+    if data['type'] in ['geq', 'leq', 'eq', 'neq', 'gt', 'lt'] :
         op = {
             'geq': 'greater or equal than',
             'leq': 'lower or equal than',
             'neq': 'equal to',
-            'eq': 'not equal to'
+            'eq': 'not equal to',
+            'lt': 'strictly lower than',
+            'gt': 'strictly greater than'
         }[data['type']]
         lhs = aggregator(wrapper('$%s$', data['lhs']))
         rhs = aggregator(wrapper('$%s$', data['rhs']))
@@ -58,6 +59,7 @@ def surfacePreSymbolic(data, meta) :
         for symbol in data['symbols'] :
             str = '$%s(%s)$' % (symbol, ', '.join(dependencies))
             what.append(str)
+            meta[symbol] = str
     else :
         what = wrapper('$%s$', data['symbols'])
     desc = state(data['type'], data['kind'], what)
@@ -83,13 +85,13 @@ def surfaceStatement(data, meta) :
     if 'forall' in data.keys() :
         forall = aggregator(wrapper('$%s$', data['forall']))
     if 'expression' in data.keys() :
-        expr = expression(data['expression'])
+        expr = expression(data['expression'], meta)
         if forall is None :
             return '%s is true' % (expr)
         return '%s is true for all %s' % (expr, forall)
     verb = 'is'
     options = ['adjective']
-    description = aggregator(data['is'])
+    description = aggregator(surfaceApply(data['is'], meta, adjective))
     if 'function' in data.keys() :
         if len(data['function']) > 1 :
             verb = 'are'
@@ -108,10 +110,17 @@ def surfaceStatement(data, meta) :
         return '%s %s %s' % (symbol, verb, description)
     return ''
 
-def expression(data) :
-    if data['operator'] == 'eq' :
-        return '$$%s = %s$$' % (data['lhs'], data['rhs'])
-    return '$$%s \%s %s$$' % (data['lhs'], data['operator'], data['rhs'])
+def expression(data, meta) :
+    txt = ''
+    if data['operator'] == 'eq' : txt = '%s = %s' % (data['lhs'], data['rhs'])
+    if data['operator'] == 'lt' : txt = '%s < %s' % (data['lhs'], data['rhs'])
+    if data['operator'] == 'gt' : txt = '%s > %s' % (data['lhs'], data['rhs'])
+    if data['operator'] == 'neq' : txt = '%s \\neq %s' % (data['lhs'], data['rhs'])
+    if data['operator'] == 'geq' : txt = '%s \\geq %s' % (data['lhs'], data['rhs'])
+    if data['operator'] == 'leq' : txt = '%s \\leq %s' % (data['lhs'], data['rhs'])
+    if txt in meta.keys() :
+        return meta[txt]
+    return '$$%s$$' % txt
 
 def surfaceForAll(data, meta) :
     symbols = aggregator(data['symbol'])
@@ -173,6 +182,15 @@ def numerize(word, countable) :
 def plural(word) :
     if word == 'complex' : return 'complex'
     return '%ss' % (word)
+
+def adjective(word, meta) :
+    if word == 'support_compact' : return 'compactly supported'
+    if word == 'infinite_order_continuous': return 'infinite order continuous'
+    if word == 'compact_support': return 'compactly supported'
+    if word == 'nth_order_continuous': return '$n$\'th order continuous'
+    if word == 'support': return 'supported'
+    if word == 'infinity': return 'infinite'
+    return word
 
 def state(adjective, noun, countable) :
     snoun = numerize(noun, countable)
