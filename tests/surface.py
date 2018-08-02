@@ -1,6 +1,7 @@
 from unittest import TestCase, skip
 from paramunittest import parametrized
 
+from nlg.tools import diffFormat, skipTest, assertEqual
 from nlg.surface import aggregator, wrapper, surfaceApply, surfaceMeta, surfaceStatement, surfaceInputs, numerize, constraint, constraints
 
 def skipTest(test) :
@@ -301,7 +302,7 @@ class StatementTest(TestCase) :
     def testStatement(self) :
         if skipTest(self.test) : return skip('test disabled')
         output = surfaceStatement(self.data, self.meta)
-        self.assertEqual(output, self.expected)
+        assertEqual(self, output, self.expected)
     def setParameters(self, test, data, meta, expected):
         self.test = test
         self.data = data
@@ -314,8 +315,8 @@ class SymbolicTest(TestCase) :
         if skipTest(self.test) : return skip('test disabled')
         outputI = surfaceInputs(self.data, self.meta, 'input')
         outputS = surfaceInputs(self.data, self.meta, 'symbol')
-        self.assertEqual(outputI, self.expected['surfaceInput'])
-        self.assertEqual(outputS, self.expected['surfaceSymbol'])
+        assertEqual(self, outputI, self.expected['surfaceInput'])
+        assertEqual(self, outputS, self.expected['surfaceSymbol'])
     def setParameters(self, test, data, meta, expected):
         self.test = test
         self.data = data
@@ -327,27 +328,27 @@ class OtherTest(TestCase) :
         strings = ['a']
         output = aggregator(strings)
         expected = 'a'
-        self.assertEqual(output, expected)
+        assertEqual(self, output, expected)
     def testAggregator2(self) :
         strings = ['a', 'b']
         output = aggregator(strings)
         expected = 'a and b'
-        self.assertEqual(output, expected)
+        assertEqual(self, output, expected)
     def testAggregator3(self) :
         strings = ['a', 'b', 'c']
         output = aggregator(strings)
         expected = 'a, b and c'
-        self.assertEqual(output, expected)
+        assertEqual(self, output, expected)
     def testAggregator4(self) :
         strings = ['a', 'b', 'c', 'd']
         output = aggregator(strings)
         expected = 'a, b, c and d'
-        self.assertEqual(output, expected)
+        assertEqual(self, output, expected)
     def testWrapper(self) :
         strings = ['a', 'b', 'c']
         output = wrapper('$%s$', strings)
         expected = ['$a$', '$b$', '$c$']
-        self.assertEqual(output, expected)
+        assertEqual(self, output, expected)
     def testApply(self) :
         def someFun(str, meh) :
             return '_%s' % str
@@ -373,7 +374,7 @@ class OtherTest(TestCase) :
         }
         output = constraint(data, {})
         expected = '$a$ and $b$ are greater or equal than $c$'
-        self.assertEqual(output, expected)
+        assertEqual(self, output, expected)
     def testContraint2(self) :
         data = {
             'type': 'geq',
@@ -382,7 +383,7 @@ class OtherTest(TestCase) :
         }
         output = constraint(data, {})
         expected = '$a$ is greater or equal than $b$ and $c$'
-        self.assertEqual(output, expected)
+        assertEqual(self, output, expected)
     def testContraint3(self) :
         data = {
             'symbol': 'b',
@@ -392,4 +393,4 @@ class OtherTest(TestCase) :
         }
         output = constraint(data, {})
         expected = '$b$ is contained between $a$ and $c$'
-        self.assertEqual(output, expected)
+        assertEqual(self, output, expected)

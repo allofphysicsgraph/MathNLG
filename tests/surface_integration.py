@@ -1,11 +1,10 @@
 from unittest import TestCase, skip
 from paramunittest import parametrized
 
+from nlg.tools import diffFormat, skipTest, assertEqual
 from nlg.surface import surfaceRealize
 
-def skipTest(test) :
-    if 'disabled' in test.keys() :
-        return test['disabled']
+
 
 tests = [
     {
@@ -518,7 +517,7 @@ class IntegrationTest(TestCase) :
     def testIntegration(self) :
         if skipTest(self.test) : return skip('test disabled')
         output = surfaceRealize(self.data)
-        self.assertEqual(output, self.expected)
+        assertEqual(self, output, self.expected)
     def setParameters(self, test, data, expected):
         self.test = test
         self.data = data
