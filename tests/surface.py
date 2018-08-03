@@ -36,7 +36,7 @@ tests_statement = [
             'forall': ['b']
         },
         'meta': {},
-        'expected': '$$f(b) = 0$$ is true for all $b$'
+        'expected': '$$f{\left (b \\right )} = 0$$ is true for all $b$'
     },
     {
         'test': {},

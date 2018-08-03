@@ -109,13 +109,19 @@ def surfaceStatement(data, meta) :
     return ''
 
 def expression(data, meta) :
+    def latexize(txt, meta) :
+        if txt in meta.keys() :
+            return meta[txt]
+        return latex(sympify(txt))
     txt = ''
-    if data['operator'] == 'eq' : txt = '%s = %s' % (data['lhs'], data['rhs'])
-    if data['operator'] == 'lt' : txt = '%s < %s' % (data['lhs'], data['rhs'])
-    if data['operator'] == 'gt' : txt = '%s > %s' % (data['lhs'], data['rhs'])
-    if data['operator'] == 'neq' : txt = '%s \\neq %s' % (data['lhs'], data['rhs'])
-    if data['operator'] == 'geq' : txt = '%s \\geq %s' % (data['lhs'], data['rhs'])
-    if data['operator'] == 'leq' : txt = '%s \\leq %s' % (data['lhs'], data['rhs'])
+    lhs = latexize(data['lhs'], meta)
+    rhs = latexize(data['rhs'], meta)
+    if data['operator'] == 'eq' : txt = '%s = %s' % (lhs, rhs)
+    if data['operator'] == 'lt' : txt = '%s < %s' % (lhs, rhs)
+    if data['operator'] == 'gt' : txt = '%s > %s' % (lhs, rhs)
+    if data['operator'] == 'neq' : txt = '%s \\neq %s' % (lhs, rhs)
+    if data['operator'] == 'geq' : txt = '%s \\geq %s' % (lhs, rhs)
+    if data['operator'] == 'leq' : txt = '%s \\leq %s' % (lhs, rhs)
     if txt in meta.keys() :
         return meta[txt]
     return '$$%s$$' % txt
