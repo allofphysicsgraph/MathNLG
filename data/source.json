@@ -1,7 +1,7 @@
 {
     "source": {
         "support": {
-            "id": "definition",
+            "category": "definition",
             "symbols": [
                 {
                     "symbols": [
@@ -71,7 +71,7 @@
             ]
         },
         "compact_support": {
-            "id": "definition",
+            "category": "definition",
             "symbols": [
                 {
                     "symbols": [
@@ -154,7 +154,7 @@
             ]
         },
         "continuity_at_point": {
-            "id": "definition",
+            "category": "definition",
             "symbols": [
                 {
                     "symbols": [
@@ -210,7 +210,7 @@
             ]
         },
         "continuity_over_interval": {
-            "id": "definition",
+            "category": "definition",
             "symbols": [
                 {
                     "symbols": [
@@ -282,7 +282,7 @@
             ]
         },
         "nth_order_continuity": {
-            "id": "definition",
+            "category": "definition",
             "symbols": [
                 {
                     "symbols": [
@@ -389,8 +389,8 @@
                 "n"
             ]
         },
-        "infinite_order_continuouity": {
-            "id": "definition",
+        "infinite_order_continuity": {
+            "category": "definition",
             "symbols": [
                 {
                     "symbols": [
@@ -467,7 +467,7 @@
             ]
         },
         "smoothness": {
-            "id": "definition",
+            "category": "definition",
             "symbols": [
                 {
                     "symbols": [
@@ -538,7 +538,7 @@
             ]
         },
         "flcv": {
-            "type": "lemma",
+            "category": "custom",
             "symbols": [
                 {
                     "symbols": [
