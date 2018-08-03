@@ -61,7 +61,14 @@ tests = [
                 }
             ]
         },
-        'meta': {},
+        'meta': {
+            'linguistic': {
+                'support': {
+                    'noun': 'support',
+                    'adjective': 'supported'
+                }
+            }
+        },
         'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is supported for all $x$ from $a$ to $c$ is equivalent of saying that $$f(b) \\neq 0$$ is true for all $b$ where $x$ is a real variable and $a$, $b$ and $c$ are real constants such that $b$ is contained between $a$ and $c$'
     },
     {
@@ -129,7 +136,18 @@ tests = [
                 }
             ]
         },
-        'meta': {},
+        'meta': {
+            'linguistic': {
+                'support': {
+                    'noun': 'support',
+                    'adjective': 'supported'
+                },
+                'compact_support': {
+                    "noun": "compact support",
+                    "adjective": "compactly supported"
+                }
+            }
+        },
         'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is compactly supported for all $x$ from $a$ to $c$ is equivalent of saying that $f(x)$ is supported for all $x$ from $a$ to $c$ and $$f(b) = 0$$ is true for all $b$ where $x$ is a real variable and $a$, $b$ and $c$ are real constants such that $b$ is not contained between $a$ and $c$'
     },
     {
@@ -148,7 +166,7 @@ tests = [
                 [
                     {
                         'function': ['f'],
-                        'is': ['continuous'],
+                        'is': ['continuity'],
                         'of': {
                             'symbol': 'x',
                             'at': 'c'
@@ -179,7 +197,13 @@ tests = [
             ]
         },
         'meta': {
-            'limit(f, x, c) = f(c)': '$$\\lim\\limits_{x \\to c} f(x) = f(c)$$'
+            'limit(f, x, c) = f(c)': '$$\\lim\\limits_{x \\to c} f(x) = f(c)$$',
+            'linguistic': {
+                'continuity': {
+                    'noun': 'continuity',
+                    'adjective': 'continuous'
+                }
+            }
         },
         'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is continuous for all $x$ at $c$ is equivalent of saying that $$\\lim\\limits_{x \\to c} f(x) = f(c)$$ is true where $x$ is a real variable and $c$ is a real constant'
     },
@@ -199,7 +223,7 @@ tests = [
                 [
                     {
                         'function': ['f'],
-                        'is': ['continuous'],
+                        'is': ['continuity'],
                         'of': {
                             'symbol': 'x',
                             'at': 'a'
@@ -209,7 +233,7 @@ tests = [
                 [
                     {
                         'function': ['f'],
-                        'is': ['continuous'],
+                        'is': ['continuity'],
                         'of': {
                             'symbol': 'x',
                             'from': 'a',
@@ -239,13 +263,20 @@ tests = [
                 }
             ]
         },
-        'meta': {},
+        'meta': {
+            'linguistic': {
+                'continuity': {
+                    'noun': 'continuity',
+                    'adjective': 'continuous'
+                }
+            }
+        },
         'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is continuous for all $x$ at $a$ is equivalent of saying that $f(x)$ is continuous for all $x$ from $a$ to $b$ where $x$ is a real variable and $a$, $b$ and $c$ are real constants such that $b$ is contained between $a$ and $c$'
     },
     {
         'test': {},
         'data': {
-            'id': 'nth_order_continuous',
+            'id': 'nth_order_continuity',
             'parameters': ['n'],
             'input': [
                 {
@@ -272,7 +303,7 @@ tests = [
                 [
                     {
                         'function': ['f'],
-                        'is': ['continuous'],
+                        'is': ['continuity'],
                         'of': {
                             'symbol': 'x',
                             'from': 'a',
@@ -281,7 +312,7 @@ tests = [
                     },
                     {
                         'function': ['derivative(f(x), x, k)'],
-                        'is': ['continuous'],
+                        'is': ['continuity'],
                         'of': {
                             'symbol': 'x',
                             'from': 'a',
@@ -293,7 +324,7 @@ tests = [
                 [
                     {
                         'function': ['f'],
-                        'is': ['nth_order_continuous'],
+                        'is': ['nth_order_continuity'],
                         'of': {
                             'symbol': 'x',
                             'from': 'a',
@@ -323,7 +354,17 @@ tests = [
             ]
         },
         'meta': {
-            'derivative(f(x), x, k)': '$\\frac{d^k}{dx^k}f(x)$'
+            'derivative(f(x), x, k)': '$\\frac{d^k}{dx^k}f(x)$',
+            'linguistic': {
+                'continuity': {
+                    'noun': 'continuity',
+                    'adjective': 'continuous'
+                },
+                'nth_order_continuity': {
+                    'noun': '$n$\'th order continuity',
+                    'adjective': '$n$\'th order continuous'
+                }
+            }
         },
         'expected': 'Let $f(x)$ be a real function and let $n$ and $k$ be positives integer constants such that $n$ is greater or equal than $k$, saying that $f(x)$ is continuous for all $x$ from $a$ to $b$ and $\\frac{d^k}{dx^k}f(x)$ is continuous for all $x$ from $a$ to $b$ and for all $k$ is equivalent of saying that $f(x)$ is $n$\'th order continuous for all $x$ from $a$ to $b$ where $x$ is a real variable and $a$ and $b$ are real constants such that $b$ is strictly greater than $a$'
     },
@@ -342,7 +383,7 @@ tests = [
                 [
                     {
                         'function': ['f'],
-                        'is': ['nth_order_continuous'],
+                        'is': ['nth_order_continuity'],
                         'of': {
                             'symbol': 'x',
                             'from': 'a',
@@ -357,7 +398,7 @@ tests = [
                 [
                     {
                         'function': ['f'],
-                        'is': ['infinite_order_continuous'],
+                        'is': ['infinite_order_continuity'],
                         'of': {
                             'symbol': 'x',
                             'from': 'a',
@@ -386,7 +427,18 @@ tests = [
                 }
             ],
         },
-        'meta': {},
+        'meta': {
+            'linguistic': {
+                'nth_order_continuity': {
+                    'noun': '$n$\'th order continuity',
+                    'adjective': '$n$\'th order continuous'
+                },
+                'infinite_order_continuity': {
+                    'noun': 'infinite order continuity',
+                    'adjective': 'infinite order continuous'
+                }
+            }
+        },
         'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is $n$\'th order continuous for all $x$ from $a$ to $b$ and $n$ is infinite is equivalent of saying that $f(x)$ is infinite order continuous for all $x$ from $a$ to $b$ where $x$ is a real variable and $a$ and $b$ are real constants such that $b$ is strictly greater than $a$'
     },
     {
@@ -404,7 +456,7 @@ tests = [
                 [
                     {
                         'function': ['f'],
-                        'is': ['infinite_order_continuous'],
+                        'is': ['infinite_order_continuity'],
                         'of': {
                             'symbol': 'x',
                             'from': 'a',
@@ -415,7 +467,7 @@ tests = [
                 [
                     {
                         'function': ['f'],
-                        'is': ['smooth'],
+                        'is': ['smoothness'],
                         'of': {
                             'symbol': 'x',
                             'from': 'a',
@@ -444,7 +496,18 @@ tests = [
                 }
             ]
         },
-        'meta': {},
+        'meta': {
+            'linguistic': {
+                'smoothness': {
+                    'noun': 'smoothness',
+                    'adjective': 'smooth'
+                },
+                'infinite_order_continuity': {
+                    'noun': 'infinite order continuity',
+                    'adjective': 'infinite order continuous'
+                }
+            }
+        },
         'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is infinite order continuous for all $x$ from $a$ to $b$ is equivalent of saying that $f(x)$ is smooth for all $x$ from $a$ to $b$ where $x$ is a real variable and $a$ and $b$ are real constants such that $b$ is strictly greater than $a$'
     },
     {
@@ -461,7 +524,7 @@ tests = [
             'if': [
                 {
                     'function': ['f'],
-                    'is': ['continuous'],
+                    'is': ['continuity'],
                     'of': {
                         'symbol': 'x',
                         'from': 'a',
@@ -470,7 +533,7 @@ tests = [
                 },
                 {
                     'function': ['h'],
-                    'is': ['support_compact'],
+                    'is': ['compact_support'],
                     'of': {
                         'symbol': 'x',
                         'from': 'a',
@@ -515,7 +578,17 @@ tests = [
             ]
         },
         'meta': {
-            'Integral(f(t)*h(t), (x, a, b)) = 0': '$$\\int_a^b f(t) h(t) dx = 0$$'
+            'Integral(f(t)*h(t), (x, a, b)) = 0': '$$\\int_a^b f(t) h(t) dx = 0$$',
+            'linguistic': {
+                'compact_support': {
+                    'noun': 'compact support',
+                    'adjective': 'compactly supported'
+                },
+                'continuity': {
+                    'noun': 'continuity',
+                    'adjective': 'continuous'
+                }
+            }
         },
         'expected': 'Let $f(x)$ and $h(x)$ be real functions such that if $f(x)$ is continuous for all $x$ from $a$ to $b$, $h(x)$ is compactly supported for all $x$ from $a$ to $b$ and $$\\int_a^b f(t) h(t) dx = 0$$ is true then $$f(t) = 0$$ is true where $x$ and $t$ are real variables and $a$ and $b$ are real constants such that $b$ is strictly greater than $a$'
     }

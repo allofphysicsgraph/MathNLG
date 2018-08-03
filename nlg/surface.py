@@ -90,12 +90,10 @@ def surfaceStatement(data, meta) :
             return '%s is true' % (expr)
         return '%s is true for all %s' % (expr, forall)
     verb = 'is'
-    options = ['adjective']
     description = aggregator(surfaceApply(data['is'], meta, adjective))
     if 'function' in data.keys() :
         if len(data['function']) > 1 :
             verb = 'are'
-            options = ['adjective', 'plural']
         functions = aggregator(surfaceMeta(data['function'], meta))
         oflist = [surfaceForAll(data['of'], meta)]
         if forall is not None :
@@ -184,11 +182,10 @@ def plural(word) :
     return '%ss' % (word)
 
 def adjective(word, meta) :
-    if word == 'support_compact' : return 'compactly supported'
-    if word == 'infinite_order_continuous': return 'infinite order continuous'
-    if word == 'compact_support': return 'compactly supported'
-    if word == 'nth_order_continuous': return '$n$\'th order continuous'
-    if word == 'support': return 'supported'
+    if 'linguistic' in meta.keys() :
+        if word in meta['linguistic'].keys() :
+            if 'adjective' in meta['linguistic'][word].keys() :
+                return meta['linguistic'][word]['adjective']
     if word == 'infinity': return 'infinite'
     return word
 
