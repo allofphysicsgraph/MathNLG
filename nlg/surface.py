@@ -9,13 +9,13 @@ from sympy import sympify, latex
 def surfaceRealize(data, meta) :
     input = surfaceInputs(data['input'], meta, 'input')
     symbols = surfaceInputs(data['symbols'], meta, 'symbol')
-    if 'definition' in data.keys() :
-        statements1 = surfaceStatements(data['definition'][0], meta)
-        statements2 = surfaceStatements(data['definition'][1], meta)
+    if 'equivalence' in data.keys() :
+        statements1 = surfaceStatements(data['equivalence'][0], meta)
+        statements2 = surfaceStatements(data['equivalence'][1], meta)
         return ('%s, saying that %s is equivalent of saying that %s where %s' % (input, statements1, statements2, symbols)).capitalize()
-    if 'theorem' in data.keys() :
-        statements1 = surfaceStatements(data['theorem']['if'], meta)
-        statements2 = surfaceStatements(data['theorem']['then'], meta)
+    if set(['if', 'then']).issubset(set(data.keys())) :
+        statements1 = surfaceStatements(data['if'], meta)
+        statements2 = surfaceStatements(data['then'], meta)
         return ('%s such that if %s then %s where %s' % (input, statements1, statements2, symbols)).capitalize()
     return '<unrecognized logic structure>'
 

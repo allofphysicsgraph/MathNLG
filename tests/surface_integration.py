@@ -17,7 +17,7 @@ tests = [
                     'dependencies': ['x']
                 }
             ],
-            'definition': [
+            'equivalence': [
                 [
                     {
                         'function': ['f'],
@@ -76,7 +76,7 @@ tests = [
                     'dependencies': ['x']
                 }
             ],
-            'definition': [
+            'equivalence': [
                 [
                     {
                         'function': ['f'],
@@ -144,7 +144,7 @@ tests = [
                     'dependencies': ['x']
                 }
             ],
-            'definition': [
+            'equivalence': [
                 [
                     {
                         'function': ['f'],
@@ -195,7 +195,7 @@ tests = [
                     'dependencies': ['x']
                 }
             ],
-            'definition': [
+            'equivalence': [
                 [
                     {
                         'function': ['f'],
@@ -268,7 +268,7 @@ tests = [
                     ]
                 }
             ],
-            'definition': [
+            'equivalence': [
                 [
                     {
                         'function': ['f'],
@@ -338,7 +338,7 @@ tests = [
                     'dependencies': ['x']
                 }
             ],
-            'definition': [
+            'equivalence': [
                 [
                     {
                         'function': ['f'],
@@ -400,7 +400,7 @@ tests = [
                     'dependencies': ['x']
                 }
             ],
-            'definition': [
+            'equivalence': [
                 [
                     {
                         'function': ['f'],
@@ -458,44 +458,42 @@ tests = [
                     'dependencies': ['x']
                 }
             ],
-            'theorem': {
-                'if': [
-                    {
-                        'function': ['f'],
-                        'is': ['continuous'],
-                        'of': {
-                            'symbol': 'x',
-                            'from': 'a',
-                            'to': 'b'
-                        }
-                    },
-                    {
-                        'function': ['h'],
-                        'is': ['support_compact'],
-                        'of': {
-                            'symbol': 'x',
-                            'from': 'a',
-                            'to': 'b'
-                        }
-                    },
-                    {
-                        'expression': {
-                            'operator': 'eq',
-                            'lhs': 'Integral(f(t)*h(t), (x, a, b))',
-                            'rhs': '0'
-                        }
+            'if': [
+                {
+                    'function': ['f'],
+                    'is': ['continuous'],
+                    'of': {
+                        'symbol': 'x',
+                        'from': 'a',
+                        'to': 'b'
                     }
-                ],
-                'then': [
-                    {
-                        'expression': {
-                            'operator': 'eq',
-                            'lhs': 'f(t)',
-                            'rhs': '0'
-                        }
+                },
+                {
+                    'function': ['h'],
+                    'is': ['support_compact'],
+                    'of': {
+                        'symbol': 'x',
+                        'from': 'a',
+                        'to': 'b'
                     }
-                ]
-            },
+                },
+                {
+                    'expression': {
+                        'operator': 'eq',
+                        'lhs': 'Integral(f(t)*h(t), (x, a, b))',
+                        'rhs': '0'
+                    }
+                }
+            ],
+            'then': [
+                {
+                    'expression': {
+                        'operator': 'eq',
+                        'lhs': 'f(t)',
+                        'rhs': '0'
+                    }
+                }
+            ],
             'symbols': [
                 {
                     'symbols': ['x', 't'],
