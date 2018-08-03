@@ -203,7 +203,7 @@
                         "expression": {
                             "operator": "eq",
                             "rhs": "f(c)",
-                            "lhs": "limit(f, x, c)"
+                            "lhs": "Limit(f(x), x, c)"
                         }
                     }
                 ]

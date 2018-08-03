@@ -177,7 +177,7 @@ tests = [
                     {
                         'expression': {
                             'operator': 'eq',
-                            'lhs': 'limit(f, x, c)',
+                            'lhs': 'Limit(f(x), x, c)',
                             'rhs': 'f(c)'
                         }
                     }
@@ -197,7 +197,6 @@ tests = [
             ]
         },
         'meta': {
-            'limit(f, x, c)': '\\lim\\limits_{x \\to c} f(x)',
             'linguistic': {
                 'continuity': {
                     'noun': 'continuity',
@@ -205,7 +204,7 @@ tests = [
                 }
             }
         },
-        'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is continuous for all $x$ at $c$ is equivalent of saying that $$\\lim\\limits_{x \\to c} f(x) = f{\left (c \\right )}$$ is true where $x$ is a real variable and $c$ is a real constant.'
+        'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is continuous for all $x$ at $c$ is equivalent of saying that $$\\lim_{x \\to c^+} f{\\left (x \\right )} = f{\\left (c \\right )}$$ is true where $x$ is a real variable and $c$ is a real constant.'
     },
     {
         'test': {},
