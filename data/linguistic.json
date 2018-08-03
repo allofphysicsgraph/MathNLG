@@ -1,0 +1,39 @@
+{
+  "linguistic": {
+    "support": {
+      "noun": "support",
+      "adjective": "supported"
+    },
+    "compact_support": {
+      "noun": "compact support",
+      "adjective": "compactly supported"
+    },
+    "continuity": {
+      "noun": "continuity",
+      "adjective": "continuous"
+    },
+    "continuity_at_point": {
+      "noun": "continuity at point",
+      "adjective": "continuous at point"
+    },
+    "continuity_over_interval": {
+      "noun": "continuity over interval",
+      "adjective": "continuous over interval"
+    },
+    "nth_order_continuity": {
+      "noun": "$n$'th order continuity",
+      "adjective": "$n$'th order continuous"
+    },
+    "infinite_order_continuouity": {
+      "noun": "infinite order continuity",
+      "adjective": "infinite order continuous"
+    },
+    "smoothness": {
+      "noun": "smoothness",
+      "adjective": "smooth"
+    },
+    "flcv": {
+      "noun": "fundamental lemma of calculus of variations"
+    }
+  }
+}
