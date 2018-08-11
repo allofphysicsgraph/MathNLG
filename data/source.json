@@ -621,6 +621,69 @@
                     }
                 }
             ]
+        },
+        "ibp": {
+            "category": "custom",
+            "symbols": [
+                {
+                    "symbols": [
+                        "x"
+                    ],
+                    "kind": "variable",
+                    "type": "real"
+                },
+                {
+                    "symbols": [
+                        "a",
+                        "b"
+                    ],
+                    "kind": "constant",
+                    "type": "real",
+                    "constraints": [
+                        {
+                            "lhs": "b",
+                            "rhs": "a",
+                            "type": "gt"
+                        }
+                    ]
+                }
+            ],
+            "input": [
+                {
+                    "symbols": [
+                        "f", "g"
+                    ],
+                    "kind": "function",
+                    "dependencies": [
+                        "x"
+                    ],
+                    "type": "real"
+                }
+            ],
+            "if": [
+                {
+                    "function": [
+                        "f", "g"
+                    ],
+                    "of": {
+                        "symbol": "x",
+                        "from": "a",
+                        "to": "b"
+                    },
+                    "is": [
+                        "continuity"
+                    ]
+                }
+              ],
+              "then": [
+                {
+                    "expression": {
+                        "operator": "eq",
+                        "rhs": "Subs(f(x)*g(x), x, b) - Subs(f(x)*g(x), x, a) - Integral(f(x)*Derivative(g(x), x), (x, a, b))",
+                        "lhs": "Integral(f(x)*Derivative(g(x), x), (x, a, b))"
+                    }
+                }
+            ]
         }
     }
 }
