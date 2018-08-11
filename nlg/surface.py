@@ -159,6 +159,20 @@ def surfaceApply(data, meta, function) :
 def wrapper(pattern, elements) :
     return [pattern % (element) for element in elements]
 
+def unwrap(pattern, text) :
+    def unwrapTool(pattern, text) :
+        ls, rs = pattern.split('%#%')
+        try :
+            left, rest = text.split(ls, 1)
+            middle, right = rest.split(rs, 1)
+            return left + middle + right
+        except ValueError :
+            return text
+    out = unwrapTool(pattern, text)
+    if text == out :
+        return out
+    return unwrap(pattern, out)
+
 def aggregator(strings) :
     if len(strings) > 2 :
         return '%s and %s' % (', '.join(strings[0:-1]), strings[-1])

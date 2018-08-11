@@ -2,7 +2,7 @@ from unittest import TestCase, skip
 from paramunittest import parametrized
 
 from nlg.tools import diffFormat, skipTest, assertEqual
-from nlg.surface import aggregator, wrapper, surfaceApply, surfaceMeta, surfaceStatement, surfaceInputs, numerize, constraint, constraints
+from nlg.surface import aggregator, wrapper, surfaceApply, surfaceMeta, surfaceStatement, surfaceInputs, numerize, constraint, constraints, unwrap
 
 def skipTest(test) :
     if 'disabled' in test.keys() :
@@ -348,6 +348,11 @@ class OtherTest(TestCase) :
         strings = ['a', 'b', 'c']
         output = wrapper('$%s$', strings)
         expected = ['$a$', '$b$', '$c$']
+        assertEqual(self, output, expected)
+    def testUnwrap(self) :
+        input = 'qwertyui\operator{QWERTY}opasdfghjk\operator{AZERTY}lzxcvbnm'
+        expected = 'qwertyuiQWERTYopasdfghjkAZERTYlzxcvbnm'
+        output = unwrap('\operator{%#%}', input)
         assertEqual(self, output, expected)
     def testApply(self) :
         def someFun(str, meh) :
