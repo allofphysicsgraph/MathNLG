@@ -753,6 +753,75 @@
                     }
                 }
             ]
+        },
+        "vproductrule": {
+            "category": "custom",
+            "symbols": [
+                {
+                    "symbols": [
+                        "x"
+                    ],
+                    "kind": "variable",
+                    "type": "real"
+                },
+                {
+                    "symbols": [
+                        "a",
+                        "b"
+                    ],
+                    "kind": "constant",
+                    "type": "real",
+                    "constraints": [
+                        {
+                            "lhs": "b",
+                            "rhs": "a",
+                            "type": "gt"
+                        },
+                        {
+                          "lb": "a",
+                          "symbol": "x",
+                          "type": "inside",
+                          "ub": "b"
+                        }
+                    ]
+                }
+            ],
+            "input": [
+                {
+                    "symbols": [
+                        "f", "g"
+                    ],
+                    "kind": "function",
+                    "dependencies": [
+                        "x"
+                    ],
+                    "type": "real"
+                }
+            ],
+            "if": [
+                {
+                    "function": [
+                        "f", "g"
+                    ],
+                    "of": {
+                        "symbol": "x",
+                        "from": "a",
+                        "to": "b"
+                    },
+                    "is": [
+                        "continuity"
+                    ]
+                }
+              ],
+              "then": [
+                {
+                    "expression": {
+                        "operator": "eq",
+                        "rhs": "f(x)*Derivative(g(x), x) + g(x)*Derivative(f(x), x)",
+                        "lhs": "Derivative(f(x)*g(x), x)"
+                    }
+                }
+            ]
         }
     }
 }

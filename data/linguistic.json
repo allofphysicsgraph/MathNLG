@@ -40,6 +40,9 @@
     },
     "ibp": {
       "noun": "integration by parts"
+    },
+    "vproductrule": {
+      "noun": "product rule"
     }
   }
 }
