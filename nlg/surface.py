@@ -109,10 +109,14 @@ def surfaceStatement(data, meta) :
     return ''
 
 def expression(data, meta) :
+    # removes stuff unsupported by katex
+    def katex(txt) :
+        return unwrap('\substack{%#%}', txt)
+    # sympy to latex
     def latexize(txt, meta) :
         if txt in meta.keys() :
             return meta[txt]
-        return latex(sympify(txt))
+        return katex(latex(sympify(txt)))
     txt = ''
     lhs = latexize(data['lhs'], meta)
     rhs = latexize(data['rhs'], meta)
