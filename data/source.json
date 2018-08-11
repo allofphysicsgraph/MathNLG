@@ -622,7 +622,7 @@
                 }
             ]
         },
-        "ibp": {
+        "cibp": {
             "category": "custom",
             "symbols": [
                 {
@@ -681,6 +681,75 @@
                         "operator": "eq",
                         "rhs": "Subs(f(x)*g(x), x, b) - Subs(f(x)*g(x), x, a) - Integral(f(x)*Derivative(g(x), x), (x, a, b))",
                         "lhs": "Integral(f(x)*Derivative(g(x), x), (x, a, b))"
+                    }
+                }
+            ]
+        },
+        "ibp": {
+            "category": "custom",
+            "symbols": [
+                {
+                    "symbols": [
+                        "x"
+                    ],
+                    "kind": "variable",
+                    "type": "real"
+                },
+                {
+                    "symbols": [
+                        "a",
+                        "b"
+                    ],
+                    "kind": "constant",
+                    "type": "real",
+                    "constraints": [
+                        {
+                            "lhs": "b",
+                            "rhs": "a",
+                            "type": "gt"
+                        },
+                        {
+                          "lb": "a",
+                          "symbol": "x",
+                          "type": "inside",
+                          "ub": "b"
+                        }
+                    ]
+                }
+            ],
+            "input": [
+                {
+                    "symbols": [
+                        "f", "g"
+                    ],
+                    "kind": "function",
+                    "dependencies": [
+                        "x"
+                    ],
+                    "type": "real"
+                }
+            ],
+            "if": [
+                {
+                    "function": [
+                        "f", "g"
+                    ],
+                    "of": {
+                        "symbol": "x",
+                        "from": "a",
+                        "to": "b"
+                    },
+                    "is": [
+                        "continuity"
+                    ]
+                }
+              ],
+              "then": [
+                {
+                    "expression": {
+                        "operator": "eq",
+                        "rhs": "f(x)*g(x) - Integral(f(x)*Derivative(g(x), x))",
+                        "lhs": "Integral(g(x)*Derivative(f(x), x), x)"
                     }
                 }
             ]

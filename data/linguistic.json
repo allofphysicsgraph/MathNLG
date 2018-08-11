@@ -35,8 +35,11 @@
     "flcv": {
       "noun": "fundamental lemma of calculus of variations"
     },
+    "cibp": {
+      "noun": "definite integration by parts"
+    },
     "ibp": {
-      "noun": "Definite integration by parts"
+      "noun": "integration by parts"
     }
   }
 }
