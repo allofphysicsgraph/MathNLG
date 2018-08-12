@@ -10,12 +10,12 @@ def surfaceRealize(data, meta) :
     input = surfaceInputs(data['input'], meta, 'input')
     symbols = surfaceInputs(data['symbols'], meta, 'symbol')
     if 'equivalence' in data.keys() :
-        statements1 = surfaceStatements(data['equivalence'][0], meta)
-        statements2 = surfaceStatements(data['equivalence'][1], meta)
+        statements1 = surfaceLogic(data['equivalence'][0], meta)
+        statements2 = surfaceLogic(data['equivalence'][1], meta)
         return ('%s, saying that %s is equivalent of saying that %s where %s.' % (input, statements1, statements2, symbols)).capitalize()
     if set(['if', 'then']).issubset(set(data.keys())) :
-        statements1 = surfaceStatements(data['if'], meta)
-        statements2 = surfaceStatements(data['then'], meta)
+        statements1 = surfaceLogic(data['if'], meta)
+        statements2 = surfaceLogic(data['then'], meta)
         return ('%s such that if %s then %s where %s.' % (input, statements1, statements2, symbols)).capitalize()
     return '<unrecognized logic structure>'
 
@@ -84,16 +84,12 @@ def surfaceLogic(data, meta) :
     statements = ''
     if 'and' in data.keys() :
         if len(data['and']) > 1 :
-            statements = surfaceStatements(data['and'], meta)
-            if len(data['and']) > 2 :
-                return 'all of %s hold' % (statements)
-            return 'both %s hold' % (statements)
+            return surfaceStatements(data['and'], meta)
     elif 'or' in data.keys() :
         if len(data['or']) > 1 :
             statements = surfaceStatements(data['or'], meta)
             return 'at least one of %s holds' % (statements)
-    statement = surfaceStatement(data, meta)
-    return '%s holds' % (statement)
+    return surfaceStatement(data, meta)
 
 def surfaceStatement(data, meta) :
     forall = None

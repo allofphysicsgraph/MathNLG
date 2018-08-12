@@ -305,7 +305,7 @@ tests_logic = [
             'is': ['a']
         },
         'meta': {},
-        'expected': '$f$ is a holds'
+        'expected': '$f$ is a'
     },
     {
         'test': {},
@@ -322,7 +322,7 @@ tests_logic = [
             ]
         },
         'meta': {},
-        'expected': 'both $f$ is a and $g$ is b hold'
+        'expected': '$f$ is a and $g$ is b'
     },
     {
         'test': {},
@@ -343,7 +343,7 @@ tests_logic = [
             ]
         },
         'meta': {},
-        'expected': 'all of $f$ is a, $g$ is b and $h$ is c hold'
+        'expected': '$f$ is a, $g$ is b and $h$ is c'
     },
     {
         'test': {},

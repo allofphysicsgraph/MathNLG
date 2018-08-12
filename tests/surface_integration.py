@@ -18,27 +18,23 @@ tests = [
                 }
             ],
             'equivalence': [
-                [
-                    {
-                        'function': ['f'],
-                        'is': ['support'],
-                        'of': {
-                                'symbol': 'x',
-                                'from': 'a',
-                                'to': 'c'
-                        }
+                {
+                    'function': ['f'],
+                    'is': ['support'],
+                    'of': {
+                            'symbol': 'x',
+                            'from': 'a',
+                            'to': 'c'
                     }
-                ],
-                [
-                    {
-                        'expression': {
-                                'operator': 'neq',
-                                'lhs': 'f(b)',
-                                'rhs': '0'
-                            },
-                            'forall': ['b']
-                    }
-                ]
+                },
+                {
+                    'expression': {
+                            'operator': 'neq',
+                            'lhs': 'f(b)',
+                            'rhs': '0'
+                        },
+                        'forall': ['b']
+                }
             ],
             'symbols': [
                 {
@@ -84,36 +80,36 @@ tests = [
                 }
             ],
             'equivalence': [
-                [
-                    {
-                        'function': ['f'],
-                        'is': ['compact_support'],
-                        'of': {
-                            'symbol': 'x',
-                            'from': 'a',
-                            'to': 'c'
-                        }
+                {
+                    'function': ['f'],
+                    'is': ['compact_support'],
+                    'of': {
+                        'symbol': 'x',
+                        'from': 'a',
+                        'to': 'c'
                     }
-                ],
-                [
-                    {
-                        'function': ['f'],
-                        'is': ['support'],
-                        'of': {
-                            'symbol': 'x',
-                            'from': 'a',
-                            'to': 'c'
-                        }
-                    },
-                    {
-                        'expression': {
-                            'operator': 'eq',
-                            'lhs': 'f(b)',
-                            'rhs': '0'
+                },
+                {
+                    'and': [
+                        {
+                            'function': ['f'],
+                            'is': ['support'],
+                            'of': {
+                                'symbol': 'x',
+                                'from': 'a',
+                                'to': 'c'
+                            }
                         },
-                        'forall': ['b']
-                    }
-                ]
+                        {
+                            'expression': {
+                                'operator': 'eq',
+                                'lhs': 'f(b)',
+                                'rhs': '0'
+                            },
+                            'forall': ['b']
+                        }
+                    ]
+                }
             ],
             'symbols': [
                 {
@@ -163,25 +159,21 @@ tests = [
                 }
             ],
             'equivalence': [
-                [
-                    {
-                        'function': ['f'],
-                        'is': ['continuity'],
-                        'of': {
-                            'symbol': 'x',
-                            'at': 'c'
-                        }
+                {
+                    'function': ['f'],
+                    'is': ['continuity'],
+                    'of': {
+                        'symbol': 'x',
+                        'at': 'c'
                     }
-                ],
-                [
-                    {
-                        'expression': {
-                            'operator': 'eq',
-                            'lhs': 'Limit(f(x), x, c)',
-                            'rhs': 'f(c)'
-                        }
+                },
+                {
+                    'expression': {
+                        'operator': 'eq',
+                        'lhs': 'Limit(f(x), x, c)',
+                        'rhs': 'f(c)'
                     }
-                ]
+                }
             ],
             'symbols': [
                 {
@@ -219,27 +211,23 @@ tests = [
                 }
             ],
             'equivalence': [
-                [
-                    {
-                        'function': ['f'],
-                        'is': ['continuity'],
-                        'of': {
-                            'symbol': 'x',
-                            'at': 'a'
-                        }
+                {
+                    'function': ['f'],
+                    'is': ['continuity'],
+                    'of': {
+                        'symbol': 'x',
+                        'at': 'a'
                     }
-                ],
-                [
-                    {
-                        'function': ['f'],
-                        'is': ['continuity'],
-                        'of': {
-                            'symbol': 'x',
-                            'from': 'a',
-                            'to': 'b'
-                        }
+                },
+                {
+                    'function': ['f'],
+                    'is': ['continuity'],
+                    'of': {
+                        'symbol': 'x',
+                        'from': 'a',
+                        'to': 'b'
                     }
-                ]
+                }
             ],
             'symbols': [
                 {
@@ -299,38 +287,38 @@ tests = [
                 }
             ],
             'equivalence': [
-                [
-                    {
-                        'function': ['f'],
-                        'is': ['continuity'],
-                        'of': {
-                            'symbol': 'x',
-                            'from': 'a',
-                            'to': 'b'
-                        }
-                    },
-                    {
-                        'function': ['derivative(f(x), x, k)'],
-                        'is': ['continuity'],
-                        'of': {
-                            'symbol': 'x',
-                            'from': 'a',
-                            'to': 'b'
+                {
+                    'and': [
+                        {
+                            'function': ['f'],
+                            'is': ['continuity'],
+                            'of': {
+                                'symbol': 'x',
+                                'from': 'a',
+                                'to': 'b'
+                            }
                         },
-                        'forall': ['k']
-                    }
-                ],
-                [
-                    {
-                        'function': ['f'],
-                        'is': ['nth_order_continuity'],
-                        'of': {
-                            'symbol': 'x',
-                            'from': 'a',
-                            'to': 'b'
+                        {
+                            'function': ['derivative(f(x), x, k)'],
+                            'is': ['continuity'],
+                            'of': {
+                                'symbol': 'x',
+                                'from': 'a',
+                                'to': 'b'
+                            },
+                            'forall': ['k']
                         }
+                    ],
+                },
+                {
+                    'function': ['f'],
+                    'is': ['nth_order_continuity'],
+                    'of': {
+                        'symbol': 'x',
+                        'from': 'a',
+                        'to': 'b'
                     }
-                ]
+                }
             ],
             'symbols': [
                 {
@@ -379,32 +367,32 @@ tests = [
                 }
             ],
             'equivalence': [
-                [
-                    {
-                        'function': ['f'],
-                        'is': ['nth_order_continuity'],
-                        'of': {
-                            'symbol': 'x',
-                            'from': 'a',
-                            'to': 'b'
+                {
+                    'and': [
+                        {
+                            'function': ['f'],
+                            'is': ['nth_order_continuity'],
+                            'of': {
+                                'symbol': 'x',
+                                'from': 'a',
+                                'to': 'b'
+                            }
+                        },
+                        {
+                            'symbol': 'n',
+                            'is': ['infinity']
                         }
-                    },
-                    {
-                        'symbol': 'n',
-                        'is': ['infinity']
+                    ]
+                },
+                {
+                    'function': ['f'],
+                    'is': ['infinite_order_continuity'],
+                    'of': {
+                        'symbol': 'x',
+                        'from': 'a',
+                        'to': 'b'
                     }
-                ],
-                [
-                    {
-                        'function': ['f'],
-                        'is': ['infinite_order_continuity'],
-                        'of': {
-                            'symbol': 'x',
-                            'from': 'a',
-                            'to': 'b'
-                        }
-                    }
-                ]
+                }
             ],
             'symbols': [
                 {
@@ -452,28 +440,24 @@ tests = [
                 }
             ],
             'equivalence': [
-                [
-                    {
-                        'function': ['f'],
-                        'is': ['infinite_order_continuity'],
-                        'of': {
-                            'symbol': 'x',
-                            'from': 'a',
-                            'to': 'b'
-                        }
+                {
+                    'function': ['f'],
+                    'is': ['infinite_order_continuity'],
+                    'of': {
+                        'symbol': 'x',
+                        'from': 'a',
+                        'to': 'b'
                     }
-                ],
-                [
-                    {
-                        'function': ['f'],
-                        'is': ['smoothness'],
-                        'of': {
-                            'symbol': 'x',
-                            'from': 'a',
-                            'to': 'b'
-                        }
+                },
+                {
+                    'function': ['f'],
+                    'is': ['smoothness'],
+                    'of': {
+                        'symbol': 'x',
+                        'from': 'a',
+                        'to': 'b'
                     }
-                ]
+                }
             ],
             'symbols': [
                 {
@@ -520,42 +504,42 @@ tests = [
                     'dependencies': ['x']
                 }
             ],
-            'if': [
-                {
-                    'function': ['f'],
-                    'is': ['continuity'],
-                    'of': {
-                        'symbol': 'x',
-                        'from': 'a',
-                        'to': 'b'
+            'if': {
+                'and': [
+                    {
+                        'function': ['f'],
+                        'is': ['continuity'],
+                        'of': {
+                            'symbol': 'x',
+                            'from': 'a',
+                            'to': 'b'
+                        }
+                    },
+                    {
+                        'function': ['h'],
+                        'is': ['compact_support'],
+                        'of': {
+                            'symbol': 'x',
+                            'from': 'a',
+                            'to': 'b'
+                        }
+                    },
+                    {
+                        'expression': {
+                            'operator': 'eq',
+                            'lhs': 'Integral(f(t)*h(t), (x, a, b))',
+                            'rhs': '0'
+                        }
                     }
-                },
-                {
-                    'function': ['h'],
-                    'is': ['compact_support'],
-                    'of': {
-                        'symbol': 'x',
-                        'from': 'a',
-                        'to': 'b'
-                    }
-                },
-                {
-                    'expression': {
-                        'operator': 'eq',
-                        'lhs': 'Integral(f(t)*h(t), (x, a, b))',
-                        'rhs': '0'
-                    }
+                ]
+            },
+            'then': {
+                'expression': {
+                    'operator': 'eq',
+                    'lhs': 'f(t)',
+                    'rhs': '0'
                 }
-            ],
-            'then': [
-                {
-                    'expression': {
-                        'operator': 'eq',
-                        'lhs': 'f(t)',
-                        'rhs': '0'
-                    }
-                }
-            ],
+            },
             'symbols': [
                 {
                     'symbols': ['x', 't'],
