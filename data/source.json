@@ -41,33 +41,29 @@
                 }
             ],
             "equivalence": [
-                [
-                    {
-                        "function": [
-                            "f"
-                        ],
-                        "of": {
-                            "to": "c",
-                            "symbol": "x",
-                            "from": "a"
-                        },
-                        "is": [
-                            "support"
-                        ]
+                {
+                    "function": [
+                        "f"
+                    ],
+                    "of": {
+                        "to": "c",
+                        "symbol": "x",
+                        "from": "a"
+                    },
+                    "is": [
+                        "support"
+                    ]
+                },
+                {
+                    "forall": [
+                        "b"
+                    ],
+                    "expression": {
+                        "operator": "neq",
+                        "rhs": "0",
+                        "lhs": "f(b)"
                     }
-                ],
-                [
-                    {
-                        "forall": [
-                            "b"
-                        ],
-                        "expression": {
-                            "operator": "neq",
-                            "rhs": "0",
-                            "lhs": "f(b)"
-                        }
-                    }
-                ]
+                }
             ]
         },
         "compact_support": {
@@ -111,46 +107,46 @@
                 }
             ],
             "equivalence": [
-                [
-                    {
-                        "function": [
-                            "f"
-                        ],
-                        "of": {
-                            "to": "c",
-                            "symbol": "x",
-                            "from": "a"
-                        },
-                        "is": [
-                            "compact_support"
-                        ]
-                    }
-                ],
-                [
-                    {
-                        "function": [
-                            "f"
-                        ],
-                        "of": {
-                            "to": "c",
-                            "symbol": "x",
-                            "from": "a"
-                        },
-                        "is": [
-                            "support"
-                        ]
+                {
+                    "function": [
+                        "f"
+                    ],
+                    "of": {
+                        "to": "c",
+                        "symbol": "x",
+                        "from": "a"
                     },
-                    {
-                        "forall": [
-                            "b"
-                        ],
-                        "expression": {
-                            "operator": "eq",
-                            "rhs": "0",
-                            "lhs": "f(b)"
-                        }
-                    }
-                ]
+                    "is": [
+                        "compact_support"
+                    ]
+                },
+                {
+                  "and": [
+                      {
+                          "function": [
+                              "f"
+                          ],
+                          "of": {
+                              "to": "c",
+                              "symbol": "x",
+                              "from": "a"
+                          },
+                          "is": [
+                              "support"
+                          ]
+                      },
+                      {
+                          "forall": [
+                              "b"
+                          ],
+                          "expression": {
+                              "operator": "eq",
+                              "rhs": "0",
+                              "lhs": "f(b)"
+                          }
+                      }
+                  ]
+              }
             ]
         },
         "continuity_at_point": {
@@ -184,29 +180,25 @@
                 }
             ],
             "equivalence": [
-                [
-                    {
-                        "function": [
-                            "f"
-                        ],
-                        "of": {
-                            "symbol": "x",
-                            "at": "c"
-                        },
-                        "is": [
-                            "continuity"
-                        ]
+                {
+                    "function": [
+                        "f"
+                    ],
+                    "of": {
+                        "symbol": "x",
+                        "at": "c"
+                    },
+                    "is": [
+                        "continuity"
+                    ]
+                },
+                {
+                    "expression": {
+                        "operator": "eq",
+                        "rhs": "f(c)",
+                        "lhs": "Limit(f(x), x, c)"
                     }
-                ],
-                [
-                    {
-                        "expression": {
-                            "operator": "eq",
-                            "rhs": "f(c)",
-                            "lhs": "Limit(f(x), x, c)"
-                        }
-                    }
-                ]
+                }
             ]
         },
         "continuity_over_interval": {
@@ -250,35 +242,31 @@
                 }
             ],
             "equivalence": [
-                [
-                    {
-                        "function": [
-                            "f"
-                        ],
-                        "of": {
-                            "symbol": "x",
-                            "at": "a"
-                        },
-                        "is": [
-                            "continuity"
-                        ]
-                    }
-                ],
-                [
-                    {
-                        "function": [
-                            "f"
-                        ],
-                        "of": {
-                            "to": "b",
-                            "symbol": "x",
-                            "from": "a"
-                        },
-                        "is": [
-                            "continuity"
-                        ]
-                    }
-                ]
+                {
+                    "function": [
+                        "f"
+                    ],
+                    "of": {
+                        "symbol": "x",
+                        "at": "a"
+                    },
+                    "is": [
+                        "continuity"
+                    ]
+                },
+                {
+                    "function": [
+                        "f"
+                    ],
+                    "of": {
+                        "to": "b",
+                        "symbol": "x",
+                        "from": "a"
+                    },
+                    "is": [
+                        "continuity"
+                    ]
+                }
             ]
         },
         "nth_order_continuity": {
@@ -338,7 +326,8 @@
                 }
             ],
             "equivalence": [
-                [
+              {
+                "and": [
                     {
                         "function": [
                             "f"
@@ -368,22 +357,21 @@
                             "k"
                         ]
                     }
-                ],
-                [
-                    {
-                        "function": [
-                            "f"
-                        ],
-                        "of": {
-                            "to": "b",
-                            "symbol": "x",
-                            "from": "a"
-                        },
-                        "is": [
-                            "nth_order_continuity"
-                        ]
-                    }
                 ]
+              },
+              {
+                  "function": [
+                      "f"
+                  ],
+                  "of": {
+                      "to": "b",
+                      "symbol": "x",
+                      "from": "a"
+                  },
+                  "is": [
+                      "nth_order_continuity"
+                  ]
+              }
             ],
             "parameters": [
                 "n"
@@ -428,7 +416,8 @@
                 }
             ],
             "equivalence": [
-                [
+              {
+                "and": [
                     {
                         "function": [
                             "f"
@@ -448,22 +437,21 @@
                             "infinity"
                         ]
                     }
-                ],
-                [
-                    {
-                        "function": [
-                            "f"
-                        ],
-                        "of": {
-                            "to": "b",
-                            "symbol": "x",
-                            "from": "a"
-                        },
-                        "is": [
-                            "infinite_order_continuity"
-                        ]
-                    }
                 ]
+              },
+              {
+                  "function": [
+                      "f"
+                  ],
+                  "of": {
+                      "to": "b",
+                      "symbol": "x",
+                      "from": "a"
+                  },
+                  "is": [
+                      "infinite_order_continuity"
+                  ]
+              }
             ]
         },
         "smoothness": {
@@ -505,36 +493,32 @@
                 }
             ],
             "equivalence": [
-                [
-                    {
-                        "function": [
-                            "f"
-                        ],
-                        "of": {
-                            "to": "b",
-                            "symbol": "x",
-                            "from": "a"
-                        },
-                        "is": [
-                            "infinite_order_continuity"
-                        ]
-                    }
-                ],
-                [
-                    {
-                        "function": [
-                            "f"
-                        ],
-                        "of": {
-                            "to": "b",
-                            "symbol": "x",
-                            "from": "a"
-                        },
-                        "is": [
-                            "smooth"
-                        ]
-                    }
-                ]
+                {
+                    "function": [
+                        "f"
+                    ],
+                    "of": {
+                        "to": "b",
+                        "symbol": "x",
+                        "from": "a"
+                    },
+                    "is": [
+                        "infinite_order_continuity"
+                    ]
+                },
+                {
+                    "function": [
+                        "f"
+                    ],
+                    "of": {
+                        "to": "b",
+                        "symbol": "x",
+                        "from": "a"
+                    },
+                    "is": [
+                        "smooth"
+                    ]
+                }
             ]
         },
         "flcv": {
@@ -577,16 +561,15 @@
                     "type": "real"
                 }
             ],
-            "then": [
-                {
-                    "expression": {
-                        "operator": "eq",
-                        "rhs": "0",
-                        "lhs": "f(t)"
-                    }
+            "then": {
+                "expression": {
+                    "operator": "eq",
+                    "rhs": "0",
+                    "lhs": "f(t)"
                 }
-            ],
-            "if": [
+            },
+            "if": {
+              "and": [
                 {
                     "function": [
                         "f"
@@ -620,7 +603,8 @@
                         "lhs": "Integral(f(t)*h(t), (x, a, b))"
                     }
                 }
-            ]
+              ]
+            }
         },
         "cibp": {
             "category": "custom",
@@ -660,30 +644,26 @@
                     "type": "real"
                 }
             ],
-            "if": [
-                {
-                    "function": [
-                        "f", "g"
-                    ],
-                    "of": {
-                        "symbol": "x",
-                        "from": "a",
-                        "to": "b"
-                    },
-                    "is": [
-                        "continuity"
-                    ]
-                }
-              ],
-              "then": [
-                {
-                    "expression": {
-                        "operator": "eq",
-                        "rhs": "Subs(f(x)*g(x), x, b) - Subs(f(x)*g(x), x, a) - Integral(f(x)*Derivative(g(x), x), (x, a, b))",
-                        "lhs": "Integral(f(x)*Derivative(g(x), x), (x, a, b))"
-                    }
-                }
-            ]
+            "if": {
+                  "function": [
+                      "f", "g"
+                  ],
+                  "of": {
+                      "symbol": "x",
+                      "from": "a",
+                      "to": "b"
+                  },
+                  "is": [
+                      "continuity"
+                  ]
+              },
+              "then": {
+                  "expression": {
+                      "operator": "eq",
+                      "rhs": "Subs(f(x)*g(x), x, b) - Subs(f(x)*g(x), x, a) - Integral(f(x)*Derivative(g(x), x), (x, a, b))",
+                      "lhs": "Integral(f(x)*Derivative(g(x), x), (x, a, b))"
+                  }
+              }
         },
         "ibp": {
             "category": "custom",
@@ -729,30 +709,26 @@
                     "type": "real"
                 }
             ],
-            "if": [
-                {
-                    "function": [
-                        "f", "g"
-                    ],
-                    "of": {
-                        "symbol": "x",
-                        "from": "a",
-                        "to": "b"
-                    },
-                    "is": [
-                        "continuity"
-                    ]
-                }
-              ],
-              "then": [
-                {
-                    "expression": {
-                        "operator": "eq",
-                        "rhs": "f(x)*g(x) - Integral(f(x)*Derivative(g(x), x))",
-                        "lhs": "Integral(g(x)*Derivative(f(x), x), x)"
-                    }
-                }
-            ]
+            "if": {
+                  "function": [
+                      "f", "g"
+                  ],
+                  "of": {
+                      "symbol": "x",
+                      "from": "a",
+                      "to": "b"
+                  },
+                  "is": [
+                      "continuity"
+                  ]
+              },
+              "then": {
+                  "expression": {
+                      "operator": "eq",
+                      "rhs": "f(x)*g(x) - Integral(f(x)*Derivative(g(x), x))",
+                      "lhs": "Integral(g(x)*Derivative(f(x), x), x)"
+                  }
+              }
         },
         "vproductrule": {
             "category": "custom",
@@ -798,30 +774,26 @@
                     "type": "real"
                 }
             ],
-            "if": [
-                {
-                    "function": [
-                        "f", "g"
-                    ],
-                    "of": {
-                        "symbol": "x",
-                        "from": "a",
-                        "to": "b"
-                    },
-                    "is": [
-                        "continuity"
-                    ]
-                }
-              ],
-              "then": [
-                {
-                    "expression": {
-                        "operator": "eq",
-                        "rhs": "f(x)*Derivative(g(x), x) + g(x)*Derivative(f(x), x)",
-                        "lhs": "Derivative(f(x)*g(x), x)"
-                    }
-                }
-            ]
+            "if": {
+                  "function": [
+                      "f", "g"
+                  ],
+                  "of": {
+                      "symbol": "x",
+                      "from": "a",
+                      "to": "b"
+                  },
+                  "is": [
+                      "continuity"
+                  ]
+              },
+              "then": {
+                  "expression": {
+                      "operator": "eq",
+                      "rhs": "f(x)*Derivative(g(x), x) + g(x)*Derivative(f(x), x)",
+                      "lhs": "Derivative(f(x)*g(x), x)"
+                  }
+              }
         }
     }
 }
