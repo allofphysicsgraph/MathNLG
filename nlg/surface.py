@@ -80,6 +80,21 @@ def surfaceInput(what, assump, desc, constr) :
 def surfaceSymbol(what, assump, desc, constr) :
     return '%s %s %s%s%s' % (aggregator(what), isare(what), assump, desc, constr)
 
+def surfaceLogic(data, meta) :
+    statements = ''
+    if 'and' in data.keys() :
+        if len(data['and']) > 1 :
+            statements = surfaceStatements(data['and'], meta)
+            if len(data['and']) > 2 :
+                return 'all of %s hold' % (statements)
+            return 'both %s hold' % (statements)
+    elif 'or' in data.keys() :
+        if len(data['or']) > 1 :
+            statements = surfaceStatements(data['or'], meta)
+            return 'at least one of %s holds' % (statements)
+    statement = surfaceStatement(data, meta)
+    return '%s holds' % (statement)
+
 def surfaceStatement(data, meta) :
     forall = None
     if 'forall' in data.keys() :

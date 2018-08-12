@@ -2,7 +2,7 @@ from unittest import TestCase, skip
 from paramunittest import parametrized
 
 from nlg.tools import diffFormat, skipTest, assertEqual
-from nlg.surface import aggregator, wrapper, surfaceApply, surfaceMeta, surfaceStatement, surfaceInputs, numerize, constraint, constraints, unwrap
+from nlg.surface import aggregator, wrapper, surfaceApply, surfaceMeta, surfaceStatement, surfaceInputs, numerize, constraint, constraints, unwrap, surfaceLogic
 
 def skipTest(test) :
     if 'disabled' in test.keys() :
@@ -297,6 +297,121 @@ tests_symbolic = [
     }
 ]
 
+tests_logic = [
+    {
+        'test': {},
+        'data': {
+            'symbol': ['f'],
+            'is': ['a']
+        },
+        'meta': {},
+        'expected': '$f$ is a holds'
+    },
+    {
+        'test': {},
+        'data': {
+            'and': [
+                {
+                    'symbol': ['f'],
+                    'is': ['a']
+                },
+                {
+                    'symbol': ['g'],
+                    'is': ['b']
+                }
+            ]
+        },
+        'meta': {},
+        'expected': 'both $f$ is a and $g$ is b hold'
+    },
+    {
+        'test': {},
+        'data': {
+            'and': [
+                {
+                    'symbol': ['f'],
+                    'is': ['a']
+                },
+                {
+                    'symbol': ['g'],
+                    'is': ['b']
+                },
+                {
+                    'symbol': ['h'],
+                    'is': ['c']
+                }
+            ]
+        },
+        'meta': {},
+        'expected': 'all of $f$ is a, $g$ is b and $h$ is c hold'
+    },
+    {
+        'test': {},
+        'data': {
+            'or': [
+                {
+                    'symbol': ['f'],
+                    'is': ['a']
+                },
+                {
+                    'symbol': ['g'],
+                    'is': ['b']
+                }
+            ]
+        },
+        'meta': {},
+        'expected': 'at least one of $f$ is a and $g$ is b holds'
+    },
+    {
+        'test': {},
+        'data': {
+            'or': [
+                {
+                    'symbol': ['f'],
+                    'is': ['a']
+                },
+                {
+                    'symbol': ['g'],
+                    'is': ['b']
+                },
+                {
+                    'symbol': ['h'],
+                    'is': ['c']
+                }
+            ]
+        },
+        'meta': {},
+        'expected': 'at least one of $f$ is a, $g$ is b and $h$ is c holds'
+    },
+    {
+        'test': {
+            'disabled': True
+        },
+        'data': {
+            'and': [
+                {
+                    'or': [
+                        {
+                            'symbol': ['f'],
+                            'is': ['a']
+                        },
+                        {
+                            'symbol': ['g'],
+                            'is': ['b']
+                        }
+                    ]
+                },
+                {
+                    'symbol': ['h'],
+                    'is': ['c']
+                }
+            ]
+        },
+        'meta': {},
+        'expected': 'both at least one of $f$ is a and $g$ is b hold and $h$ is c hold'
+    }
+]
+
 @parametrized(*tests_statement)
 class StatementTest(TestCase) :
     def testStatement(self) :
@@ -317,6 +432,18 @@ class SymbolicTest(TestCase) :
         outputS = surfaceInputs(self.data, self.meta, 'symbol')
         assertEqual(self, outputI, self.expected['surfaceInput'])
         assertEqual(self, outputS, self.expected['surfaceSymbol'])
+    def setParameters(self, test, data, meta, expected):
+        self.test = test
+        self.data = data
+        self.meta = meta
+        self.expected = expected
+
+@parametrized(*tests_logic)
+class LogicTest(TestCase) :
+    def testLogic(self) :
+        if skipTest(self.test) : return skip('test disabled')
+        output = surfaceLogic(self.data, self.meta)
+        assertEqual(self, output, self.expected)
     def setParameters(self, test, data, meta, expected):
         self.test = test
         self.data = data
