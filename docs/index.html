@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/gitgraph.js/1.11.4/gitgraph.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://allofphysicsgraph.github.io/derivator/grid.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js" integrity="sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js" integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div id="content" class="container">
+      <h1>MathNLG</h1>
+      <p class="lead">Proving the concept of a <a href="https://en.wikipedia.org/wiki/Natural_language_generation">Natural Language Generator</a> capable of generating mathematical definitions and proofs.</p>
+      <p>Motivation of that idea is improving quality of scientific literature. It is not easy to collaborate on writing a book, a lot of redundant work is being done in the process, which could be automatize by a machine.</p>
+      <p>Humans have limited patience and focus, everyone has own individual style. All this results with books which are not accurate enough, skip relevant steps and definitions, which is decreasing quality of end result.</p>
+      <h2>Generated output</h2>
+      <p>Definitions in following sections are automatically generator from formal description, which is verifiable by a machine.</p>
+      <h3>Definition of compact support</h3><p>Let $f(x)$ be a real function, saying that $f(x)$ is compactly supported for all $x$ from $a$ to $c$ is equivalent of saying that $f(x)$ is supported for all $x$ from $a$ to $c$ and $$f{\left (b \right )} = 0$$ is true for all $b$ where $x$ is a real variable and $a$, $b$ and $c$ are real constants such that $b$ is not contained between $a$ and $c$.</p><h3>Definition of support</h3><p>Let $f(x)$ be a real function, saying that $f(x)$ is supported for all $x$ from $a$ to $c$ is equivalent of saying that $$f{\left (b \right )} \neq 0$$ is true for all $b$ where $x$ is a real variable and $a$, $b$ and $c$ are real constants such that $b$ is contained between $a$ and $c$.</p><h3>Definition of continuity over interval</h3><p>Let $f(x)$ be a real function, saying that $f(x)$ is continuous for all $x$ at $a$ is equivalent of saying that $f(x)$ is continuous for all $x$ from $a$ to $b$ where $x$ is a real variable and $a$, $b$ and $c$ are real constants such that $b$ is contained between $a$ and $c$.</p><h3>Definition of $n$'th order continuity</h3><p>Let $f(x)$ be a real function and let $n$ and $k$ be positives integer constants such that $n$ is greater or equal than $k$, saying that $f(x)$ is continuous for all $x$ from $a$ to $b$ and derivative(f(x), x, k) is continuous for all $x$ from $a$ to $b$ and for all $k$ is equivalent of saying that $f(x)$ is $n$'th order continuous for all $x$ from $a$ to $b$ where $x$ is a real variable and $a$ and $b$ are real constants such that $b$ is strictly greater than $a$.</p><h3>Product rule</h3><p>Let $f(x)$ and $g(x)$ be real functions such that if $f(x)$ and $g(x)$ are continuous for all $x$ from $a$ to $b$ then $$\frac{d}{d x}\left(f{\left (x \right )} g{\left (x \right )}\right) = f{\left (x \right )} \frac{d}{d x} g{\left (x \right )} + g{\left (x \right )} \frac{d}{d x} f{\left (x \right )}$$ is true where $x$ is a real variable and $a$ and $b$ are real constants such that $b$ is strictly greater than $a$ and $x$ is contained between $a$ and $b$.</p><h3>Definition of continuity at point</h3><p>Let $f(x)$ be a real function, saying that $f(x)$ is continuous for all $x$ at $c$ is equivalent of saying that $$\lim_{x \to c^+} f{\left (x \right )} = f{\left (c \right )}$$ is true where $x$ is a real variable and $c$ is a real constant.</p><h3>Definition of infinite order continuity</h3><p>Let $f(x)$ be a real function, saying that $f(x)$ is $n$'th order continuous for all $x$ from $a$ to $b$ and $n$ is infinite is equivalent of saying that $f(x)$ is infinite order continuous for all $x$ from $a$ to $b$ where $x$ is a real variable and $a$ and $b$ are real constants such that $b$ is strictly greater than $a$.</p><h3>Definite integration by parts</h3><p>Let $f(x)$ and $g(x)$ be real functions such that if $f(x)$ and $g(x)$ are continuous for all $x$ from $a$ to $b$ then $$\int_{a}^{b} f{\left (x \right )} \frac{d}{d x} g{\left (x \right )}\, dx = - \int_{a}^{b} f{\left (x \right )} \frac{d}{d x} g{\left (x \right )}\, dx - \left. f{\left (x \right )} g{\left (x \right )} \right|_{ x=a } + \left. f{\left (x \right )} g{\left (x \right )} \right|_{ x=b }$$ is true where $x$ is a real variable and $a$ and $b$ are real constants such that $b$ is strictly greater than $a$.</p><h3>Integration by parts</h3><p>Let $f(x)$ and $g(x)$ be real functions such that if $f(x)$ and $g(x)$ are continuous for all $x$ from $a$ to $b$ then $$\int g{\left (x \right )} \frac{d}{d x} f{\left (x \right )}\, dx = f{\left (x \right )} g{\left (x \right )} - \int f{\left (x \right )} \frac{d}{d x} g{\left (x \right )}\, dx$$ is true where $x$ is a real variable and $a$ and $b$ are real constants such that $b$ is strictly greater than $a$ and $x$ is contained between $a$ and $b$.</p><h3>Fundamental lemma of calculus of variations</h3><p>Let $f(x)$ and $h(x)$ be real functions such that if $f(x)$ is continuous for all $x$ from $a$ to $b$, $h(x)$ is support_compact for all $x$ from $a$ to $b$ and $$\int_{a}^{b} f{\left (t \right )} h{\left (t \right )}\, dx = 0$$ is true then $$f{\left (t \right )} = 0$$ is true where $x$ and $t$ are real variables and $a$ and $b$ are real constants such that $b$ is strictly greater than $a$.</p><h3>Definition of smoothness</h3><p>Let $f(x)$ be a real function, saying that $f(x)$ is infinite order continuous for all $x$ from $a$ to $b$ is equivalent of saying that $f(x)$ is smooth for all $x$ from $a$ to $b$ where $x$ is a real variable and $a$ and $b$ are real constants such that $b$ is strictly greater than $a$.</p>
+    </div>
+  <script>
+  renderMathInElement(
+    document.body,
+    {
+      delimiters: [
+        {left: "$$", right: "$$", display: true},
+        {left: "\\[", right: "\\]", display: true},
+        {left: "$", right: "$", display: false},
+        {left: "\\(", right: "\\)", display: false}
+      ]
+    }
+  );
+  </script>
+  </body>
+</html>
