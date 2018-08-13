@@ -2,7 +2,7 @@
 
 This project as a minimal example of [Natural Language Generator](https://en.wikipedia.org/wiki/Natural_language_generation) for the [Derivator project](https://allofphysicsgraph.github.io/derivator/).
 
-It is based on the book [Building Natural Language Generation Systems](https://www.cambridge.org/core/books/building-natural-language-generation-systems/0AE70C709A9BFBDC80B349B2D22A78CD).
+Programming part is based on the book [Building Natural Language Generation Systems](https://www.cambridge.org/core/books/building-natural-language-generation-systems/0AE70C709A9BFBDC80B349B2D22A78CD). Writing style is based on [Handbook for Spoken Mathematics: Larry’s Speakeasy](http://englishlangkan.com/produk/E%20Book%20Handbook%20for%20Spoken%20Mathematics.pdf) from 1983.
 
 ## Demo
 
