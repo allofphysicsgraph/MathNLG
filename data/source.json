@@ -1,799 +1,805 @@
 {
-    "source": {
-        "support": {
-            "category": "definition",
-            "symbols": [
-                {
-                    "symbols": [
-                        "x"
-                    ],
-                    "kind": "variable",
-                    "type": "real"
-                },
-                {
-                    "symbols": [
-                        "a",
-                        "b",
-                        "c"
-                    ],
-                    "kind": "constant",
-                    "type": "real",
-                    "constraints": [
-                        {
-                            "lb": "a",
-                            "symbol": "b",
-                            "type": "inside",
-                            "ub": "c"
-                        }
-                    ]
-                }
-            ],
-            "input": [
-                {
-                    "symbols": [
-                        "f"
-                    ],
-                    "kind": "function",
-                    "dependencies": [
-                        "x"
-                    ],
-                    "type": "real"
-                }
-            ],
-            "equivalence": [
-                {
-                    "function": [
-                        "f"
-                    ],
-                    "of": {
-                        "to": "c",
-                        "symbol": "x",
-                        "from": "a"
-                    },
-                    "is": [
-                        "support"
-                    ]
-                },
-                {
-                    "forall": [
-                        "b"
-                    ],
-                    "expression": {
-                        "operator": "neq",
-                        "rhs": "0",
-                        "lhs": "f(b)"
-                    }
-                }
-            ]
+  "source": {
+    "compact_support": {
+      "category": "definition",
+      "symbols": [
+        {
+          "symbols": [
+            "x"
+          ],
+          "kind": "variable",
+          "type": "real"
         },
-        "compact_support": {
-            "category": "definition",
-            "symbols": [
-                {
-                    "symbols": [
-                        "x"
-                    ],
-                    "kind": "variable",
-                    "type": "real"
-                },
-                {
-                    "symbols": [
-                        "a",
-                        "b",
-                        "c"
-                    ],
-                    "kind": "constant",
-                    "type": "real",
-                    "constraints": [
-                        {
-                            "lb": "a",
-                            "symbol": "b",
-                            "type": "outside",
-                            "ub": "c"
-                        }
-                    ]
-                }
-            ],
-            "input": [
-                {
-                    "symbols": [
-                        "f"
-                    ],
-                    "kind": "function",
-                    "dependencies": [
-                        "x"
-                    ],
-                    "type": "real"
-                }
-            ],
-            "equivalence": [
-                {
-                    "function": [
-                        "f"
-                    ],
-                    "of": {
-                        "to": "c",
-                        "symbol": "x",
-                        "from": "a"
-                    },
-                    "is": [
-                        "compact_support"
-                    ]
-                },
-                {
-                  "and": [
-                      {
-                          "function": [
-                              "f"
-                          ],
-                          "of": {
-                              "to": "c",
-                              "symbol": "x",
-                              "from": "a"
-                          },
-                          "is": [
-                              "support"
-                          ]
-                      },
-                      {
-                          "forall": [
-                              "b"
-                          ],
-                          "expression": {
-                              "operator": "eq",
-                              "rhs": "0",
-                              "lhs": "f(b)"
-                          }
-                      }
-                  ]
-              }
-            ]
+        {
+          "symbols": [
+            "a",
+            "b",
+            "c"
+          ],
+          "kind": "constant",
+          "type": "real",
+          "constraints": [
+            {
+              "type": "outside",
+              "symbol": "b",
+              "lb": "a",
+              "ub": "c"
+            }
+          ]
+        }
+      ],
+      "equivalence": [
+        {
+          "function": [
+            "f"
+          ],
+          "of": {
+            "to": "c",
+            "symbol": "x",
+            "from": "a"
+          },
+          "is": [
+            "compact_support"
+          ]
         },
-        "continuity_at_point": {
-            "category": "definition",
-            "symbols": [
-                {
-                    "symbols": [
-                        "x"
-                    ],
-                    "kind": "variable",
-                    "type": "real"
-                },
-                {
-                    "symbols": [
-                        "c"
-                    ],
-                    "kind": "constant",
-                    "type": "real"
-                }
-            ],
-            "input": [
-                {
-                    "symbols": [
-                        "f"
-                    ],
-                    "kind": "function",
-                    "dependencies": [
-                        "x"
-                    ],
-                    "type": "real"
-                }
-            ],
-            "equivalence": [
-                {
-                    "function": [
-                        "f"
-                    ],
-                    "of": {
-                        "symbol": "x",
-                        "at": "c"
-                    },
-                    "is": [
-                        "continuity"
-                    ]
-                },
-                {
-                    "expression": {
-                        "operator": "eq",
-                        "rhs": "f(c)",
-                        "lhs": "Limit(f(x), x, c)"
-                    }
-                }
-            ]
-        },
-        "continuity_over_interval": {
-            "category": "definition",
-            "symbols": [
-                {
-                    "symbols": [
-                        "x"
-                    ],
-                    "kind": "variable",
-                    "type": "real"
-                },
-                {
-                    "symbols": [
-                        "a",
-                        "b",
-                        "c"
-                    ],
-                    "kind": "constant",
-                    "type": "real",
-                    "constraints": [
-                        {
-                            "lb": "a",
-                            "symbol": "b",
-                            "type": "inside",
-                            "ub": "c"
-                        }
-                    ]
-                }
-            ],
-            "input": [
-                {
-                    "symbols": [
-                        "f"
-                    ],
-                    "kind": "function",
-                    "dependencies": [
-                        "x"
-                    ],
-                    "type": "real"
-                }
-            ],
-            "equivalence": [
-                {
-                    "function": [
-                        "f"
-                    ],
-                    "of": {
-                        "symbol": "x",
-                        "at": "a"
-                    },
-                    "is": [
-                        "continuity"
-                    ]
-                },
-                {
-                    "function": [
-                        "f"
-                    ],
-                    "of": {
-                        "to": "b",
-                        "symbol": "x",
-                        "from": "a"
-                    },
-                    "is": [
-                        "continuity"
-                    ]
-                }
-            ]
-        },
-        "nth_order_continuity": {
-            "category": "definition",
-            "symbols": [
-                {
-                    "symbols": [
-                        "x"
-                    ],
-                    "kind": "variable",
-                    "type": "real"
-                },
-                {
-                    "symbols": [
-                        "a",
-                        "b"
-                    ],
-                    "kind": "constant",
-                    "type": "real",
-                    "constraints": [
-                        {
-                            "lhs": "b",
-                            "rhs": "a",
-                            "type": "gt"
-                        }
-                    ]
-                }
-            ],
-            "input": [
-                {
-                    "symbols": [
-                        "f"
-                    ],
-                    "kind": "function",
-                    "dependencies": [
-                        "x"
-                    ],
-                    "type": "real"
-                },
-                {
-                    "symbols": [
-                        "n",
-                        "k"
-                    ],
-                    "kind": "constant",
-                    "assumptions": [
-                        "positive"
-                    ],
-                    "type": "integer",
-                    "constraints": [
-                        {
-                            "lhs": "n",
-                            "rhs": "k",
-                            "type": "geq"
-                        }
-                    ]
-                }
-            ],
-            "equivalence": [
-              {
-                "and": [
-                    {
-                        "function": [
-                            "f"
-                        ],
-                        "of": {
-                            "to": "b",
-                            "symbol": "x",
-                            "from": "a"
-                        },
-                        "is": [
-                            "continuity"
-                        ]
-                    },
-                    {
-                        "function": [
-                            "derivative(f(x), x, k)"
-                        ],
-                        "of": {
-                            "to": "b",
-                            "symbol": "x",
-                            "from": "a"
-                        },
-                        "is": [
-                            "continuity"
-                        ],
-                        "forall": [
-                            "k"
-                        ]
-                    }
-                ]
+        {
+          "and": [
+            {
+              "function": [
+                "f"
+              ],
+              "of": {
+                "to": "c",
+                "symbol": "x",
+                "from": "a"
               },
-              {
-                  "function": [
-                      "f"
-                  ],
-                  "of": {
-                      "to": "b",
-                      "symbol": "x",
-                      "from": "a"
-                  },
-                  "is": [
-                      "nth_order_continuity"
-                  ]
-              }
-            ],
-            "parameters": [
-                "n"
-            ]
-        },
-        "infinite_order_continuity": {
-            "category": "definition",
-            "symbols": [
-                {
-                    "symbols": [
-                        "x"
-                    ],
-                    "kind": "variable",
-                    "type": "real"
-                },
-                {
-                    "symbols": [
-                        "a",
-                        "b"
-                    ],
-                    "kind": "constant",
-                    "type": "real",
-                    "constraints": [
-                        {
-                            "lhs": "b",
-                            "rhs": "a",
-                            "type": "gt"
-                        }
-                    ]
-                }
-            ],
-            "input": [
-                {
-                    "symbols": [
-                        "f"
-                    ],
-                    "kind": "function",
-                    "dependencies": [
-                        "x"
-                    ],
-                    "type": "real"
-                }
-            ],
-            "equivalence": [
-              {
-                "and": [
-                    {
-                        "function": [
-                            "f"
-                        ],
-                        "of": {
-                            "to": "b",
-                            "symbol": "x",
-                            "from": "a"
-                        },
-                        "is": [
-                            "nth_order_continuity"
-                        ]
-                    },
-                    {
-                        "symbol": "n",
-                        "is": [
-                            "infinity"
-                        ]
-                    }
-                ]
-              },
-              {
-                  "function": [
-                      "f"
-                  ],
-                  "of": {
-                      "to": "b",
-                      "symbol": "x",
-                      "from": "a"
-                  },
-                  "is": [
-                      "infinite_order_continuity"
-                  ]
-              }
-            ]
-        },
-        "smoothness": {
-            "category": "definition",
-            "symbols": [
-                {
-                    "symbols": [
-                        "x"
-                    ],
-                    "kind": "variable",
-                    "type": "real"
-                },
-                {
-                    "symbols": [
-                        "a",
-                        "b"
-                    ],
-                    "kind": "constant",
-                    "type": "real",
-                    "constraints": [
-                        {
-                            "lhs": "b",
-                            "rhs": "a",
-                            "type": "gt"
-                        }
-                    ]
-                }
-            ],
-            "input": [
-                {
-                    "symbols": [
-                        "f"
-                    ],
-                    "kind": "function",
-                    "dependencies": [
-                        "x"
-                    ],
-                    "type": "real"
-                }
-            ],
-            "equivalence": [
-                {
-                    "function": [
-                        "f"
-                    ],
-                    "of": {
-                        "to": "b",
-                        "symbol": "x",
-                        "from": "a"
-                    },
-                    "is": [
-                        "infinite_order_continuity"
-                    ]
-                },
-                {
-                    "function": [
-                        "f"
-                    ],
-                    "of": {
-                        "to": "b",
-                        "symbol": "x",
-                        "from": "a"
-                    },
-                    "is": [
-                        "smooth"
-                    ]
-                }
-            ]
-        },
-        "flcv": {
-            "category": "custom",
-            "symbols": [
-                {
-                    "symbols": [
-                        "x",
-                        "t"
-                    ],
-                    "kind": "variable",
-                    "type": "real"
-                },
-                {
-                    "symbols": [
-                        "a",
-                        "b"
-                    ],
-                    "kind": "constant",
-                    "type": "real",
-                    "constraints": [
-                        {
-                            "lhs": "b",
-                            "rhs": "a",
-                            "type": "gt"
-                        }
-                    ]
-                }
-            ],
-            "input": [
-                {
-                    "symbols": [
-                        "f",
-                        "h"
-                    ],
-                    "kind": "function",
-                    "dependencies": [
-                        "x"
-                    ],
-                    "type": "real"
-                }
-            ],
-            "then": {
-                "expression": {
-                    "operator": "eq",
-                    "rhs": "0",
-                    "lhs": "f(t)"
-                }
+              "is": [
+                "support"
+              ]
             },
-            "if": {
-              "and": [
-                {
-                    "function": [
-                        "f"
-                    ],
-                    "of": {
-                        "to": "b",
-                        "symbol": "x",
-                        "from": "a"
-                    },
-                    "is": [
-                        "continuity"
-                    ]
-                },
-                {
-                    "function": [
-                        "h"
-                    ],
-                    "of": {
-                        "to": "b",
-                        "symbol": "x",
-                        "from": "a"
-                    },
-                    "is": [
-                        "support_compact"
-                    ]
-                },
-                {
-                    "expression": {
-                        "operator": "eq",
-                        "rhs": "0",
-                        "lhs": "Integral(f(t)*h(t), (x, a, b))"
-                    }
-                }
+            {
+              "forall": [
+                "b"
+              ],
+              "expression": {
+                "operator": "eq",
+                "rhs": "0",
+                "lhs": "f(b)"
+              }
+            }
+          ]
+        }
+      ],
+      "input": [
+        {
+          "symbols": [
+            "f"
+          ],
+          "kind": "function",
+          "dependencies": [
+            "x"
+          ],
+          "type": "real"
+        }
+      ]
+    },
+    "vproductrule": {
+      "category": "custom",
+      "symbols": [
+        {
+          "symbols": [
+            "x"
+          ],
+          "kind": "variable",
+          "type": "real"
+        },
+        {
+          "symbols": [
+            "a",
+            "b"
+          ],
+          "kind": "constant",
+          "type": "real",
+          "constraints": [
+            {
+              "type": "gt",
+              "rhs": "a",
+              "lhs": "b"
+            },
+            {
+              "type": "inside",
+              "symbol": "x",
+              "lb": "a",
+              "ub": "b"
+            }
+          ]
+        }
+      ],
+      "if": {
+        "function": [
+          "f",
+          "g"
+        ],
+        "of": {
+          "to": "b",
+          "symbol": "x",
+          "from": "a"
+        },
+        "is": [
+          "continuity"
+        ]
+      },
+      "then": {
+        "expression": {
+          "operator": "eq",
+          "rhs": "f(x)*Derivative(g(x), x) + g(x)*Derivative(f(x), x)",
+          "lhs": "Derivative(f(x)*g(x), x)"
+        }
+      },
+      "input": [
+        {
+          "symbols": [
+            "f",
+            "g"
+          ],
+          "kind": "function",
+          "dependencies": [
+            "x"
+          ],
+          "type": "real"
+        }
+      ]
+    },
+    "support": {
+      "category": "definition",
+      "symbols": [
+        {
+          "symbols": [
+            "x"
+          ],
+          "kind": "variable",
+          "type": "real"
+        },
+        {
+          "symbols": [
+            "a",
+            "b",
+            "c"
+          ],
+          "kind": "constant",
+          "type": "real",
+          "constraints": [
+            {
+              "type": "inside",
+              "symbol": "b",
+              "lb": "a",
+              "ub": "c"
+            }
+          ]
+        }
+      ],
+      "equivalence": [
+        {
+          "function": [
+            "f"
+          ],
+          "of": {
+            "to": "c",
+            "symbol": "x",
+            "from": "a"
+          },
+          "is": [
+            "support"
+          ]
+        },
+        {
+          "forall": [
+            "b"
+          ],
+          "expression": {
+            "operator": "neq",
+            "rhs": "0",
+            "lhs": "f(b)"
+          }
+        }
+      ],
+      "input": [
+        {
+          "symbols": [
+            "f"
+          ],
+          "kind": "function",
+          "dependencies": [
+            "x"
+          ],
+          "type": "real"
+        }
+      ]
+    },
+    "continuity_over_interval": {
+      "category": "definition",
+      "symbols": [
+        {
+          "symbols": [
+            "x"
+          ],
+          "kind": "variable",
+          "type": "real"
+        },
+        {
+          "symbols": [
+            "a",
+            "b",
+            "c"
+          ],
+          "kind": "constant",
+          "type": "real",
+          "constraints": [
+            {
+              "type": "inside",
+              "symbol": "b",
+              "lb": "a",
+              "ub": "c"
+            }
+          ]
+        }
+      ],
+      "equivalence": [
+        {
+          "function": [
+            "f"
+          ],
+          "of": {
+            "symbol": "x",
+            "at": "a"
+          },
+          "is": [
+            "continuity"
+          ]
+        },
+        {
+          "function": [
+            "f"
+          ],
+          "of": {
+            "to": "b",
+            "symbol": "x",
+            "from": "a"
+          },
+          "is": [
+            "continuity"
+          ]
+        }
+      ],
+      "input": [
+        {
+          "symbols": [
+            "f"
+          ],
+          "kind": "function",
+          "dependencies": [
+            "x"
+          ],
+          "type": "real"
+        }
+      ]
+    },
+    "nth_order_continuity": {
+      "category": "definition",
+      "symbols": [
+        {
+          "symbols": [
+            "x"
+          ],
+          "kind": "variable",
+          "type": "real"
+        },
+        {
+          "symbols": [
+            "a",
+            "b"
+          ],
+          "kind": "constant",
+          "type": "real",
+          "constraints": [
+            {
+              "type": "gt",
+              "rhs": "a",
+              "lhs": "b"
+            }
+          ]
+        }
+      ],
+      "equivalence": [
+        {
+          "and": [
+            {
+              "function": [
+                "f"
+              ],
+              "of": {
+                "to": "b",
+                "symbol": "x",
+                "from": "a"
+              },
+              "is": [
+                "continuity"
+              ]
+            },
+            {
+              "function": [
+                "derivative(f(x), x, k)"
+              ],
+              "of": {
+                "to": "b",
+                "symbol": "x",
+                "from": "a"
+              },
+              "is": [
+                "continuity"
+              ],
+              "forall": [
+                "k"
               ]
             }
+          ]
         },
-        "cibp": {
-            "category": "custom",
-            "symbols": [
-                {
-                    "symbols": [
-                        "x"
-                    ],
-                    "kind": "variable",
-                    "type": "real"
-                },
-                {
-                    "symbols": [
-                        "a",
-                        "b"
-                    ],
-                    "kind": "constant",
-                    "type": "real",
-                    "constraints": [
-                        {
-                            "lhs": "b",
-                            "rhs": "a",
-                            "type": "gt"
-                        }
-                    ]
-                }
-            ],
-            "input": [
-                {
-                    "symbols": [
-                        "f", "g"
-                    ],
-                    "kind": "function",
-                    "dependencies": [
-                        "x"
-                    ],
-                    "type": "real"
-                }
-            ],
-            "if": {
-                  "function": [
-                      "f", "g"
-                  ],
-                  "of": {
-                      "symbol": "x",
-                      "from": "a",
-                      "to": "b"
-                  },
-                  "is": [
-                      "continuity"
-                  ]
-              },
-              "then": {
-                  "expression": {
-                      "operator": "eq",
-                      "rhs": "Subs(f(x)*g(x), x, b) - Subs(f(x)*g(x), x, a) - Integral(f(x)*Derivative(g(x), x), (x, a, b))",
-                      "lhs": "Integral(f(x)*Derivative(g(x), x), (x, a, b))"
-                  }
-              }
-        },
-        "ibp": {
-            "category": "custom",
-            "symbols": [
-                {
-                    "symbols": [
-                        "x"
-                    ],
-                    "kind": "variable",
-                    "type": "real"
-                },
-                {
-                    "symbols": [
-                        "a",
-                        "b"
-                    ],
-                    "kind": "constant",
-                    "type": "real",
-                    "constraints": [
-                        {
-                            "lhs": "b",
-                            "rhs": "a",
-                            "type": "gt"
-                        },
-                        {
-                          "lb": "a",
-                          "symbol": "x",
-                          "type": "inside",
-                          "ub": "b"
-                        }
-                    ]
-                }
-            ],
-            "input": [
-                {
-                    "symbols": [
-                        "f", "g"
-                    ],
-                    "kind": "function",
-                    "dependencies": [
-                        "x"
-                    ],
-                    "type": "real"
-                }
-            ],
-            "if": {
-                  "function": [
-                      "f", "g"
-                  ],
-                  "of": {
-                      "symbol": "x",
-                      "from": "a",
-                      "to": "b"
-                  },
-                  "is": [
-                      "continuity"
-                  ]
-              },
-              "then": {
-                  "expression": {
-                      "operator": "eq",
-                      "rhs": "f(x)*g(x) - Integral(f(x)*Derivative(g(x), x))",
-                      "lhs": "Integral(g(x)*Derivative(f(x), x), x)"
-                  }
-              }
-        },
-        "vproductrule": {
-            "category": "custom",
-            "symbols": [
-                {
-                    "symbols": [
-                        "x"
-                    ],
-                    "kind": "variable",
-                    "type": "real"
-                },
-                {
-                    "symbols": [
-                        "a",
-                        "b"
-                    ],
-                    "kind": "constant",
-                    "type": "real",
-                    "constraints": [
-                        {
-                            "lhs": "b",
-                            "rhs": "a",
-                            "type": "gt"
-                        },
-                        {
-                          "lb": "a",
-                          "symbol": "x",
-                          "type": "inside",
-                          "ub": "b"
-                        }
-                    ]
-                }
-            ],
-            "input": [
-                {
-                    "symbols": [
-                        "f", "g"
-                    ],
-                    "kind": "function",
-                    "dependencies": [
-                        "x"
-                    ],
-                    "type": "real"
-                }
-            ],
-            "if": {
-                  "function": [
-                      "f", "g"
-                  ],
-                  "of": {
-                      "symbol": "x",
-                      "from": "a",
-                      "to": "b"
-                  },
-                  "is": [
-                      "continuity"
-                  ]
-              },
-              "then": {
-                  "expression": {
-                      "operator": "eq",
-                      "rhs": "f(x)*Derivative(g(x), x) + g(x)*Derivative(f(x), x)",
-                      "lhs": "Derivative(f(x)*g(x), x)"
-                  }
-              }
+        {
+          "function": [
+            "f"
+          ],
+          "of": {
+            "to": "b",
+            "symbol": "x",
+            "from": "a"
+          },
+          "is": [
+            "nth_order_continuity"
+          ]
         }
+      ],
+      "parameters": [
+        "n"
+      ],
+      "input": [
+        {
+          "symbols": [
+            "f"
+          ],
+          "kind": "function",
+          "dependencies": [
+            "x"
+          ],
+          "type": "real"
+        },
+        {
+          "symbols": [
+            "n",
+            "k"
+          ],
+          "kind": "constant",
+          "assumptions": [
+            "positive"
+          ],
+          "type": "integer",
+          "constraints": [
+            {
+              "type": "geq",
+              "rhs": "k",
+              "lhs": "n"
+            }
+          ]
+        }
+      ]
+    },
+    "ibp": {
+      "category": "custom",
+      "symbols": [
+        {
+          "symbols": [
+            "x"
+          ],
+          "kind": "variable",
+          "type": "real"
+        },
+        {
+          "symbols": [
+            "a",
+            "b"
+          ],
+          "kind": "constant",
+          "type": "real",
+          "constraints": [
+            {
+              "type": "gt",
+              "rhs": "a",
+              "lhs": "b"
+            },
+            {
+              "type": "inside",
+              "symbol": "x",
+              "lb": "a",
+              "ub": "b"
+            }
+          ]
+        }
+      ],
+      "if": {
+        "function": [
+          "f",
+          "g"
+        ],
+        "of": {
+          "to": "b",
+          "symbol": "x",
+          "from": "a"
+        },
+        "is": [
+          "continuity"
+        ]
+      },
+      "then": {
+        "expression": {
+          "operator": "eq",
+          "rhs": "f(x)*g(x) - Integral(f(x)*Derivative(g(x), x))",
+          "lhs": "Integral(g(x)*Derivative(f(x), x), x)"
+        }
+      },
+      "input": [
+        {
+          "symbols": [
+            "f",
+            "g"
+          ],
+          "kind": "function",
+          "dependencies": [
+            "x"
+          ],
+          "type": "real"
+        }
+      ]
+    },
+    "continuity_at_point": {
+      "category": "definition",
+      "symbols": [
+        {
+          "symbols": [
+            "x"
+          ],
+          "kind": "variable",
+          "type": "real"
+        },
+        {
+          "symbols": [
+            "c"
+          ],
+          "kind": "constant",
+          "type": "real"
+        }
+      ],
+      "equivalence": [
+        {
+          "function": [
+            "f"
+          ],
+          "of": {
+            "symbol": "x",
+            "at": "c"
+          },
+          "is": [
+            "continuity"
+          ]
+        },
+        {
+          "expression": {
+            "operator": "eq",
+            "rhs": "f(c)",
+            "lhs": "Limit(f(x), x, c)"
+          }
+        }
+      ],
+      "input": [
+        {
+          "symbols": [
+            "f"
+          ],
+          "kind": "function",
+          "dependencies": [
+            "x"
+          ],
+          "type": "real"
+        }
+      ]
+    },
+    "infinite_order_continuity": {
+      "category": "definition",
+      "symbols": [
+        {
+          "symbols": [
+            "x"
+          ],
+          "kind": "variable",
+          "type": "real"
+        },
+        {
+          "symbols": [
+            "a",
+            "b"
+          ],
+          "kind": "constant",
+          "type": "real",
+          "constraints": [
+            {
+              "type": "gt",
+              "rhs": "a",
+              "lhs": "b"
+            }
+          ]
+        }
+      ],
+      "equivalence": [
+        {
+          "and": [
+            {
+              "function": [
+                "f"
+              ],
+              "of": {
+                "to": "b",
+                "symbol": "x",
+                "from": "a"
+              },
+              "is": [
+                "nth_order_continuity"
+              ]
+            },
+            {
+              "symbol": "n",
+              "is": [
+                "infinity"
+              ]
+            }
+          ]
+        },
+        {
+          "function": [
+            "f"
+          ],
+          "of": {
+            "to": "b",
+            "symbol": "x",
+            "from": "a"
+          },
+          "is": [
+            "infinite_order_continuity"
+          ]
+        }
+      ],
+      "input": [
+        {
+          "symbols": [
+            "f"
+          ],
+          "kind": "function",
+          "dependencies": [
+            "x"
+          ],
+          "type": "real"
+        }
+      ]
+    },
+    "cibp": {
+      "category": "custom",
+      "symbols": [
+        {
+          "symbols": [
+            "x"
+          ],
+          "kind": "variable",
+          "type": "real"
+        },
+        {
+          "symbols": [
+            "a",
+            "b"
+          ],
+          "kind": "constant",
+          "type": "real",
+          "constraints": [
+            {
+              "type": "gt",
+              "rhs": "a",
+              "lhs": "b"
+            }
+          ]
+        }
+      ],
+      "if": {
+        "function": [
+          "f",
+          "g"
+        ],
+        "of": {
+          "to": "b",
+          "symbol": "x",
+          "from": "a"
+        },
+        "is": [
+          "continuity"
+        ]
+      },
+      "then": {
+        "expression": {
+          "operator": "eq",
+          "rhs": "Subs(f(x)*g(x), x, b) - Subs(f(x)*g(x), x, a) - Integral(f(x)*Derivative(g(x), x), (x, a, b))",
+          "lhs": "Integral(f(x)*Derivative(g(x), x), (x, a, b))"
+        }
+      },
+      "input": [
+        {
+          "symbols": [
+            "f",
+            "g"
+          ],
+          "kind": "function",
+          "dependencies": [
+            "x"
+          ],
+          "type": "real"
+        }
+      ]
+    },
+    "flcv": {
+      "category": "custom",
+      "symbols": [
+        {
+          "symbols": [
+            "x",
+            "t"
+          ],
+          "kind": "variable",
+          "type": "real"
+        },
+        {
+          "symbols": [
+            "a",
+            "b"
+          ],
+          "kind": "constant",
+          "type": "real",
+          "constraints": [
+            {
+              "type": "gt",
+              "rhs": "a",
+              "lhs": "b"
+            }
+          ]
+        }
+      ],
+      "if": {
+        "and": [
+          {
+            "function": [
+              "f"
+            ],
+            "of": {
+              "to": "b",
+              "symbol": "x",
+              "from": "a"
+            },
+            "is": [
+              "continuity"
+            ]
+          },
+          {
+            "function": [
+              "h"
+            ],
+            "of": {
+              "to": "b",
+              "symbol": "x",
+              "from": "a"
+            },
+            "is": [
+              "support_compact"
+            ]
+          },
+          {
+            "expression": {
+              "operator": "eq",
+              "rhs": "0",
+              "lhs": "Integral(f(t)*h(t), (x, a, b))"
+            }
+          }
+        ]
+      },
+      "then": {
+        "expression": {
+          "operator": "eq",
+          "rhs": "0",
+          "lhs": "f(t)"
+        }
+      },
+      "input": [
+        {
+          "symbols": [
+            "f",
+            "h"
+          ],
+          "kind": "function",
+          "dependencies": [
+            "x"
+          ],
+          "type": "real"
+        }
+      ]
+    },
+    "smoothness": {
+      "category": "definition",
+      "symbols": [
+        {
+          "symbols": [
+            "x"
+          ],
+          "kind": "variable",
+          "type": "real"
+        },
+        {
+          "symbols": [
+            "a",
+            "b"
+          ],
+          "kind": "constant",
+          "type": "real",
+          "constraints": [
+            {
+              "type": "gt",
+              "rhs": "a",
+              "lhs": "b"
+            }
+          ]
+        }
+      ],
+      "equivalence": [
+        {
+          "function": [
+            "f"
+          ],
+          "of": {
+            "to": "b",
+            "symbol": "x",
+            "from": "a"
+          },
+          "is": [
+            "infinite_order_continuity"
+          ]
+        },
+        {
+          "function": [
+            "f"
+          ],
+          "of": {
+            "to": "b",
+            "symbol": "x",
+            "from": "a"
+          },
+          "is": [
+            "smooth"
+          ]
+        }
+      ],
+      "input": [
+        {
+          "symbols": [
+            "f"
+          ],
+          "kind": "function",
+          "dependencies": [
+            "x"
+          ],
+          "type": "real"
+        }
+      ]
     }
+  }
 }
