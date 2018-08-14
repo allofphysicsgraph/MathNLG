@@ -226,9 +226,12 @@ def adjective(word, meta) :
 
 def state(adjective, noun, countable) :
     snoun = numerize(noun, countable)
+    pre = ''
     if len(countable) < 2 :
-        return 'a %s %s' % (adjective, snoun)
-    return '%s %s' % (adjective, snoun)
+        pre = 'a '
+    if adjective == 'any' :
+        return '%s%s of any type' % (pre, snoun)
+    return '%s%s %s' % (pre, adjective, snoun)
 
 @pypatt.transform
 def linguistic(word, options) :

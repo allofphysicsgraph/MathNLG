@@ -2,7 +2,7 @@ from unittest import TestCase, skip
 from paramunittest import parametrized
 
 from nlg.tools import diffFormat, skipTest, assertEqual
-from nlg.surface import aggregator, wrapper, surfaceApply, surfaceMeta, surfaceStatement, surfaceInputs, numerize, constraint, constraints, unwrap, surfaceLogic
+from nlg.surface import aggregator, wrapper, surfaceApply, surfaceMeta, surfaceStatement, surfaceInputs, numerize, constraint, constraints, unwrap, surfaceLogic, state
 
 def skipTest(test) :
     if 'disabled' in test.keys() :
@@ -526,3 +526,12 @@ class OtherTest(TestCase) :
         output = constraint(data, {})
         expected = '$b$ is contained between $a$ and $c$'
         assertEqual(self, output, expected)
+    def testState(self) :
+            output = state('any', 'constant', [1, 2])
+            expected = 'constant of any type'
+            output = state('any', 'constant', [1])
+            expected = 'a constant of any type'
+            output = state('real', 'constant', [1, 2])
+            expected = 'real constant'
+            output = state('real', 'constant', [1])
+            expected = 'a real constant'
