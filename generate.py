@@ -3,15 +3,21 @@ import json
 from jinja2 import Template
 from nlg.surface import surfaceRealize
 
+def parse(text) :
+    try:
+        return json.loads(text)
+    except ValueError as e:
+        raise ValueError('invalid json: %s' % (e))
+
 data = {}
 with open('data/source.json', 'r') as file :
     raw = file.read()
-    data = json.loads(raw)
+    data = parse(raw)
 
 linguistic = {}
 with open('data/linguistic.json', 'r') as file :
     raw = file.read()
-    linguistic = json.loads(raw)
+    linguistic = parse(raw)
 
 output = []
 for id in data['source'].keys() :
