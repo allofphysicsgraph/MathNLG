@@ -17,6 +17,9 @@ def surfaceRealize(data, meta) :
         statements1 = surfaceLogic(data['if'], meta)
         statements2 = surfaceLogic(data['then'], meta)
         return ('%s such that if %s then %s where %s.' % (input, statements1, statements2, symbols)).capitalize()
+    if 'statement' in data.keys() :
+        statement = surfaceLogic(data['statement'], meta)
+        return ('%s such that %s where %s.' % (input, statement, symbols)).capitalize()
     return '<unrecognized logic structure>'
 
 def constraint(data, meta) :
