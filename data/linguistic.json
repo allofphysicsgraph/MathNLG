@@ -43,6 +43,18 @@
     },
     "vproductrule": {
       "noun": "product rule"
+    },
+    "int_prop_mult": {
+      "noun": "indefinite integrals property of factoring multiplicative constants"
+    },
+    "int_prop_neg": {
+      "noun": "indefinite integrals property of integrating a negative value"
+    },
+    "int_prop_sum": {
+      "noun": "indefinite integrals property of summing integral"
+    },
+    "int_prop_sub": {
+      "noun": "indefinite integrals property of subtracting integrals"
     }
   }
 }
