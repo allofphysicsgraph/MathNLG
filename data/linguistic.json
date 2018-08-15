@@ -55,6 +55,9 @@
     },
     "int_prop_sub": {
       "noun": "indefinite integrals property of subtracting integrals"
+    },
+    "int_of_der": {
+      "noun": "integral of derivative"
     }
   }
 }

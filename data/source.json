@@ -20,9 +20,9 @@
           "type": "real", 
           "constraints": [
             {
-              "lb": "a", 
-              "symbol": "b", 
               "type": "outside", 
+              "symbol": "b", 
+              "lb": "a", 
               "ub": "c"
             }
           ]
@@ -83,29 +83,57 @@
         }
       ]
     }, 
-    "int_prop_sum": {
-      "category": "definition", 
+    "ibp": {
+      "category": "custom", 
       "symbols": [
         {
           "symbols": [
             "x"
           ], 
           "kind": "variable", 
-          "type": "any"
+          "type": "real"
         }, 
         {
           "symbols": [
-            "k"
+            "a", 
+            "b"
           ], 
           "kind": "constant", 
-          "type": "any"
+          "type": "real", 
+          "constraints": [
+            {
+              "type": "gt", 
+              "rhs": "a", 
+              "lhs": "b"
+            }, 
+            {
+              "type": "inside", 
+              "symbol": "x", 
+              "lb": "a", 
+              "ub": "b"
+            }
+          ]
         }
       ], 
-      "statement": {
+      "if": {
+        "function": [
+          "f", 
+          "g"
+        ], 
+        "of": {
+          "to": "b", 
+          "symbol": "x", 
+          "from": "a"
+        }, 
+        "is": [
+          "continuity"
+        ]
+      }, 
+      "then": {
         "expression": {
           "operator": "eq", 
-          "rhs": "Integral(f(x) + g(x), x)", 
-          "lhs": "Integral(g(x), x) + Integral(f(x), x)"
+          "rhs": "f(x)*g(x) - Integral(f(x)*Derivative(g(x), x))", 
+          "lhs": "Integral(g(x)*Derivative(f(x), x), x)"
         }
       }, 
       "input": [
@@ -118,7 +146,74 @@
           "dependencies": [
             "x"
           ], 
-          "type": "any"
+          "type": "real"
+        }
+      ]
+    }, 
+    "vproductrule": {
+      "category": "custom", 
+      "symbols": [
+        {
+          "symbols": [
+            "x"
+          ], 
+          "kind": "variable", 
+          "type": "real"
+        }, 
+        {
+          "symbols": [
+            "a", 
+            "b"
+          ], 
+          "kind": "constant", 
+          "type": "real", 
+          "constraints": [
+            {
+              "type": "gt", 
+              "rhs": "a", 
+              "lhs": "b"
+            }, 
+            {
+              "type": "inside", 
+              "symbol": "x", 
+              "lb": "a", 
+              "ub": "b"
+            }
+          ]
+        }
+      ], 
+      "if": {
+        "function": [
+          "f", 
+          "g"
+        ], 
+        "of": {
+          "to": "b", 
+          "symbol": "x", 
+          "from": "a"
+        }, 
+        "is": [
+          "continuity"
+        ]
+      }, 
+      "then": {
+        "expression": {
+          "operator": "eq", 
+          "rhs": "f(x)*Derivative(g(x), x) + g(x)*Derivative(f(x), x)", 
+          "lhs": "Derivative(f(x)*g(x), x)"
+        }
+      }, 
+      "input": [
+        {
+          "symbols": [
+            "f", 
+            "g"
+          ], 
+          "kind": "function", 
+          "dependencies": [
+            "x"
+          ], 
+          "type": "real"
         }
       ]
     }, 
@@ -142,9 +237,9 @@
           "type": "real", 
           "constraints": [
             {
-              "lb": "a", 
-              "symbol": "b", 
               "type": "inside", 
+              "symbol": "b", 
+              "lb": "a", 
               "ub": "c"
             }
           ]
@@ -246,9 +341,9 @@
           "type": "real", 
           "constraints": [
             {
-              "lb": "a", 
-              "symbol": "b", 
               "type": "inside", 
+              "symbol": "b", 
+              "lb": "a", 
               "ub": "c"
             }
           ]
@@ -313,9 +408,9 @@
           "type": "real", 
           "constraints": [
             {
-              "lhs": "b", 
+              "type": "gt", 
               "rhs": "a", 
-              "type": "gt"
+              "lhs": "b"
             }
           ]
         }
@@ -394,46 +489,39 @@
           "type": "integer", 
           "constraints": [
             {
-              "lhs": "n", 
+              "type": "geq", 
               "rhs": "k", 
-              "type": "geq"
+              "lhs": "n"
             }
           ]
         }
       ]
     }, 
-    "vproductrule": {
-      "category": "custom", 
+    "int_prop_sum": {
+      "category": "definition", 
       "symbols": [
         {
           "symbols": [
             "x"
           ], 
           "kind": "variable", 
-          "type": "real"
+          "type": "any"
         }, 
         {
           "symbols": [
-            "a", 
-            "b"
+            "k"
           ], 
           "kind": "constant", 
-          "type": "real", 
-          "constraints": [
-            {
-              "lhs": "b", 
-              "rhs": "a", 
-              "type": "gt"
-            }, 
-            {
-              "lb": "a", 
-              "symbol": "x", 
-              "type": "inside", 
-              "ub": "b"
-            }
-          ]
+          "type": "any"
         }
       ], 
+      "statement": {
+        "expression": {
+          "operator": "eq", 
+          "rhs": "Integral(f(x) + g(x), x)", 
+          "lhs": "Integral(g(x), x) + Integral(f(x), x)"
+        }
+      }, 
       "input": [
         {
           "symbols": [
@@ -444,30 +532,9 @@
           "dependencies": [
             "x"
           ], 
-          "type": "real"
+          "type": "any"
         }
-      ], 
-      "then": {
-        "expression": {
-          "operator": "eq", 
-          "rhs": "f(x)*Derivative(g(x), x) + g(x)*Derivative(f(x), x)", 
-          "lhs": "Derivative(f(x)*g(x), x)"
-        }
-      }, 
-      "if": {
-        "function": [
-          "f", 
-          "g"
-        ], 
-        "of": {
-          "to": "b", 
-          "symbol": "x", 
-          "from": "a"
-        }, 
-        "is": [
-          "continuity"
-        ]
-      }
+      ]
     }, 
     "continuity_at_point": {
       "category": "definition", 
@@ -540,9 +607,9 @@
           "type": "real", 
           "constraints": [
             {
-              "lhs": "b", 
+              "type": "gt", 
               "rhs": "a", 
-              "type": "gt"
+              "lhs": "b"
             }
           ]
         }
@@ -617,26 +684,27 @@
           "type": "real", 
           "constraints": [
             {
-              "lhs": "b", 
+              "type": "gt", 
               "rhs": "a", 
-              "type": "gt"
+              "lhs": "b"
             }
           ]
         }
       ], 
-      "input": [
-        {
-          "symbols": [
-            "f", 
-            "g"
-          ], 
-          "kind": "function", 
-          "dependencies": [
-            "x"
-          ], 
-          "type": "real"
-        }
-      ], 
+      "if": {
+        "function": [
+          "f", 
+          "g"
+        ], 
+        "of": {
+          "to": "b", 
+          "symbol": "x", 
+          "from": "a"
+        }, 
+        "is": [
+          "continuity"
+        ]
+      }, 
       "then": {
         "expression": {
           "operator": "eq", 
@@ -644,53 +712,6 @@
           "lhs": "Integral(f(x)*Derivative(g(x), x), (x, a, b))"
         }
       }, 
-      "if": {
-        "function": [
-          "f", 
-          "g"
-        ], 
-        "of": {
-          "to": "b", 
-          "symbol": "x", 
-          "from": "a"
-        }, 
-        "is": [
-          "continuity"
-        ]
-      }
-    }, 
-    "ibp": {
-      "category": "custom", 
-      "symbols": [
-        {
-          "symbols": [
-            "x"
-          ], 
-          "kind": "variable", 
-          "type": "real"
-        }, 
-        {
-          "symbols": [
-            "a", 
-            "b"
-          ], 
-          "kind": "constant", 
-          "type": "real", 
-          "constraints": [
-            {
-              "lhs": "b", 
-              "rhs": "a", 
-              "type": "gt"
-            }, 
-            {
-              "lb": "a", 
-              "symbol": "x", 
-              "type": "inside", 
-              "ub": "b"
-            }
-          ]
-        }
-      ], 
       "input": [
         {
           "symbols": [
@@ -703,28 +724,7 @@
           ], 
           "type": "real"
         }
-      ], 
-      "then": {
-        "expression": {
-          "operator": "eq", 
-          "rhs": "f(x)*g(x) - Integral(f(x)*Derivative(g(x), x))", 
-          "lhs": "Integral(g(x)*Derivative(f(x), x), x)"
-        }
-      }, 
-      "if": {
-        "function": [
-          "f", 
-          "g"
-        ], 
-        "of": {
-          "to": "b", 
-          "symbol": "x", 
-          "from": "a"
-        }, 
-        "is": [
-          "continuity"
-        ]
-      }
+      ]
     }, 
     "flcv": {
       "category": "custom", 
@@ -746,33 +746,13 @@
           "type": "real", 
           "constraints": [
             {
-              "lhs": "b", 
+              "type": "gt", 
               "rhs": "a", 
-              "type": "gt"
+              "lhs": "b"
             }
           ]
         }
       ], 
-      "input": [
-        {
-          "symbols": [
-            "f", 
-            "h"
-          ], 
-          "kind": "function", 
-          "dependencies": [
-            "x"
-          ], 
-          "type": "real"
-        }
-      ], 
-      "then": {
-        "expression": {
-          "operator": "eq", 
-          "rhs": "0", 
-          "lhs": "f(t)"
-        }
-      }, 
       "if": {
         "and": [
           {
@@ -809,7 +789,27 @@
             }
           }
         ]
-      }
+      }, 
+      "then": {
+        "expression": {
+          "operator": "eq", 
+          "rhs": "0", 
+          "lhs": "f(t)"
+        }
+      }, 
+      "input": [
+        {
+          "symbols": [
+            "f", 
+            "h"
+          ], 
+          "kind": "function", 
+          "dependencies": [
+            "x"
+          ], 
+          "type": "real"
+        }
+      ]
     }, 
     "int_prop_neg": {
       "category": "definition", 
@@ -868,9 +868,9 @@
           "type": "real", 
           "constraints": [
             {
-              "lhs": "b", 
+              "type": "gt", 
               "rhs": "a", 
-              "type": "gt"
+              "lhs": "b"
             }
           ]
         }
@@ -946,6 +946,44 @@
           "symbols": [
             "f", 
             "g"
+          ], 
+          "kind": "function", 
+          "dependencies": [
+            "x"
+          ], 
+          "type": "any"
+        }
+      ]
+    }, 
+    "int_of_der": {
+      "category": "definition", 
+      "symbols": [
+        {
+          "symbols": [
+            "x"
+          ], 
+          "kind": "variable", 
+          "type": "any"
+        }, 
+        {
+          "symbols": [
+            "c"
+          ], 
+          "kind": "constant", 
+          "type": "any"
+        }
+      ], 
+      "statement": {
+        "expression": {
+          "operator": "eq", 
+          "rhs": "f(x) + c", 
+          "lhs": "Integral(Derivative(f(x), x), x)"
+        }
+      }, 
+      "input": [
+        {
+          "symbols": [
+            "f"
           ], 
           "kind": "function", 
           "dependencies": [
