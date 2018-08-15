@@ -11,6 +11,55 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js" integrity="sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js" integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous"></script>
+    <style>
+    body {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+    h2 {
+      margin-top: 2rem;
+    }
+    h3 {
+      margin-top: 2rem;
+    }
+    h3.nlg {
+      margin-top: 6rem;
+      font-size: 1.2em;
+    }
+    h4 {
+      margin-top: 2rem;
+    }
+    .row {
+      margin-bottom: 1rem;
+    }
+    .row .row {
+      margin-top: 1rem;
+      margin-bottom: 0;
+    }
+    hr {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+    .tag {
+      margin-right: 2rem;
+    }
+    #toc_container {
+      background: #f9f9f9 none repeat scroll 0 0;
+      border: 1px solid #aaa;
+      display: table;
+      font-size: 95%;
+      margin-bottom: 1em;
+      padding: 20px;
+      width: auto;
+    }
+    .toc_title {
+      font-weight: 700;
+      text-align: center;
+    }
+    #toc_container li, #toc_container ul, #toc_container ul li{
+      list-style: outside none none !important;
+    }
+    </style>
   </head>
   <body>
     <div id="content" class="container">
@@ -20,6 +69,10 @@
       <p>Humans have limited patience and focus, everyone has own individual style. All this results with books which are not accurate enough, skip relevant steps and definitions, which is decreasing quality of end result.</p>
       <h2>Generated output</h2>
       <p>Definitions in following sections are automatically generator from formal description, which is verifiable by a machine.</p>
+      <div id="toc_container">
+        <p class="toc_title">Contents</p>
+        {{ toc }}
+      </div>
       {{ content }}
     </div>
   <script>
