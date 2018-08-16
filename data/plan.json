@@ -1,0 +1,73 @@
+{
+  "title": "mathematics",
+  "children": [
+    {
+      "title": "csupport",
+      "children": [
+        {
+          "surface": "support"
+        },
+        {
+          "surface": "compact_support"
+        }
+      ]
+    },
+    {
+      "title": "derivative_rules",
+      "children": [
+        {
+          "surface": "vproductrule"
+        }
+      ]
+    },
+    {
+      "title": "int_prop",
+      "children": [
+        {
+          "surface": "int_prop_mult"
+        },
+        {
+          "surface": "int_prop_neg"
+        },
+        {
+          "surface": "int_prop_sum"
+        },
+        {
+          "surface": "int_prop_sub"
+        },
+        {
+          "surface": "int_of_der"
+        }
+      ]
+    },
+    {
+      "title": "ccontinuity",
+      "children": [
+        {
+          "surface": "continuity_at_point"
+        },
+        {
+          "surface": "continuity_over_interval"
+        },
+        {
+          "surface": "nth_order_continuity"
+        },
+        {
+          "surface": "infinite_order_continuity"
+        },
+        {
+          "surface": "smoothness"
+        }
+      ]
+    },
+    {
+      "surface": "ibp"
+    },
+    {
+      "surface": "cibp"
+    },
+    {
+      "surface": "flcv"
+    }
+  ]
+}

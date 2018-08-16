@@ -1,0 +1,14 @@
+{
+  "integrate": {
+    "params": {
+      "wrt": {
+        "type": "symbol",
+        "representation": "x"
+      }
+    },
+    "out": "Integrate(eq, x)",
+    "linguistic": {
+      "en_EN": "we integrate {side} with respect to {wrt}"
+    }
+  }
+}

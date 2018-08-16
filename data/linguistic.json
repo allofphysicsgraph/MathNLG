@@ -1,5 +1,23 @@
 {
   "linguistic": {
+    "mathematics": {
+      "noun": "mathematics"
+    },
+    "physics": {
+      "noun": "physics"
+    },
+    "csupport": {
+      "noun": "support"
+    },
+    "derivative_rules": {
+      "noun": "derivative rules"
+    },
+    "int_prop": {
+      "noun": "integration properties"
+    },
+    "ccontinuity": {
+      "noun": "continuity"
+    },
     "support": {
       "noun": "support",
       "adjective": "supported"

@@ -1,0 +1,54 @@
+{
+  "ibp": {
+    "type": "derivation",
+    "expressions": [
+      {
+          "id": "ibp1",
+          "operator": "eq",
+          "rhs": "Integral(f(x)*Derivative(g(x), x) + g(x)*Derivative(f(x), x), x)",
+          "lhs": "Integral(Derivative(f(x)*g(x), x), x)"
+      },
+      {
+          "id": "ibp2",
+          "operator": "eq",
+          "rhs": "Integral(f(x)*Derivative(g(x), x)) + Integral(g(x)*Derivative(f(x), x), x)",
+          "lhs": "Integral(Derivative(f(x)*g(x), x), x)"
+      },
+      {
+          "id": "ibp3",
+          "operator": "eq",
+          "rhs": "Integral(f(x)*Derivative(g(x), x)) + Integral(g(x)*Derivative(f(x), x), x)",
+          "lhs": "f(x)*g(x)"
+      }
+    ],
+    "steps": [
+      {
+        "source": "vproductrule",
+        "target": "ibp1",
+        "transition": {
+          "operation": "integrate",
+          "wrt": "x"
+        },
+        "verification": "sympy"
+      },
+      {
+        "source": "ibp1",
+        "target": "ibp2",
+        "transition": {},
+        "verification": "sympy"
+      },
+      {
+        "source": "ibp2",
+        "target": "ibp3",
+        "transition": {},
+        "verification": "sympy"
+      },
+      {
+        "source": "ibp3",
+        "target": "ibp",
+        "transition": {},
+        "verification": "sympy"
+      }
+    ]
+  }
+}
