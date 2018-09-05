@@ -65,7 +65,7 @@ tests = [
                 }
             }
         },
-        'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is supported for all $x$ from $a$ to $c$ is equivalent of saying that $$f{\left (b \\right )} \\neq 0$$ is true for all $b$ where $x$ is a real variable and $a$, $b$ and $c$ are real constants such that $b$ is contained between $a$ and $c$.'
+        'expected': 'Let $f(x)$ be a real function where $x$ is a real variable, saying that $f(x)$ is supported for all $x$ from $a$ to $c$ where $a$ and $c$ are real constants, is equivalent of saying that $$f{\left (b \\right )} \\neq 0$$ is true for all $b$ such that $b$ is contained between $a$ and $c$ where $b$ is a real constant.'
     },
     {
         'test': {},
@@ -144,7 +144,7 @@ tests = [
                 }
             }
         },
-        'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is compactly supported for all $x$ from $a$ to $c$ is equivalent of saying that $f(x)$ is supported for all $x$ from $a$ to $c$ and $$f{\left (b \\right )} = 0$$ is true for all $b$ where $x$ is a real variable and $a$, $b$ and $c$ are real constants such that $b$ is not contained between $a$ and $c$.'
+        'expected': 'Let $f(x)$ be a real function where $x$ is a real variable, saying that $f(x)$ is compactly supported for all $x$ from $a$ to $c$ where $a$ and $c$ are real constants, is equivalent of saying that $f(x)$ is supported for all $x$ from $a$ to $c$ and $$f{\left (b \\right )} = 0$$ is true for all $b$ where $b$ is a real constant such that $b$ is not contained between $a$ and $c$.'
     },
     {
         'test': {},
@@ -196,7 +196,7 @@ tests = [
                 }
             }
         },
-        'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is continuous for all $x$ at $c$ is equivalent of saying that $$\\lim_{x \\to c^+} f{\\left (x \\right )} = f{\\left (c \\right )}$$ is true where $x$ is a real variable and $c$ is a real constant.'
+        'expected': 'Let $f(x)$ be a real function where $x$ is a real variable, saying that $f(x)$ is continuous for all $x$ at $c$ where $c$ is a real constant, is equivalent of saying that $$\\lim_{x \\to c^+} f{\\left (x \\right )} = f{\\left (c \\right )}$$ is true.'
     },
     {
         'test': {},
@@ -216,7 +216,8 @@ tests = [
                     'is': ['continuity'],
                     'of': {
                         'symbol': 'x',
-                        'at': 'a'
+                        'from': 'a',
+                        'to': 'b'
                     }
                 },
                 {
@@ -224,8 +225,7 @@ tests = [
                     'is': ['continuity'],
                     'of': {
                         'symbol': 'x',
-                        'from': 'a',
-                        'to': 'b'
+                        'at': 'a'
                     }
                 }
             ],
@@ -258,7 +258,7 @@ tests = [
                 }
             }
         },
-        'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is continuous for all $x$ at $a$ is equivalent of saying that $f(x)$ is continuous for all $x$ from $a$ to $b$ where $x$ is a real variable and $a$, $b$ and $c$ are real constants such that $b$ is contained between $a$ and $c$.'
+        'expected': 'Let $f(x)$ be a real function where $x$ is a real variable, saying that $f(x)$ is continuous for all $x$ from $a$ to $c$ where $a$ and $c$ are real constants is equivalent of saying that $f(x)$ is continuous for all $x$ at $b$ where $b$ is a real constant contained between $a$ and $c$.
     },
     {
         'test': {},
@@ -412,7 +412,7 @@ tests = [
                         }
                     ]
                 }
-            ],
+            ]
         },
         'meta': {
             'linguistic': {
