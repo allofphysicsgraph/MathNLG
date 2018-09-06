@@ -353,7 +353,7 @@ tests = [
                 }
             }
         },
-        'expected': 'Let $f(x)$ be a real function and let $n$ and $k$ be positives integer constants such that $n$ is greater or equal than $k$, saying that $f(x)$ is continuous for all $x$ from $a$ to $b$ and $\\frac{d^k}{dx^k}f(x)$ is continuous for all $x$ from $a$ to $b$ and for all $k$ is equivalent of saying that $f(x)$ is $n$\'th order continuous for all $x$ from $a$ to $b$ where $x$ is a real variable and $a$ and $b$ are real constants such that $b$ is strictly greater than $a$.'
+        'expected': 'Let $f(x)$ be a real function where $x$ is a real constant and let $n$ and $k$ be positives integer constants such that $n$ is greater or equal than $k$ where $k$ is a real constant, saying that $f(x)$ is continuous for all $x$ from $a$ to $b$ where $a$ and $b$ are real constants such that $b$ is strictly greater than $a$ and $\\frac{d^k}{dx^k}f(x)$ is continuous for all $x$ from $a$ to $b$ and for all $k$ is equivalent of saying that $f(x)$ is $n$\'th order continuous for all $x$ from $a$ to $b$.'
     },
     {
         'test': {},
