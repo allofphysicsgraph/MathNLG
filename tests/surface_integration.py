@@ -426,7 +426,7 @@ tests = [
                 }
             }
         },
-        'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is $n$\'th order continuous for all $x$ from $a$ to $b$ and $n$ is infinite is equivalent of saying that $f(x)$ is infinite order continuous for all $x$ from $a$ to $b$ where $x$ is a real variable and $a$ and $b$ are real constants such that $b$ is strictly greater than $a$.'
+        'expected': 'Let $f(x)$ be a real function where $x$ is a real variable, saying that $f(x)$ is $n$\'th order continuous for all $x$ from $a$ to $b$ where $n$ is infinite and $a$ and $b$ are real constants such that $b$ is strictly greater than $a$ is equivalent of saying that $f(x)$ is infinite order continuous for all $x$ from $a$ to $b$.'
     },
     {
         'test': {},
