@@ -491,7 +491,7 @@ tests = [
                 }
             }
         },
-        'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is infinite order continuous for all $x$ from $a$ to $b$ is equivalent of saying that $f(x)$ is smooth for all $x$ from $a$ to $b$ where $x$ is a real variable and $a$ and $b$ are real constants such that $b$ is strictly greater than $a$.'
+        'expected': 'Let $f(x)$ be a real function where $x$ is a real variable, saying that $f(x)$ is infinite order continuous for all $x$ from $a$ to $b$ where $a$ and $b$ are constants such that $b$ is strictly greater than $a$ is equivalent of saying that $f(x)$ is smooth for all $x$ from $a$ to $b$.'
     },
     {
         'test': {},
