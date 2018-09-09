@@ -572,7 +572,7 @@ tests = [
                 }
             }
         },
-        'expected': 'Let $f(x)$ and $h(x)$ be real functions such that if $f(x)$ is continuous for all $x$ from $a$ to $b$, $h(x)$ is compactly supported for all $x$ from $a$ to $b$ and $$\\int_{a}^{b} f{\\left (t \\right )} h{\\left (t \\right )}\, dx = 0$$ is true then $$f{\left (t \\right )} = 0$$ is true where $x$ and $t$ are real variables and $a$ and $b$ are real constants such that $b$ is strictly greater than $a$.'
+        'expected': 'Let $f(x)$ and $h(x)$ be real functions where $x$ is a real variable such that if $f(x)$ is continuous for all $x$ from $a$ to $b$ where $a$ and $b$ are constants such that $b$ is strictly greater than $a$, $h(x)$ is compactly supported for all $x$ from $a$ to $b$ and $$\\int_{a}^{b} f{\\left (t \\right )} h{\\left (t \\right )}\, dx = 0$$ is true then $$f{\left (t \\right )} = 0$$ is true.'
     }
 ]
 
