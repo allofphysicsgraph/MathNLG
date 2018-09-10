@@ -8,6 +8,38 @@ def skipTest(test) :
     if 'disabled' in test.keys() :
         return test['disabled']
 
+tests_ignorance_input = [
+    {
+        'test': {},
+        'data': {
+            'symbols': ['f'],
+            'type': 'real',
+            'kind': 'function',
+            'dependencies': ['x']
+        },
+        'meta': {
+            'ignore': [],
+            'f': '$f(x)$'
+        },
+        'expected': 'Let $f(x)$ be a real function where $x$ is a real variable'
+    },
+    {
+        'test': {},
+        'data': {
+            'symbols': ['f'],
+            'type': 'real',
+            'kind': 'function',
+            'dependencies': ['x']
+        },
+        'meta': {
+            'ignore': ['x'],
+            'f': '$f(x)$'
+        },
+        'expected': 'Let $f(x)$ be a real function'
+    }
+]
+
+
 tests_statement = [
     {
         'test': {},
