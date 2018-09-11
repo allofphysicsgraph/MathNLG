@@ -42,7 +42,9 @@ tests_ignorance_input = [
 
 tests_statement = [
     {
-        'test': {},
+        'test': {
+            'disabled': True
+        },
         'data': {
             'function': ['f'],
             'is': ['continuous'],
@@ -58,7 +60,9 @@ tests_statement = [
         'expected': '$f(x)$ is continuous for all $x$ from $a$ to $c$'
     },
     {
-        'test': {},
+        'test': {
+            'disabled': True
+        },
         'data': {
             'expression': {
                 'operator': 'eq',
@@ -71,7 +75,9 @@ tests_statement = [
         'expected': '$$f{\left (b \\right )} = 0$$ is true for all $b$'
     },
     {
-        'test': {},
+        'test': {
+            'disabled': True
+        },
         'data': {
             'function': ['derivative(f(x), x, k)'],
             'is': ['continuous'],
@@ -88,7 +94,9 @@ tests_statement = [
         'expected': '$\\frac{d^k}{dx^k}f(x)$ is continuous for all $x$ from $a$ to $b$ and for all $k$'
     },
     {
-        'test': {},
+        'test': {
+            'disabled': True
+        },
         'data': {
             'symbol': 'n',
             'is': ['even']
@@ -97,7 +105,9 @@ tests_statement = [
         'expected': '$n$ is even'
     },
     {
-        'test': {},
+        'test': {
+            'disabled': True
+        },
         'data': {
             'symbol': 'n',
             'is': ['even', 'positive']
@@ -106,7 +116,9 @@ tests_statement = [
         'expected': '$n$ is even and positive'
     },
     {
-        'test': {},
+        'test': {
+            'disabled': True
+        },
         'data': {
             'symbol': 'n',
             'is': ['even', 'positive', 'finite']
@@ -124,7 +136,9 @@ tests_statement = [
 
 tests_symbolic = [
     {
-        'test': {},
+        'test': {
+            'disabled': True
+        },
         'data': [
             {
                 'symbols': ['f'],
@@ -142,7 +156,9 @@ tests_symbolic = [
         }
     },
     {
-        'test': {},
+        'test': {
+            'disabled': True
+        },
         'data': [
             {
                 'symbols': ['f', 'g'],
@@ -161,7 +177,9 @@ tests_symbolic = [
         }
     },
     {
-        'test': {},
+        'test': {
+            'disabled': True
+        },
         'data': [
             {
                 'symbols': ['f'],
@@ -186,7 +204,9 @@ tests_symbolic = [
         }
     },
     {
-        'test': {},
+        'test': {
+            'disabled': True
+        },
         'data': [
             {
                 'symbols': ['f'],
@@ -212,7 +232,9 @@ tests_symbolic = [
         }
     },
     {
-        'test': {},
+        'test': {
+            'disabled': True
+        },
         'data': [
             {
                 'symbols': ['x'],
@@ -240,7 +262,9 @@ tests_symbolic = [
         }
     },
     {
-        'test': {},
+        'test': {
+            'disabled': True
+        },
         'data': [
             {
                 'symbols': ['x'],
@@ -255,7 +279,9 @@ tests_symbolic = [
         }
     },
     {
-        'test': {},
+        'test': {
+            'disabled': True
+        },
         'data': [
             {
                 'symbols': ['x', 'y'],
@@ -270,7 +296,9 @@ tests_symbolic = [
         }
     },
     {
-        'test': {},
+        'test': {
+            'disabled': True
+        },
         'data': [
             {
                 'symbols': ['x', 'y', 'z'],
@@ -285,7 +313,9 @@ tests_symbolic = [
         }
     },
     {
-        'test': {},
+        'test': {
+            'disabled': True
+        },
         'data': [
             {
                 'symbols': ['x', 'y', 'z'],
@@ -305,7 +335,9 @@ tests_symbolic = [
         }
     },
     {
-        'test': {},
+        'test': {
+            'disabled': True
+        },
         'data': [
             {
                 'symbols': ['n', 'k'],
@@ -331,7 +363,9 @@ tests_symbolic = [
 
 tests_logic = [
     {
-        'test': {},
+        'test': {
+            'disabled': True
+        },
         'data': {
             'symbol': ['f'],
             'is': ['a']
@@ -357,7 +391,9 @@ tests_logic = [
         'expected': '$f$ is a and $g$ is b'
     },
     {
-        'test': {},
+        'test': {
+            'disabled': True
+        },
         'data': {
             'and': [
                 {
@@ -378,7 +414,9 @@ tests_logic = [
         'expected': '$f$ is a, $g$ is b and $h$ is c'
     },
     {
-        'test': {},
+        'test': {
+            'disabled': True
+        },
         'data': {
             'or': [
                 {
@@ -395,7 +433,9 @@ tests_logic = [
         'expected': 'at least one of $f$ is a and $g$ is b holds'
     },
     {
-        'test': {},
+        'test': {
+            'disabled': True
+        },
         'data': {
             'or': [
                 {
