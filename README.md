@@ -12,6 +12,14 @@ To see the generated output visit our [GitHub Pages Website](https://allofphysic
 
 Create a re-usable, semantically meaningful way of storing knowledge. Start a truly collaborative platform for high quality scientific writing. Implement surface realizers for as many languages as possible, especially very exotic once, to ensure everyone has access to high quality study materials.
 
+## How to
+
+Install dependencies
+
+```
+pip install -r requirements.txt
+```
+
 ## Limitations
 
 * Only first order logic expressions can be compiled in natural language.
