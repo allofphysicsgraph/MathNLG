@@ -1,7 +1,6 @@
-import json
-
 from jinja2 import Template
 from nlg.surface import surfaceRealize
+from nlg.tools import load, parse
 
 def menu(node, rendered, linguistic) :
     if 'surface' in node.keys() :
@@ -19,26 +18,11 @@ def menu(node, rendered, linguistic) :
             all += '<ul class="toc_list">%s</ul>' % (compiled)
         return '<li>%s</li>' % (all)
 
-def parse(text) :
-    try:
-        return json.loads(text)
-    except ValueError as e:
-        raise ValueError('invalid json: %s' % (e))
 
-data = {}
-with open('data/source.json', 'r') as file :
-    raw = file.read()
-    data = parse(raw)
 
-linguistic = {}
-with open('data/linguistic.json', 'r') as file :
-    raw = file.read()
-    linguistic = parse(raw)
-
-planner = {}
-with open('data/plan.json', 'r') as file :
-    raw = file.read()
-    planner = parse(raw)
+data = load('data/source.json')
+linguistic = load('data/linguistic.json')
+planner = load('data/plan.json')
 
 rendered = {}
 for id in data['source'].keys() :
