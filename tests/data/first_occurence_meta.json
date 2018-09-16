@@ -1,0 +1,35 @@
+[
+  {
+    "id": "me1",
+    "ignore": [
+      {
+        "symbol": "x"
+      }
+    ]
+  },
+  {
+    "id": "me2",
+    "ignore": [
+      {
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "id": "me3",
+    "ignore": [
+      {
+        "symbol": "x",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "id": "me4",
+    "ignore": [
+      {
+        "function": "f"
+      }
+    ]
+  }
+]

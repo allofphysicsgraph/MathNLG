@@ -1,0 +1,74 @@
+[
+  {
+    "id": "fo1",
+    "input": [
+      {
+        "symbols": ["f"],
+        "type": "real",
+        "kind": "function",
+        "dependencies": ["x"]
+      }
+    ],
+    "symbols": [
+      {
+        "symbols": ["x"],
+        "type": ["real"],
+        "kind": "variable"
+      }
+    ]
+  },
+  {
+    "id": "fo1",
+    "input": [
+      {
+        "symbols": ["f", "g"],
+        "type": "real",
+        "kind": "function",
+        "dependencies": ["x"]
+      }
+    ],
+    "symbols": [
+      {
+        "symbols": ["x"],
+        "type": ["real"],
+        "kind": "variable"
+      }
+    ]
+  },
+  {
+    "id": "fo3",
+    "input": [
+      {
+        "symbols": ["f"],
+        "type": "real",
+        "kind": "function",
+        "dependencies": ["x", "y"]
+      }
+    ],
+    "symbols": [
+      {
+        "symbols": ["x", "y"],
+        "type": ["real"],
+        "kind": "variable"
+      }
+    ]
+  },
+  {
+    "id": "fo4",
+    "input": [
+      {
+        "symbols": ["f", "g"],
+        "type": "real",
+        "kind": "function",
+        "dependencies": ["x", "y"]
+      }
+    ],
+    "symbols": [
+      {
+        "symbols": ["x", "y"],
+        "type": ["real"],
+        "kind": "variable"
+      }
+    ]
+  }
+]
