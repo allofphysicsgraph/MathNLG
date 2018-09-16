@@ -1,0 +1,6 @@
+jinja2
+pypatt
+lxml
+sympy
+paramunittest
+colorama

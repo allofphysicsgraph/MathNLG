@@ -3,7 +3,6 @@ import pypatt
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
-from lxml import etree
 from sympy import sympify, latex
 
 def surfaceRealize(data, meta) :

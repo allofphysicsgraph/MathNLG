@@ -1,3 +1,4 @@
+import json
 import difflib
 
 from colorama import Back, Style
@@ -31,3 +32,16 @@ def skipTest(test) :
 
 def assertEqual(self, output, expected) :
     self.assertEqual(output, expected, diffFormat('output', 'expected', output, expected))
+
+def parse(text) :
+    try:
+        return json.loads(text)
+    except ValueError as e:
+        raise ValueError('invalid json: %s' % (e))
+
+def load(file) :
+    data = {}
+    with open(file, 'r') as file :
+        raw = file.read()
+        data = parse(raw)
+    return data

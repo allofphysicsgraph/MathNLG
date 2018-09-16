@@ -65,7 +65,7 @@ tests = [
                 }
             }
         },
-        'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is supported for all $x$ from $a$ to $c$ is equivalent of saying that $$f{\left (b \\right )} \\neq 0$$ is true for all $b$ where $x$ is a real variable and $a$, $b$ and $c$ are real constants such that $b$ is contained between $a$ and $c$.'
+        'expected': 'Let $f(x)$ be a real function where $x$ is a real variable, saying that $f(x)$ is supported for all $x$ from $a$ to $c$ where $a$ and $c$ are real constants, is equivalent of saying that $$f{\left (b \\right )} \\neq 0$$ is true for all $b$ such that $b$ is contained between $a$ and $c$ where $b$ is a real constant.'
     },
     {
         'test': {},
@@ -144,7 +144,7 @@ tests = [
                 }
             }
         },
-        'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is compactly supported for all $x$ from $a$ to $c$ is equivalent of saying that $f(x)$ is supported for all $x$ from $a$ to $c$ and $$f{\left (b \\right )} = 0$$ is true for all $b$ where $x$ is a real variable and $a$, $b$ and $c$ are real constants such that $b$ is not contained between $a$ and $c$.'
+        'expected': 'Let $f(x)$ be a real function where $x$ is a real variable, saying that $f(x)$ is compactly supported for all $x$ from $a$ to $c$ where $a$ and $c$ are real constants, is equivalent of saying that $f(x)$ is supported for all $x$ from $a$ to $c$ and $$f{\left (b \\right )} = 0$$ is true for all $b$ where $b$ is a real constant such that $b$ is not contained between $a$ and $c$.'
     },
     {
         'test': {},
@@ -196,7 +196,7 @@ tests = [
                 }
             }
         },
-        'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is continuous for all $x$ at $c$ is equivalent of saying that $$\\lim_{x \\to c^+} f{\\left (x \\right )} = f{\\left (c \\right )}$$ is true where $x$ is a real variable and $c$ is a real constant.'
+        'expected': 'Let $f(x)$ be a real function where $x$ is a real variable, saying that $f(x)$ is continuous for all $x$ at $c$ where $c$ is a real constant, is equivalent of saying that $$\\lim_{x \\to c^+} f{\\left (x \\right )} = f{\\left (c \\right )}$$ is true.'
     },
     {
         'test': {},
@@ -216,7 +216,8 @@ tests = [
                     'is': ['continuity'],
                     'of': {
                         'symbol': 'x',
-                        'at': 'a'
+                        'from': 'a',
+                        'to': 'b'
                     }
                 },
                 {
@@ -224,8 +225,7 @@ tests = [
                     'is': ['continuity'],
                     'of': {
                         'symbol': 'x',
-                        'from': 'a',
-                        'to': 'b'
+                        'at': 'a'
                     }
                 }
             ],
@@ -258,7 +258,7 @@ tests = [
                 }
             }
         },
-        'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is continuous for all $x$ at $a$ is equivalent of saying that $f(x)$ is continuous for all $x$ from $a$ to $b$ where $x$ is a real variable and $a$, $b$ and $c$ are real constants such that $b$ is contained between $a$ and $c$.'
+        'expected': 'Let $f(x)$ be a real function where $x$ is a real variable, saying that $f(x)$ is continuous for all $x$ from $a$ to $c$ where $a$ and $c$ are real constants is equivalent of saying that $f(x)$ is continuous for all $x$ at $b$ where $b$ is a real constant contained between $a$ and $c$.
     },
     {
         'test': {},
@@ -353,7 +353,7 @@ tests = [
                 }
             }
         },
-        'expected': 'Let $f(x)$ be a real function and let $n$ and $k$ be positives integer constants such that $n$ is greater or equal than $k$, saying that $f(x)$ is continuous for all $x$ from $a$ to $b$ and $\\frac{d^k}{dx^k}f(x)$ is continuous for all $x$ from $a$ to $b$ and for all $k$ is equivalent of saying that $f(x)$ is $n$\'th order continuous for all $x$ from $a$ to $b$ where $x$ is a real variable and $a$ and $b$ are real constants such that $b$ is strictly greater than $a$.'
+        'expected': 'Let $f(x)$ be a real function where $x$ is a real constant and let $n$ and $k$ be positives integer constants such that $n$ is greater or equal than $k$ where $k$ is a real constant, saying that $f(x)$ is continuous for all $x$ from $a$ to $b$ where $a$ and $b$ are real constants such that $b$ is strictly greater than $a$ and $\\frac{d^k}{dx^k}f(x)$ is continuous for all $x$ from $a$ to $b$ and for all $k$ is equivalent of saying that $f(x)$ is $n$\'th order continuous for all $x$ from $a$ to $b$.'
     },
     {
         'test': {},
@@ -412,7 +412,7 @@ tests = [
                         }
                     ]
                 }
-            ],
+            ]
         },
         'meta': {
             'linguistic': {
@@ -426,7 +426,7 @@ tests = [
                 }
             }
         },
-        'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is $n$\'th order continuous for all $x$ from $a$ to $b$ and $n$ is infinite is equivalent of saying that $f(x)$ is infinite order continuous for all $x$ from $a$ to $b$ where $x$ is a real variable and $a$ and $b$ are real constants such that $b$ is strictly greater than $a$.'
+        'expected': 'Let $f(x)$ be a real function where $x$ is a real variable, saying that $f(x)$ is $n$\'th order continuous for all $x$ from $a$ to $b$ where $n$ is infinite and $a$ and $b$ are real constants such that $b$ is strictly greater than $a$ is equivalent of saying that $f(x)$ is infinite order continuous for all $x$ from $a$ to $b$.'
     },
     {
         'test': {},
@@ -491,7 +491,7 @@ tests = [
                 }
             }
         },
-        'expected': 'Let $f(x)$ be a real function, saying that $f(x)$ is infinite order continuous for all $x$ from $a$ to $b$ is equivalent of saying that $f(x)$ is smooth for all $x$ from $a$ to $b$ where $x$ is a real variable and $a$ and $b$ are real constants such that $b$ is strictly greater than $a$.'
+        'expected': 'Let $f(x)$ be a real function where $x$ is a real variable, saying that $f(x)$ is infinite order continuous for all $x$ from $a$ to $b$ where $a$ and $b$ are constants such that $b$ is strictly greater than $a$ is equivalent of saying that $f(x)$ is smooth for all $x$ from $a$ to $b$.'
     },
     {
         'test': {},
@@ -572,7 +572,7 @@ tests = [
                 }
             }
         },
-        'expected': 'Let $f(x)$ and $h(x)$ be real functions such that if $f(x)$ is continuous for all $x$ from $a$ to $b$, $h(x)$ is compactly supported for all $x$ from $a$ to $b$ and $$\\int_{a}^{b} f{\\left (t \\right )} h{\\left (t \\right )}\, dx = 0$$ is true then $$f{\left (t \\right )} = 0$$ is true where $x$ and $t$ are real variables and $a$ and $b$ are real constants such that $b$ is strictly greater than $a$.'
+        'expected': 'Let $f(x)$ and $h(x)$ be real functions where $x$ is a real variable such that if $f(x)$ is continuous for all $x$ from $a$ to $b$ where $a$ and $b$ are constants such that $b$ is strictly greater than $a$, $h(x)$ is compactly supported for all $x$ from $a$ to $b$ and $$\\int_{a}^{b} f{\\left (t \\right )} h{\\left (t \\right )}\, dx = 0$$ is true then $$f{\left (t \\right )} = 0$$ is true.'
     }
 ]
 
